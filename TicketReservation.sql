@@ -19,3 +19,12 @@ CREATE TABLE Movie
      director VARCHAR(128),
      stars TINYINT);
 ALTER Table Movie AUTO_INCREMENT = 2000;
+
+drop table if exists Ticket;
+CREATE TABLE Ticket (
+ticketType VARCHAR(32) PRIMARY KEY,
+price DECIMAL(5,2)
+);
+
+
+LOAD DATA LOCAL INFILE '/Users/eliassun/Downloads/cs157A/movie/ticket.txt' INTO TABLE Ticket;

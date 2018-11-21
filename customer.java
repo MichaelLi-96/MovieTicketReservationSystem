@@ -72,7 +72,7 @@ public class customer {
 
 				ResultSet rs = stmt.getGeneratedKeys();
 				if (rs.next()) {
-					System.out.println("Registered Successfully. \n Your id is: " + rs.getInt(1));
+					System.out.println("Registered Successfully. Your id is: " + rs.getInt(1));
 				}
 
 			}

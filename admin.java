@@ -68,7 +68,7 @@ public class admin {
 				stmt.executeUpdate();
 				ResultSet rs = stmt.getGeneratedKeys();
 				if (rs.next()) {
-					System.out.println("Movie added Successfully. \n Movie id is: " + rs.getInt(1));
+					System.out.println("Movie added Successfully. Movie id is: " + rs.getInt(1));
 				}
 			}
 		} catch (SQLException exc) {
