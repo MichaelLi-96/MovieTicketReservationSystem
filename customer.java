@@ -28,7 +28,7 @@ public class customer {
 	public void customMain() {
 
 		while (true) {
-			// System.out.println("Welcome to movie tiket reservation system!");
+			// System.out.println("Welcome to movie ticket reservation system!");
 			System.out.println("Please select options:");
 			System.out.print("[1]register   [2]search movie  [3]quit: ");
 			try {
@@ -61,10 +61,10 @@ public class customer {
 		String age = sc.nextLine().trim();
 		PreparedStatement stmt = null;
 		try {
-			stmt = myConn.prepareStatement("insert into customer(uName,age) values(?,?)",
+			stmt = myConn.prepareStatement("INSERT into customer(uName,age) values(?,?)",
 					Statement.RETURN_GENERATED_KEYS);
 			if (name.isEmpty() || age.isEmpty()) {
-				System.out.println("Please provide name & age !");
+				System.out.println("Please provide name & age!");
 			} else {
 				stmt.setString(1, name);
 				stmt.setString(2, age);
@@ -87,5 +87,7 @@ public class customer {
 		}
 
 	}
+	
+	
 
 }
