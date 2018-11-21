@@ -30,8 +30,8 @@ public class customer {
 		while (true) {
 			// System.out.println("Welcome to movie ticket reservation system!");
 			System.out.println("Please select options:");
-			System.out.print("[1]register   [2]search movie  [3]quit: ");
-			try {
+			System.out.print("[1]Register   [2]Search movie  [3]Quit: ");
+			try {x
 				char command = sc.nextLine().trim().charAt(0);
 				if (command == '1')
 					register();
@@ -50,8 +50,11 @@ public class customer {
 	}
 
 	private static void searchMovie() {
-		// TODO Auto-generated method stub
+		System.out.println("Search:");
+		
 		System.out.println("enter movie name:");
+		String name = sc.nextLine().trim();
+		System.out.println()
 	}
 
 	private void register() {
@@ -72,7 +75,7 @@ public class customer {
 
 				ResultSet rs = stmt.getGeneratedKeys();
 				if (rs.next()) {
-					System.out.println("Registered Successfully. Your id is: " + rs.getInt(1));
+					System.out.println("Registered Successfully. \n Your id is: " + rs.getInt(1));
 				}
 
 			}
@@ -88,6 +91,6 @@ public class customer {
 
 	}
 	
-	
+	private void 
 
 }
