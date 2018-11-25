@@ -28,3 +28,12 @@ price DECIMAL(5,2)
 
 
 LOAD DATA LOCAL INFILE '/Users/eliassun/Downloads/cs157A/movie/ticket.txt' INTO TABLE Ticket;
+
+INSERT into customer(uName,age) values("Alice",21) ;
+INSERT into customer(uName,age) values("Bob",22) ;
+INSERT into customer(uName,age) values("Cloe",23) ;
+INSERT into customer(uName,age) values("David",24) ;
+
+
+insert into movie(title,year) values("Shrek",1999);
+insert into movie(title,year) values("Lion King",1995);

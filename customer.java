@@ -31,12 +31,12 @@ public class customer {
 			// System.out.println("Welcome to movie ticket reservation system!");
 			System.out.println("Please select options:");
 			System.out.print("[1]Register   [2]Search movie  [3]Quit: ");
-			try {x
+			try {
 				char command = sc.nextLine().trim().charAt(0);
 				if (command == '1')
 					register();
 				else if (command == '2')
-					searchMovie();
+					searchShowtime() ;
 				else if (command == '3') {
 					System.out.println("Goodbye");
 					System.exit(0);
@@ -49,12 +49,11 @@ public class customer {
 		}
 	}
 
-	private static void searchMovie() {
-		System.out.println("Search:");
+	private static void searchShowtime() {
+		System.out.println("Search Showtime");
+		System.out.println("Enter movie title:");
+		String title = sc.nextLine().trim();
 		
-		System.out.println("enter movie name:");
-		String name = sc.nextLine().trim();
-		System.out.println()
 	}
 
 	private void register() {
@@ -91,6 +90,12 @@ public class customer {
 
 	}
 	
-	private void 
+	private void purchaseTicket() {
+		
+	}
+	
+	private void viewPurchasedTickets() {
+		
+	}
 
 }
