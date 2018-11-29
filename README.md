@@ -1,11 +1,14 @@
 # Move Ticket Reservation
-This is our final project for CS157A: Intro to Databases at San Jose State University
+This is our final project for CS157A: Intro to Databases at San Jose State University with Professor Kim during Fall Semester 2018.
+You will need to have MySQL and JDBC installed.
+This was developed using Eclipse IDE.
 
-Professor: Kim, Fall Semester 2018
+Team Name: Yoobi
 
-Team: Yoobi
-
-Members: Vivian Leung, Ying Wang, Michael Li
+Members: 
+* Vivian Leung
+* Ying Wang
+* Michael Li
 # Setup
 Clone repository
 ```bash
