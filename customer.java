@@ -38,8 +38,8 @@ public class customer {
 					showMovie();
 				else if (command == '3')
 					resevation();
-				else if (command == '4')		
-				 cancelReservation();
+				else if (command == '4')
+					cancelReservation();
 				else if (command == '5') {
 					System.out.println("Goodbye");
 					System.exit(0);
@@ -59,23 +59,24 @@ public class customer {
 		try {
 			stmt = myConn.prepareStatement("select * from movie;");
 			ResultSet rs = stmt.executeQuery();
-			System.out.println("***** movie showtime ****") ; 
-			  while (rs.next()) {
-		            String mtitle = rs.getString("title");
-		            String mid = rs.getString("movieID");
-		            System.out.println(mtitle) ; 	
-		         //   System.out.println("Showtime: ") ; 	
-  	                stmt2 = myConn.prepareStatement("select * from showtime where movieID=?;");
-		            stmt2.setString(1, mid);			
-				    ResultSet rs2 = stmt2.executeQuery();
-				    if(!rs2.isBeforeFirst())System.out.println("No current show time for this movie.") ; 
-				    while (rs2.next()) {
-				    	String st = rs2.getString("startTime") ;
-				    	String sid = rs2.getString("showID") ;
-				    	System.out.println(st + " showID:" + sid) ; 		   
-				    }			 	            
-		        }
-			  System.out.println("***************") ;  
+			System.out.println("***** movie showtime ****");
+			while (rs.next()) {
+				String mtitle = rs.getString("title");
+				String mid = rs.getString("movieID");
+				System.out.println(mtitle);
+				// System.out.println("Showtime: ") ;
+				stmt2 = myConn.prepareStatement("select * from showtime where movieID=?;");
+				stmt2.setString(1, mid);
+				ResultSet rs2 = stmt2.executeQuery();
+				if (!rs2.isBeforeFirst())
+					System.out.println("No current show time for this movie.");
+				while (rs2.next()) {
+					String st = rs2.getString("startTime");
+					String sid = rs2.getString("showID");
+					System.out.println(st + " showID:" + sid);
+				}
+			}
+			System.out.println("***************");
 		} catch (SQLException exc) {
 			System.out.println("An error occured. Error: => " + exc.getMessage());
 		} finally {
@@ -84,14 +85,14 @@ public class customer {
 			} catch (SQLException exc) {
 				System.out.println("An error occured. Error: => " + exc.getMessage());
 			}
-		}				
+		}
 	}
 
 	private static void searchShowtime() {
 		System.out.println("Search Showtime");
 		System.out.println("Enter movie title:");
 		String title = sc.nextLine().trim();
-		
+
 	}
 
 	private void register() {
@@ -102,7 +103,7 @@ public class customer {
 		PreparedStatement stmt = null;
 		try {
 			stmt = myConn.prepareStatement("INSERT into customer(uName,age) values(?,?)",
-				Statement.RETURN_GENERATED_KEYS);
+					Statement.RETURN_GENERATED_KEYS);
 			if (name.isEmpty() || age.isEmpty()) {
 				System.out.println("Please provide name & age!");
 			} else {
@@ -125,7 +126,7 @@ public class customer {
 			}
 		}
 	}
-	
+
 	private void resevation() {
 		System.out.println("enter customer ID:");
 		String uid = sc.nextLine().trim();
@@ -136,7 +137,7 @@ public class customer {
 		PreparedStatement stmt = null;
 		try {
 			stmt = myConn.prepareStatement("insert into reservation(uID, showID, numofTicket) values(?, ?, ?);",
-				Statement.RETURN_GENERATED_KEYS);
+					Statement.RETURN_GENERATED_KEYS);
 			if (sid.isEmpty() || tickets.isEmpty()) {
 				System.out.println("Please provide showID & number of tickets!");
 			} else {
@@ -158,43 +159,34 @@ public class customer {
 			} catch (SQLException exc) {
 				System.out.println("An error occured. Error: => " + exc.getMessage());
 			}
-		}	
-	}	
-	
+		}
+	}
+
 	private void cancelReservation() {
 		System.out.println("enter reservation ID:");
 		String rid = sc.nextLine().trim();
-		
+
 		PreparedStatement stmt = null;
-		try{
+		try {
 			stmt = myConn.prepareStatement("delete from Reservation where rid= ? ");
-			if(rid.isEmpty() )
-			{
+			if (rid.isEmpty()) {
 				System.out.println("Please enter reservation ID:");
+			} else {
+				stmt.setString(1, rid);
+				int bool = stmt.executeUpdate();
+				if (bool == 0)
+					System.out.println("unable to delete\n");
+				else
+					System.out.printf("Reservation %s cancelled successfully!\n", rid);
 			}
-			else{
-			stmt.setString(1, rid);		
-			int bool = stmt.executeUpdate();
-			switch(bool){
-			case 0: 
-				System.out.println("unable to delete\n");
-				break;
-			case 1: 
-				System.out.printf("Reservation %s cancelled successfully!\n", rid);			
-				break;
-			}	
-		}
-			}
-		catch(SQLException exc)
-		{
-			System.out.println("An error occured. Error: => "+exc.getMessage());
-		}
-		finally{
-			try{
+
+		} catch (SQLException exc) {
+			System.out.println("An error occured. Error: => " + exc.getMessage());
+		} finally {
+			try {
 				stmt.close();
-			}
-			catch(SQLException exc){
-				System.out.println("An error occured. Error: => "+exc.getMessage());
+			} catch (SQLException exc) {
+				System.out.println("An error occured. Error: => " + exc.getMessage());
 			}
 		}
 	}
