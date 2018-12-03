@@ -15,7 +15,6 @@ public class customer {
 		public Connection myConn;
 
 		public dbconnection() {
-
 			try {
 				myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/TicketReservation?useSSL=true",
 						"root", "12345678");
@@ -30,14 +29,16 @@ public class customer {
 		while (true) {
 			// System.out.println("Welcome to movie ticket reservation system!");
 			System.out.println("Please select options:");
-			System.out.print("[1]Register   [2]Search movie  [3]Quit: ");
+			System.out.print("[1]Register   [2]showtime [3]make reservation [4]Quit: ");
 			try {
 				char command = sc.nextLine().trim().charAt(0);
 				if (command == '1')
 					register();
 				else if (command == '2')
-					searchShowtime() ;
-				else if (command == '3') {
+					showMovie();
+				else if (command == '3')
+					resevation();
+				else if (command == '4') {
 					System.out.println("Goodbye");
 					System.exit(0);
 				} else
@@ -47,6 +48,41 @@ public class customer {
 				System.out.println("An error occurred.  Try again.");
 			}
 		}
+	}
+
+	private void showMovie() {
+		// TODO Auto-generated method stub
+		PreparedStatement stmt = null;
+		PreparedStatement stmt2 = null;
+		try {
+			stmt = myConn.prepareStatement("select * from movie;");
+			ResultSet rs = stmt.executeQuery();
+			System.out.println("***** movies showtime ****") ; 
+			  while (rs.next()) {
+		            String mtitle = rs.getString("title");
+		            String mid = rs.getString("movieID");
+		            System.out.println(mtitle) ; 	
+		         //   System.out.println("Showtime: ") ; 	
+  	                stmt2 = myConn.prepareStatement("select * from showtime where movieID=?;");
+		            stmt2.setString(1, mid);			
+				    ResultSet rs2 = stmt2.executeQuery();
+				    if(!rs2.isBeforeFirst())System.out.print("No current show time for this movie.") ; 
+				    while (rs2.next()) {
+				    	String st = rs2.getString("startTime") ;
+				    	String sid = rs2.getString("showID") ;
+				    	System.out.println(st + " showID:" + sid) ; 		   
+				    }			 	            
+		        }
+			  System.out.println("***************") ;  
+		} catch (SQLException exc) {
+			System.out.println("An error occured. Error: => " + exc.getMessage());
+		} finally {
+			try {
+				stmt.close();
+			} catch (SQLException exc) {
+				System.out.println("An error occured. Error: => " + exc.getMessage());
+			}
+		}				
 	}
 
 	private static void searchShowtime() {
@@ -64,7 +100,7 @@ public class customer {
 		PreparedStatement stmt = null;
 		try {
 			stmt = myConn.prepareStatement("INSERT into customer(uName,age) values(?,?)",
-					Statement.RETURN_GENERATED_KEYS);
+				Statement.RETURN_GENERATED_KEYS);
 			if (name.isEmpty() || age.isEmpty()) {
 				System.out.println("Please provide name & age!");
 			} else {
@@ -76,7 +112,6 @@ public class customer {
 				if (rs.next()) {
 					System.out.println("Registered Successfully. \n Your id is: " + rs.getInt(1));
 				}
-
 			}
 		} catch (SQLException exc) {
 			System.out.println("An error occured. Error: => " + exc.getMessage());
@@ -87,15 +122,40 @@ public class customer {
 				System.out.println("An error occured. Error: => " + exc.getMessage());
 			}
 		}
-
 	}
 	
-	private void purchaseTicket() {
-		
-	}
-	
-	private void viewPurchasedTickets() {
-		
-	}
+	private void resevation() {
+		System.out.println("enter customer ID:");
+		String uid = sc.nextLine().trim();
+		System.out.println("enter showID:");
+		String sid = sc.nextLine().trim();
+		System.out.println("enter number of tickets:");
+		String tickets = sc.nextLine().trim();
+		PreparedStatement stmt = null;
+		try {
+			stmt = myConn.prepareStatement("insert into reservation(uID, showID, numofTicket) values(?, ?, ?);",
+				Statement.RETURN_GENERATED_KEYS);
+			if (sid.isEmpty() || tickets.isEmpty()) {
+				System.out.println("Please provide showID & number of tickets!");
+			} else {
+				stmt.setString(1, uid);
+				stmt.setString(2, sid);
+				stmt.setString(3, tickets);
+				stmt.executeUpdate();
+				ResultSet rs = stmt.getGeneratedKeys();
+				if (rs.next()) {
+					System.out.println("Reservation made Successfully. \n Your reservation ID is: " + rs.getInt(1));
+				}
 
+			}
+		} catch (SQLException exc) {
+			System.out.println("An error occured. Error: => " + exc.getMessage());
+		} finally {
+			try {
+				stmt.close();
+			} catch (SQLException exc) {
+				System.out.println("An error occured. Error: => " + exc.getMessage());
+			}
+		}	
+	}	
 }
