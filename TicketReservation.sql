@@ -54,6 +54,15 @@ create table reservation
  FOREIGN KEY (showID) references showTime (showID) on delete cascade);
 ALTER Table reservation AUTO_INCREMENT = 5000;
 
+drop table if exists cancelation;
+create table cancelation
+(rID INT Primary Key NOT NULL,
+ uID INT, 
+ showID INT,
+ numofTicket INT,
+ canceledDate Date NOT NULL Default '2018-12-01' 
+);
+
 
 /* Trigger : Automatically decrement seats in showTime when a reservation is made */
 
@@ -67,6 +76,16 @@ BEGIN
 END;//
 delimiter ;
 
+DROP TRIGGER IF EXISTS afterDeleteRes;
+delimiter //
+CREATE TRIGGER afterDeleteRes
+AFTER delete ON RESERVATION
+for each row
+BEGIN
+ update showTime set seats = seats + old.numofTicket where showID= old.showID ;
+ insert into cancelation (rID,uID, showID, numofTicket) values(old.rID, old.uID, old.showID, old.numofTicket);
+END;//
+delimiter ;
 
 INSERT into customer(uName,age) values("Alice",21) ;
 INSERT into customer(uName,age) values("Bob",22) ;
@@ -90,3 +109,7 @@ insert into showTime(movieID, roomID, seats, showdate, startTime) values(2000, 3
 insert into reservation(uID, showID, numofTicket) values(1000, 4000, 5);
 insert into reservation(uID, showID, numofTicket) values(1000, 4001, 3);
 insert into reservation(uID, showID, numofTicket) values(1000, 4002, 1);
+insert into reservation(uID, showID, numofTicket) values(1000, 4002, 6);
+
+delete from reservation where rID=5001;
+

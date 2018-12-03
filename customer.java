@@ -29,7 +29,7 @@ public class customer {
 		while (true) {
 			// System.out.println("Welcome to movie ticket reservation system!");
 			System.out.println("Please select options:");
-			System.out.print("[1]Register   [2]showtime [3]make reservation [4]Quit: ");
+			System.out.print("[1]Register   [2]showtime [3]make reservation [4]cancel reservation [5]quit: ");
 			try {
 				char command = sc.nextLine().trim().charAt(0);
 				if (command == '1')
@@ -38,7 +38,9 @@ public class customer {
 					showMovie();
 				else if (command == '3')
 					resevation();
-				else if (command == '4') {
+				else if (command == '4')		
+				 cancelReservation();
+				else if (command == '5') {
 					System.out.println("Goodbye");
 					System.exit(0);
 				} else
@@ -57,7 +59,7 @@ public class customer {
 		try {
 			stmt = myConn.prepareStatement("select * from movie;");
 			ResultSet rs = stmt.executeQuery();
-			System.out.println("***** movies showtime ****") ; 
+			System.out.println("***** movie showtime ****") ; 
 			  while (rs.next()) {
 		            String mtitle = rs.getString("title");
 		            String mid = rs.getString("movieID");
@@ -66,7 +68,7 @@ public class customer {
   	                stmt2 = myConn.prepareStatement("select * from showtime where movieID=?;");
 		            stmt2.setString(1, mid);			
 				    ResultSet rs2 = stmt2.executeQuery();
-				    if(!rs2.isBeforeFirst())System.out.print("No current show time for this movie.") ; 
+				    if(!rs2.isBeforeFirst())System.out.println("No current show time for this movie.") ; 
 				    while (rs2.next()) {
 				    	String st = rs2.getString("startTime") ;
 				    	String sid = rs2.getString("showID") ;
@@ -110,7 +112,7 @@ public class customer {
 
 				ResultSet rs = stmt.getGeneratedKeys();
 				if (rs.next()) {
-					System.out.println("Registered Successfully. \n Your id is: " + rs.getInt(1));
+					System.out.println("Registered Successfully. Your id is: " + rs.getInt(1));
 				}
 			}
 		} catch (SQLException exc) {
@@ -144,7 +146,7 @@ public class customer {
 				stmt.executeUpdate();
 				ResultSet rs = stmt.getGeneratedKeys();
 				if (rs.next()) {
-					System.out.println("Reservation made Successfully. \n Your reservation ID is: " + rs.getInt(1));
+					System.out.println("Reservation made Successfully.Your reservation ID is: " + rs.getInt(1));
 				}
 
 			}
@@ -158,4 +160,43 @@ public class customer {
 			}
 		}	
 	}	
+	
+	private void cancelReservation() {
+		System.out.println("enter reservation ID:");
+		String rid = sc.nextLine().trim();
+		
+		PreparedStatement stmt = null;
+		try{
+			stmt = myConn.prepareStatement("delete from Reservation where rid= ? ");
+			if(rid.isEmpty() )
+			{
+				System.out.println("Please enter reservation ID:");
+			}
+			else{
+			stmt.setString(1, rid);		
+			int bool = stmt.executeUpdate();
+			switch(bool){
+			case 0: 
+				System.out.println("unable to delete\n");
+				break;
+			case 1: 
+				System.out.printf("Reservation %s cancelled successfully!\n", rid);			
+				break;
+			}	
+		}
+			}
+		catch(SQLException exc)
+		{
+			System.out.println("An error occured. Error: => "+exc.getMessage());
+		}
+		finally{
+			try{
+				stmt.close();
+			}
+			catch(SQLException exc){
+				System.out.println("An error occured. Error: => "+exc.getMessage());
+			}
+		}
+	}
+
 }
