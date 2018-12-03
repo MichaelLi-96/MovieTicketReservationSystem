@@ -96,20 +96,30 @@ INSERT into customer(uName,age) values("David",24) ;
 insert into movie(title,year) values("Shrek",1999);
 insert into movie(title,year) values("Lion King",1995);
 insert into movie(title,year) values("Frozen",2007);
+insert into movie(title,year) values("incredibles",2007);
+insert into movie(title,year) values("incredibles 2",2018);
+
 
 insert into room(maxSeats, location) values(50, 101);
 insert into room(maxSeats, location) values(30, 102);
+insert into room(maxSeats, location) values(50, 103);
+insert into room(maxSeats, location) values(50, 104);
 
 insert into showTime(movieID, roomID, seats, showdate, startTime) values(2001, 3001, 30, '2018-12-02', '10:00:00' );
 insert into showTime(movieID, roomID, seats, showdate, startTime) values(2000, 3000, 30, '2018-12-02', '12:00:00' );
 insert into showTime(movieID, roomID, seats, showdate, startTime) values(2001, 3001, 30, '2018-12-02', '15:00:00' );
-insert into showTime(movieID, roomID, seats, showdate, startTime) values(2000, 3000, 30, '2018-12-02', '17:00:00' );
+insert into showTime(movieID, roomID, seats, showdate, startTime) values(2000, 3002, 30, '2018-12-02', '17:00:00' );
+insert into showTime(movieID, roomID, seats, showdate, startTime) values(2002, 3002, 30, '2018-12-02', '17:00:00' );
 
 
 insert into reservation(uID, showID, numofTicket) values(1000, 4000, 5);
 insert into reservation(uID, showID, numofTicket) values(1000, 4001, 3);
 insert into reservation(uID, showID, numofTicket) values(1000, 4002, 1);
 insert into reservation(uID, showID, numofTicket) values(1000, 4002, 6);
+insert into reservation(uID, showID, numofTicket) values(1001, 4002, 2);
+insert into reservation(uID, showID, numofTicket) values(1002, 4003, 4);
+
 
 delete from reservation where rID=5001;
+delete from reservation where rID=5002;
 
