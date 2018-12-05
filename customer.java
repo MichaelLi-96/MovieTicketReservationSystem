@@ -95,7 +95,7 @@ public class customer {
 			try {
 				char command = sc.nextLine().trim().charAt(0);
 				if (command == '1') {
-					showMovie();
+					showMovieOptions();
 				}
 				else if (command == '2') {
 					resevation();
@@ -130,7 +130,7 @@ public class customer {
 		PreparedStatement stmt = null;
 		System.out.println();
 		try {
-			stmt = myConn.prepareStatement("INSERT into customer(uName, password, age) values(?,?,?)",
+			stmt = myConn.prepareStatement("INSERT into customer(uName, password, age) values(?,?,?);",
 					Statement.RETURN_GENERATED_KEYS);
 			if (name.isEmpty() || password.isEmpty() || age.isEmpty()) {
 				System.out.println("Please provide name, password, & age!");
@@ -169,7 +169,7 @@ public class customer {
 		String password = sc.nextLine().trim();
 		PreparedStatement stmt = null;
 		try {
-			stmt = myConn.prepareStatement("select uName from Customer where uID =" + id +" and password ='" + password + "'",
+			stmt = myConn.prepareStatement("select uName from Customer where uID =" + id +" and password ='" + password + "';",
 					Statement.RETURN_GENERATED_KEYS);
 			ResultSet rs = stmt.executeQuery(); 
 			System.out.println();
@@ -234,7 +234,7 @@ public class customer {
 		String name = sc.nextLine().trim();
 		PreparedStatement stmt = null;
 		try {
-			stmt = myConn.prepareStatement("update customer set uName = ? where uID =" + id,
+			stmt = myConn.prepareStatement("update customer set uName = ? where uID =" + id + ";",
 					Statement.RETURN_GENERATED_KEYS);
 			stmt.setString(1, name);
 			int rowCount = stmt.executeUpdate();
@@ -264,7 +264,7 @@ public class customer {
 		String password = sc.nextLine().trim();
 		PreparedStatement stmt = null;
 		try {
-			stmt = myConn.prepareStatement("update customer set password = ? where uID =" + id,
+			stmt = myConn.prepareStatement("update customer set password = ? where uID =" + id + ";",
 					Statement.RETURN_GENERATED_KEYS);
 			stmt.setString(1, password);
 			int rowCount = stmt.executeUpdate();
@@ -294,7 +294,7 @@ public class customer {
 		String age = sc.nextLine().trim();
 		PreparedStatement stmt = null;
 		try {
-			stmt = myConn.prepareStatement("update customer set age = ? where uID =" + id,
+			stmt = myConn.prepareStatement("update customer set age = ? where uID =" + id + ";",
 					Statement.RETURN_GENERATED_KEYS);
 			stmt.setString(1, age);
 			int rowCount = stmt.executeUpdate();
@@ -324,7 +324,7 @@ public class customer {
 		String cardNumber = sc.nextLine().trim();
 		PreparedStatement stmt = null;
 		try {
-			stmt = myConn.prepareStatement("update customer set cardNumber = ? where uID =" + id,
+			stmt = myConn.prepareStatement("update customer set cardNumber = ? where uID =" + id + ";",
 					Statement.RETURN_GENERATED_KEYS);
 			stmt.setString(1, cardNumber);
 			int rowCount = stmt.executeUpdate();
@@ -351,7 +351,7 @@ public class customer {
 	private void removeCard(String id) {
 		PreparedStatement stmt = null;
 		try {
-			stmt = myConn.prepareStatement("update customer set cardNumber = NULL where uID =" + id,
+			stmt = myConn.prepareStatement("update customer set cardNumber = NULL where uID =" + id + ";",
 					Statement.RETURN_GENERATED_KEYS);
 			int rowCount = stmt.executeUpdate();
 			System.out.println();
@@ -383,7 +383,7 @@ public class customer {
 		PreparedStatement stmt1 = null;
 		PreparedStatement stmt2 = null;
 		try {
-			stmt1 = myConn.prepareStatement("select uName from Customer where uID =" + id +" and password ='" + password + "'",
+			stmt1 = myConn.prepareStatement("select uName from Customer where uID =" + id +" and password ='" + password + "';",
 					Statement.RETURN_GENERATED_KEYS);
 			ResultSet rs = stmt1.executeQuery(); 
 			System.out.println();
@@ -399,7 +399,7 @@ public class customer {
 						char command = sc.nextLine().trim().charAt(0);
 						if (command == '1') {
 							try {
-								stmt2 = myConn.prepareStatement("delete from customer where uID =" + id,
+								stmt2 = myConn.prepareStatement("delete from customer where uID =" + id + ";",
 										Statement.RETURN_GENERATED_KEYS);
 								int rowCount = stmt2.executeUpdate();
 								System.out.println();
@@ -449,13 +449,112 @@ public class customer {
 		}
 	}
 	
-	private void showMovie() {
+	private void showMovieOptions() {
+		while (true) {
+			System.out.println();
+			System.out.println("Please select an option:");
+			System.out.print("[1] Show All Showtimes For A Movie     [2] Show All Movies Alphabetically     [3] Show All Movies By Showtime     [4] Exit: ");
+			try {
+				char command = sc.nextLine().trim().charAt(0);
+				if (command == '1') {
+					showAllShowtimesOfOneMovie();
+				}
+				else if (command == '2') {
+					showAllMoviesAlphabetically();
+				}
+				else if (command == '3') {
+					showAllMoviesByShowtime();
+				}
+				else if (command == '4') {
+					System.out.println();
+					System.out.println("Goodbye.");
+					System.exit(0);
+				}
+				else {
+					System.out.println();
+					System.out.println("Invalid command.");
+				}
+			} catch (Exception e) {
+				System.out.println();
+				System.out.println("An error occurred. Please try again.");
+			}
+		}
+	}
+	
+	private void showAllShowtimesOfOneMovie() {
 		System.out.println();
-		PreparedStatement stmt = null;
+		System.out.print("Enter a movie title: ");
+		String title = sc.nextLine().trim();
+		PreparedStatement stmt1 = null;
 		PreparedStatement stmt2 = null;
 		try {
-			stmt = myConn.prepareStatement("select * from movie;");
-			ResultSet rs = stmt.executeQuery();
+			stmt1 = myConn.prepareStatement("select * from movie where title ='" + title + "';");
+			ResultSet rs = stmt1.executeQuery();
+			if(!rs.next()) {
+				System.out.println("That movie does not exist in our library.");
+			}
+			else {
+				System.out.println("---------------------------");
+				System.out.println("|     Movie Showtimes     |");
+				String mtitle = rs.getString("title");
+				String mid = rs.getString("movieID");
+				if( mtitle.length() <= 25 ) {
+					int titleLength = mtitle.length();
+					int numOfSpaces = 25 - titleLength;
+					System.out.println("|-------------------------|");
+					if(numOfSpaces % 2 == 0) {
+						String space = "";
+						for(int i = 0; i < numOfSpaces/2; i++) {
+							space = space + " ";
+						}
+						System.out.println("|" + space + mtitle + space + "|");
+					}
+					else {
+						String space = "";
+						for(int i = 0; i < (numOfSpaces - 1)/2; i++) {
+							space = space + " ";
+						}
+						System.out.println("|" + space + mtitle + space + " |");
+					}
+					System.out.println("|-------------------------|");
+				}
+				else {
+					System.out.println("|-------------------------|");
+					System.out.println("|" + mtitle + "|");
+					System.out.println("|-------------------------|");
+				}
+				stmt2 = myConn.prepareStatement("select * from showtime where movieID = ?;");
+				stmt2.setString(1, mid);
+				rs = stmt2.executeQuery();
+				if (!rs.isBeforeFirst()) {
+					System.out.println("| No available showtimes. |");
+				}
+				while (rs.next()) {
+					String st = rs.getString("startTime");
+					String sid = rs.getString("showID");
+					System.out.println("| " + "showID: " + sid + " | " + st + " |");
+				}
+				System.out.println("---------------------------");
+				stmt2.close();
+			}
+		} catch (SQLException exc) {
+			System.out.println("An error occured. Error: => " + exc.getMessage());
+		} finally {
+			try {
+				stmt1.close();
+			} catch (SQLException exc) {
+				System.out.println("An error occured. Error: => " + exc.getMessage());
+			}
+		}
+	}
+	
+	private void showAllMoviesAlphabetically() {
+		System.out.println();
+		PreparedStatement stmt1 = null;
+		PreparedStatement stmt2 = null;
+		try {
+			stmt1 = myConn.prepareStatement("select * from movie order by title;");
+			ResultSet rs = stmt1.executeQuery();
 			System.out.println("---------------------------");
 			System.out.println("|     Movie Showtimes     |");
 			while (rs.next()) {
@@ -498,24 +597,22 @@ public class customer {
 				}
 			}
 			System.out.println("---------------------------");
+			stmt2.close();
 		} catch (SQLException exc) {
 			System.out.println("An error occured. Error: => " + exc.getMessage());
 		} finally {
 			try {
-				stmt.close();
+				stmt1.close();
 			} catch (SQLException exc) {
 				System.out.println("An error occured. Error: => " + exc.getMessage());
 			}
 		}
 	}
-
-	private static void searchShowtime() {
-		System.out.println("Search showtimes");
-		System.out.println("Enter movie title:");
-		String title = sc.nextLine().trim();
+	
+	private void showAllMoviesByShowtime() {
 
 	}
-
+	
 	private void resevation() {
 		System.out.println();
 		System.out.print("Enter your ID: ");
@@ -525,7 +622,7 @@ public class customer {
 		PreparedStatement stmt1 = null;
 		PreparedStatement stmt2 = null;
 		try {
-			stmt1 = myConn.prepareStatement("select uName from Customer where uID =" + id +" and password ='" + password + "'",
+			stmt1 = myConn.prepareStatement("select uName from Customer where uID =" + id +" and password ='" + password + "';",
 					Statement.RETURN_GENERATED_KEYS);
 			ResultSet rs = stmt1.executeQuery(); 
 			System.out.println();
@@ -589,7 +686,7 @@ public class customer {
 		PreparedStatement stmt1 = null;
 		PreparedStatement stmt2 = null;
 		try {
-			stmt1 = myConn.prepareStatement("select * from Reservation where rID =" + rId,
+			stmt1 = myConn.prepareStatement("select * from Reservation where rID =" + rId + ";",
 					Statement.RETURN_GENERATED_KEYS);
 			ResultSet rs = stmt1.executeQuery(); 
 			System.out.println();
@@ -603,7 +700,7 @@ public class customer {
 				String sId = sc.nextLine().trim();
 				if(rs.getString("uID").equals(id) && rs.getString("showID").equals(sId)) {
 					try {
-						stmt2 = myConn.prepareStatement("delete from Reservation where rID= ? ");
+						stmt2 = myConn.prepareStatement("delete from Reservation where rID= ?;");
 						stmt2.setString(1, rId);
 						int rowCount = stmt2.executeUpdate();
 						System.out.println();
