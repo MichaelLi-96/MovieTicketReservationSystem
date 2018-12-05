@@ -4,6 +4,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
 public class customer {
@@ -924,7 +926,7 @@ public class customer {
 		String password = sc.nextLine().trim();
 		PreparedStatement stmt = null;
 		try {
-			stmt = myConn.prepareStatement("select total, uName, password from (select uID, SUM(numOfTicket) as 'total' from Reservation group by uID) as totalTable, customer where totalTable.uID = customer.uID and totalTable.uID =" + id + ";",
+			stmt = myConn.prepareStatement("select total, uName, password from (select uID, SUM(numOfTicket) as 'total' from Reservation group by uID) as totalTable, Customer where totalTable.uID = Customer.uID and totalTable.uID =" + id + ";",
 					Statement.RETURN_GENERATED_KEYS);
 			ResultSet rs = stmt.executeQuery();
 			System.out.println();
@@ -945,7 +947,67 @@ public class customer {
 		}
 	}
 	
-	private void showTotalAmountOfMoneySpent() {
-		
+	private void showTotalAmountOfMoneySpent() throws ParseException {
+		System.out.println();
+		System.out.print("Enter your ID: ");
+		String id = sc.nextLine().trim();
+		System.out.print("Enter your password: ");
+		String password = sc.nextLine().trim();
+		PreparedStatement stmt1 = null;
+		PreparedStatement stmt2 = null;
+		PreparedStatement stmt3 = null;
+		PreparedStatement stmt4 = null;
+		try {
+			stmt1 = myConn.prepareStatement("select * from Reservation, Customer where Reservation.uID = Customer.uID and Reservation.uID =" + id + ";",
+					Statement.RETURN_GENERATED_KEYS);
+			ResultSet rs1 = stmt1.executeQuery();
+			stmt3 = myConn.prepareStatement("select price from Ticket where ticketType = 'AM';",
+					Statement.RETURN_GENERATED_KEYS);
+			ResultSet rs3 = stmt3.executeQuery();
+			stmt4 = myConn.prepareStatement("select price from Ticket where ticketType = 'PM';",
+					Statement.RETURN_GENERATED_KEYS);
+			ResultSet rs4 = stmt4.executeQuery();
+			System.out.println();
+			if(rs1.next() && rs3.next() && rs4.next() && rs1.getString("password").equals(password)) {
+				String name = rs1.getString("uName");
+				rs1.beforeFirst();
+				double total = 0;
+				while (rs1.next()) {
+					int numberOfTicketsPerShowtime = rs1.getInt("numOfTicket");
+					stmt2 = myConn.prepareStatement("select * from Showtime where showID = " + rs1.getInt("showID") + ";" ,
+							Statement.RETURN_GENERATED_KEYS);
+					ResultSet rs2 = stmt2.executeQuery();
+					if(rs2.next()) {
+						SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+						if(dateFormat.parse(dateFormat.format(rs2.getTime("startTime"))).after(dateFormat.parse("00:00:00")) && 
+						   dateFormat.parse(dateFormat.format(rs2.getTime("startTime"))).before(dateFormat.parse("12:00:00"))) {
+								double totalCostPerShowtime = numberOfTicketsPerShowtime * rs3.getDouble("price");
+								total += totalCostPerShowtime;
+						}
+						else if(dateFormat.parse(dateFormat.format(rs2.getTime("startTime"))).after(dateFormat.parse("12:00:00")) && 
+								dateFormat.parse(dateFormat.format(rs2.getTime("startTime"))).before(dateFormat.parse("24:00:00"))) {{
+									double totalCostPerShowtime = numberOfTicketsPerShowtime * rs4.getDouble("price");
+									total += totalCostPerShowtime;
+								}
+						}
+					}				
+				}
+				System.out.println(name + " has spent " + total + " dollars on movie tickets.");
+				stmt2.close();
+			}
+			else {
+				System.out.println("Account could not be found. Please try again.");
+			}
+		} catch (SQLException exc) {
+			System.out.println("An error occured. Error: => " + exc.getMessage());
+		} finally {
+			try {
+				stmt1.close();
+				stmt3.close();
+				stmt4.close();
+			} catch (SQLException exc) {
+				System.out.println("An error occured. Error: => " + exc.getMessage());
+			}
+		}
 	}
 }

@@ -22,6 +22,11 @@ CREATE TABLE Movie (
 );
 ALTER Table Movie AUTO_INCREMENT = 2000;
 
+DROP TABLE IF EXISTS Ticket;
+CREATE TABLE Ticket (
+	ticketType VARCHAR(32) PRIMARY KEY,
+	price DECIMAL(5,2)
+);
 
 DROP TABLE IF EXISTS Room;
 CREATE TABLE Room (
@@ -30,7 +35,6 @@ CREATE TABLE Room (
 	location VARCHAR(128)
 );
 ALTER Table Room AUTO_INCREMENT = 3000;
-
 
 DROP TABLE IF EXISTS Showtime;
 CREATE TABLE Showtime (
@@ -44,7 +48,6 @@ CREATE TABLE Showtime (
 	FOREIGN KEY (roomID) REFERENCES Room (roomID) ON DELETE CASCADE
 );
 ALTER Table Showtime AUTO_INCREMENT = 4000;
-
 
 DROP TABLE IF EXISTS Reservation;
 CREATE TABLE Reservation (
@@ -116,6 +119,7 @@ insert into showTime(movieID, roomID, seats, showdate, startTime) values(2001, 3
 insert into showTime(movieID, roomID, seats, showdate, startTime) values(2000, 3002, 30, '2018-12-07', '13:00:00' );
 insert into showTime(movieID, roomID, seats, showdate, startTime) values(2000, 3002, 30, '2018-12-01', '19:00:00' );
 insert into showTime(movieID, roomID, seats, showdate, startTime) values(2002, 3002, 30, '2018-12-01', '9:00:00' );
+insert into showTime(movieID, roomID, seats, showdate, startTime) values(2001, 3001, 30, '2018-12-02', '15:00:00' );
 
 
 insert into reservation(uID, showID, numofTicket) values(1000, 4000, 5);
@@ -129,3 +133,4 @@ insert into reservation(uID, showID, numofTicket) values(1002, 4003, 4);
 delete from reservation where rID=5001;
 delete from reservation where rID=5002;
 
+LOAD DATA LOCAL INFILE 'D:/SJSU/CS 157A/src/ticket.txt' INTO TABLE Ticket; 

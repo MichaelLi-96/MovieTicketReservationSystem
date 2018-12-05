@@ -1,2 +1,2 @@
-Matinee	8.00
-Evening	12.00	
+AM	8.00
+PM	12.00	
