@@ -16,8 +16,8 @@ DROP TABLE IF EXISTS Movie;
 CREATE TABLE Movie (
 	movieID INT AUTO_INCREMENT PRIMARY KEY,
 	title VARCHAR(128) UNIQUE,
+    director VARCHAR(128),
 	year SMALLINT,
-	director VARCHAR(128),
 	stars TINYINT
 );
 ALTER Table Movie AUTO_INCREMENT = 2000;
@@ -109,11 +109,13 @@ insert into room(maxSeats, location) values(30, 102);
 insert into room(maxSeats, location) values(50, 103);
 insert into room(maxSeats, location) values(50, 104);
 
+
 insert into showTime(movieID, roomID, seats, showdate, startTime) values(2001, 3001, 30, '2018-12-02', '10:00:00' );
-insert into showTime(movieID, roomID, seats, showdate, startTime) values(2000, 3000, 30, '2018-12-02', '12:00:00' );
-insert into showTime(movieID, roomID, seats, showdate, startTime) values(2001, 3001, 30, '2018-12-02', '15:00:00' );
-insert into showTime(movieID, roomID, seats, showdate, startTime) values(2000, 3002, 30, '2018-12-02', '17:00:00' );
-insert into showTime(movieID, roomID, seats, showdate, startTime) values(2002, 3002, 30, '2018-12-02', '17:00:00' );
+insert into showTime(movieID, roomID, seats, showdate, startTime) values(2000, 3000, 30, '2018-12-05', '12:00:00' );
+insert into showTime(movieID, roomID, seats, showdate, startTime) values(2001, 3001, 30, '2018-12-03', '11:00:00' );
+insert into showTime(movieID, roomID, seats, showdate, startTime) values(2000, 3002, 30, '2018-12-07', '13:00:00' );
+insert into showTime(movieID, roomID, seats, showdate, startTime) values(2000, 3002, 30, '2018-12-01', '19:00:00' );
+insert into showTime(movieID, roomID, seats, showdate, startTime) values(2002, 3002, 30, '2018-12-01', '9:00:00' );
 
 
 insert into reservation(uID, showID, numofTicket) values(1000, 4000, 5);

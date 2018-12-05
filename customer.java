@@ -58,19 +58,22 @@ public class customer {
 		while (true) {
 			System.out.println();
 			System.out.println("Please select an account option:");
-			System.out.print("[1] Create an Account     [2] Edit Your Account     [3] Delete Your Account     [4] Exit: ");
+			System.out.print("[1] Create an Account     [2] Edit Your Account     [3] Delete Your Account     [4] Back To Customer Options     [5] Exit: ");
 			try {
 				char command = sc.nextLine().trim().charAt(0);
 				if (command == '1') {
 					register();
 				}
 				else if (command == '2') {
-					editAccount();
+					editAccountOptions();
 				}
 				else if (command == '3') {
 					deleteAccount();
 				}
 				else if (command == '4') {
+					break;
+				}
+				else if (command == '5') {
 					System.out.println();
 					System.out.println("Goodbye.");
 					System.exit(0);
@@ -85,13 +88,14 @@ public class customer {
 				System.out.println("An error occurred. Please try again.");
 			}
 		}
+		customerMain();
 	}
 
 	private void showtimeMain() {
 		while (true) {
 			System.out.println();
 			System.out.println("Please select a showtime option:");
-			System.out.print("[1] Show Movies     [2] Make Reservation     [3] Cancel Reservation     [4] Exit: ");
+			System.out.print("[1] Show Movies     [2] Make Reservation     [3] Cancel Reservation     [4] Back to Customer Options     [5] Exit: ");
 			try {
 				char command = sc.nextLine().trim().charAt(0);
 				if (command == '1') {
@@ -104,6 +108,9 @@ public class customer {
 					cancelReservation();
 				}
 				else if (command == '4') {
+					break;
+				}
+				else if (command == '5') {
 					System.out.println();
 					System.out.println("Goodbye.");
 					System.exit(0);
@@ -117,6 +124,7 @@ public class customer {
 				System.out.println("An error occurred. Please try again.");
 			}
 		}
+		customerMain();
 	}
 
 	private void register() {
@@ -161,7 +169,7 @@ public class customer {
 		}
 	}
 	
-	private void editAccount() {
+	private void editAccountOptions() {
 		System.out.println();
 		System.out.print("Enter your ID: ");
 		String id = sc.nextLine().trim();
@@ -180,7 +188,8 @@ public class customer {
 				while (true) {
 					System.out.println();
 					System.out.println("Please select an option:");
-					System.out.print("[1] Edit name     [2] Edit password     [3] Edit age     [4] Set card     [5] Remove card     [6] Back to account options     [7] Exit: ");
+					System.out.println("[1] Edit Name     [2] Edit Password     [3] Edit Age     [4] Set Card");
+					System.out.print("[5] Remove Card     [6] Back To Account Options     [7] Exit: ");
 					try {
 						char command = sc.nextLine().trim().charAt(0);
 						if (command == '1') {
@@ -453,7 +462,8 @@ public class customer {
 		while (true) {
 			System.out.println();
 			System.out.println("Please select an option:");
-			System.out.print("[1] Show All Showtimes For A Movie     [2] Show All Movies Alphabetically     [3] Show All Movies By Showtime     [4] Exit: ");
+			System.out.println("[1] Show All Showtimes For A Movie     [2] Show All Movies Alphabetically     [3] Show All Movies By Earliest Showtime");
+			System.out.print("[4] Show All Movies By Latest Showtime     [5] Back To Showtime Options     [4] Exit: ");
 			try {
 				char command = sc.nextLine().trim().charAt(0);
 				if (command == '1') {
@@ -463,9 +473,15 @@ public class customer {
 					showAllMoviesAlphabetically();
 				}
 				else if (command == '3') {
-					showAllMoviesByShowtime();
+					showAllMoviesByShowtimeAsc();
 				}
 				else if (command == '4') {
+					showAllMoviesByShowtimeDesc();
+				}
+				else if (command == '5') {
+					break;
+				}
+				else if (command == '6') {
 					System.out.println();
 					System.out.println("Goodbye.");
 					System.exit(0);
@@ -479,6 +495,7 @@ public class customer {
 				System.out.println("An error occurred. Please try again.");
 			}
 		}
+		showtimeMain();
 	}
 	
 	private void showAllShowtimesOfOneMovie() {
@@ -523,16 +540,25 @@ public class customer {
 					System.out.println("|" + mtitle + "|");
 					System.out.println("|-------------------------|");
 				}
-				stmt2 = myConn.prepareStatement("select * from showtime where movieID = ?;");
+				stmt2 = myConn.prepareStatement("select * from showtime where movieID = ? order by showDate, startTime;");
 				stmt2.setString(1, mid);
 				rs = stmt2.executeQuery();
 				if (!rs.isBeforeFirst()) {
 					System.out.println("| No available showtimes. |");
 				}
 				while (rs.next()) {
-					String st = rs.getString("startTime");
 					String sid = rs.getString("showID");
-					System.out.println("| " + "showID: " + sid + " | " + st + " |");
+					String showDate = rs.getString("showDate");
+					String startTime = rs.getString("startTime");
+					if (rs.isFirst()) {
+						System.out.println("|      showID: " + sid + "       |");
+						System.out.println("|  " + showDate + " | " + startTime + "  |");
+					}
+					else {
+						System.out.println("|                         |");
+						System.out.println("|      showID: " + sid + "       |");
+						System.out.println("|  " + showDate + " | " + startTime + "  |");
+					}
 				}
 				System.out.println("---------------------------");
 				stmt2.close();
@@ -585,15 +611,24 @@ public class customer {
 					System.out.println("|" + mtitle + "|");
 					System.out.println("|-------------------------|");
 				}
-				stmt2 = myConn.prepareStatement("select * from showtime where movieID=?;");
+				stmt2 = myConn.prepareStatement("select * from showtime where movieID = ? order by showDate, startTime;");
 				stmt2.setString(1, mid);
 				ResultSet rs2 = stmt2.executeQuery();
 				if (!rs2.isBeforeFirst())
 					System.out.println("| No available showtimes. |");
 				while (rs2.next()) {
-					String st = rs2.getString("startTime");
 					String sid = rs2.getString("showID");
-					System.out.println("| " + "showID: " + sid + " | " + st + " |");
+					String showDate = rs2.getString("showDate");
+					String startTime = rs2.getString("startTime");
+					if (rs2.isFirst()) {
+						System.out.println("|      showID: " + sid + "       |");
+						System.out.println("|  " + showDate + " | " + startTime + "  |");
+					}
+					else {
+						System.out.println("|                         |");
+						System.out.println("|      showID: " + sid + "       |");
+						System.out.println("|  " + showDate + " | " + startTime + "  |");
+					}
 				}
 			}
 			System.out.println("---------------------------");
@@ -609,8 +644,112 @@ public class customer {
 		}
 	}
 	
-	private void showAllMoviesByShowtime() {
-
+	private void showAllMoviesByShowtimeAsc() {
+		System.out.println();
+		PreparedStatement stmt = null;
+		try {
+			stmt = myConn.prepareStatement("select * from movie, showtime where movie.movieID = showtime.movieID order by showDate ASC, startTime ASC;");
+			ResultSet rs = stmt.executeQuery();
+			System.out.println("---------------------------");
+			System.out.println("|     Movie Showtimes     |");
+			while (rs.next()) {
+				String mtitle = rs.getString("title");
+				if( mtitle.length() <= 25 ) {
+					int titleLength = mtitle.length();
+					int numOfSpaces = 25 - titleLength;
+					System.out.println("|-------------------------|");
+					if(numOfSpaces % 2 == 0) {
+						String space = "";
+						for(int i = 0; i < numOfSpaces/2; i++) {
+							space = space + " ";
+						}
+						System.out.println("|" + space + mtitle + space + "|");
+					}
+					else {
+						String space = "";
+						for(int i = 0; i < (numOfSpaces - 1)/2; i++) {
+							space = space + " ";
+						}
+						System.out.println("|" + space + mtitle + space + " |");
+					}
+					System.out.println("|-------------------------|");
+				}
+				else {
+					System.out.println("|-------------------------|");
+					System.out.println("|" + mtitle + "|");
+					System.out.println("|-------------------------|");
+				}
+				
+				String sid = rs.getString("showID");
+				String showDate = rs.getString("showDate");
+				String startTime = rs.getString("startTime");
+				System.out.println("|      showID: " + sid + "       |");
+				System.out.println("|  " + showDate + " | " + startTime + "  |");
+			}
+			System.out.println("---------------------------");
+		} catch (SQLException exc) {
+			System.out.println("An error occured. Error: => " + exc.getMessage());
+		} finally {
+			try {
+				stmt.close();
+			} catch (SQLException exc) {
+				System.out.println("An error occured. Error: => " + exc.getMessage());
+			}
+		}
+	}
+	
+	private void showAllMoviesByShowtimeDesc() {
+		System.out.println();
+		PreparedStatement stmt = null;
+		try {
+			stmt = myConn.prepareStatement("select * from movie, showtime where movie.movieID = showtime.movieID order by showDate DESC, startTime DESC;");
+			ResultSet rs = stmt.executeQuery();
+			System.out.println("---------------------------");
+			System.out.println("|     Movie Showtimes     |");
+			while (rs.next()) {
+				String mtitle = rs.getString("title");
+				if( mtitle.length() <= 25 ) {
+					int titleLength = mtitle.length();
+					int numOfSpaces = 25 - titleLength;
+					System.out.println("|-------------------------|");
+					if(numOfSpaces % 2 == 0) {
+						String space = "";
+						for(int i = 0; i < numOfSpaces/2; i++) {
+							space = space + " ";
+						}
+						System.out.println("|" + space + mtitle + space + "|");
+					}
+					else {
+						String space = "";
+						for(int i = 0; i < (numOfSpaces - 1)/2; i++) {
+							space = space + " ";
+						}
+						System.out.println("|" + space + mtitle + space + " |");
+					}
+					System.out.println("|-------------------------|");
+				}
+				else {
+					System.out.println("|-------------------------|");
+					System.out.println("|" + mtitle + "|");
+					System.out.println("|-------------------------|");
+				}
+				
+				String sid = rs.getString("showID");
+				String showDate = rs.getString("showDate");
+				String startTime = rs.getString("startTime");
+				System.out.println("|      showID: " + sid + "       |");
+				System.out.println("|  " + showDate + " | " + startTime + "  |");
+			}
+			System.out.println("---------------------------");
+		} catch (SQLException exc) {
+			System.out.println("An error occured. Error: => " + exc.getMessage());
+		} finally {
+			try {
+				stmt.close();
+			} catch (SQLException exc) {
+				System.out.println("An error occured. Error: => " + exc.getMessage());
+			}
+		}
 	}
 	
 	private void resevation() {
