@@ -1,66 +1,70 @@
+DROP DATABASE IF EXISTS TicketReservation;
+CREATE DATABASE TicketReservation;
+USE TicketReservation;
 
-drop database if exists ticketReservation;
-create database ticketReservation;
-use ticketReservation;
+DROP TABLE IF EXISTS Customer;
+CREATE TABLE Customer (
+	uID INT AUTO_INCREMENT PRIMARY KEY,
+	uName VARCHAR(128) NOT NULL,
+    password VARCHAR(128) NOT NULL,
+	age INT,
+	cardNumber VARCHAR(128) 
+);
+ALTER Table Customer AUTO_INCREMENT = 1000;
 
-drop table if exists customer;
-create table customer
-(uID INT AUTO_INCREMENT Primary Key,
- uNAME VARCHAR(30) NOT NULL,
-age INT,
-cardN VARCHAR(30) );
-ALTER Table customer AUTO_INCREMENT = 1000;
-
-drop table if exists Movie;
-CREATE TABLE Movie 
-(movieID INT AUTO_INCREMENT Primary Key,
-     title VARCHAR(128) UNIQUE,
-     year INT,
-     director VARCHAR(128),
-     stars TINYINT);
+DROP TABLE IF EXISTS Movie;
+CREATE TABLE Movie (
+	movieID INT AUTO_INCREMENT PRIMARY KEY,
+	title VARCHAR(128) UNIQUE,
+	year SMALLINT,
+	director VARCHAR(128),
+	stars TINYINT
+);
 ALTER Table Movie AUTO_INCREMENT = 2000;
 
 
-drop table if exists Room;
-CREATE TABLE Room
-(
-     RoomID INT PRIMARY KEY AUTO_INCREMENT,
-     maxSeats INT,
-     location VARCHAR(20));
+DROP TABLE IF EXISTS Room;
+CREATE TABLE Room (
+	roomID INT AUTO_INCREMENT PRIMARY KEY,
+	maxSeats TINYINT,
+	location VARCHAR(128)
+);
 ALTER Table Room AUTO_INCREMENT = 3000;
 
 
-drop table if exists showTime;
-CREATE TABLE showTime (
-     showID INT AUTO_INCREMENT Primary Key,
-     movieID INT,
-     roomID INT,
-     seats int,
-     showDate DATE NOT NULL Default '2018-12-01' ,
-     startTime TIME NOT NULL Default '00:00:00',
-     FOREIGN KEY (movieID) references movie (movieID) on delete cascade,
-     FOREIGN KEY (roomID) references Room (roomID) on delete cascade);
-ALTER Table showTime AUTO_INCREMENT = 4000;
+DROP TABLE IF EXISTS Showtime;
+CREATE TABLE Showtime (
+	showID INT AUTO_INCREMENT PRIMARY KEY,
+	movieID INT,
+	roomID INT,
+	seats int,
+	showDate DATE NOT NULL DEFAULT '2018-12-01' ,
+	startTime TIME NOT NULL DEFAULT '00:00:00',
+	FOREIGN KEY (movieID) REFERENCES Movie (movieID) ON DELETE CASCADE,
+	FOREIGN KEY (roomID) REFERENCES Room (roomID) ON DELETE CASCADE
+);
+ALTER Table Showtime AUTO_INCREMENT = 4000;
 
 
-drop table if exists reservation;
-create table reservation
-(rID INT AUTO_INCREMENT Primary Key,
- uID INT, 
- showID INT,
- numofTicket INT,
- resDate Date NOT NULL Default '2018-12-01' ,
- FOREIGN KEY (uID) references customer (uID) on delete cascade,
- FOREIGN KEY (showID) references showTime (showID) on delete cascade);
-ALTER Table reservation AUTO_INCREMENT = 5000;
+DROP TABLE IF EXISTS Reservation;
+CREATE TABLE Reservation (
+	rID INT AUTO_INCREMENT PRIMARY KEY,
+	uID INT, 
+    showID INT,
+	numOfTicket TINYINT,
+	resDate Date NOT NULL DEFAULT '2018-12-01',
+	FOREIGN KEY (uID) REFERENCES Customer (uID) ON DELETE CASCADE,
+	FOREIGN KEY (showID) REFERENCES Showtime (showID) ON DELETE CASCADE
+);
+ALTER Table Reservation AUTO_INCREMENT = 5000;
 
-drop table if exists cancelation;
-create table cancelation
-(rID INT Primary Key NOT NULL,
- uID INT, 
- showID INT,
- numofTicket INT,
- canceledDate Date NOT NULL Default '2018-12-01' 
+DROP TABLE IF EXISTS Cancelation;
+CREATE TABLE Cancelation (
+	rID INT PRIMARY KEY NOT NULL,
+	uID INT, 
+	showID INT,
+	numOfTicket TINYINT,
+	canceledDate Date NOT NULL Default '2018-12-01' 
 );
 
 
@@ -87,10 +91,10 @@ BEGIN
 END;//
 delimiter ;
 
-INSERT into customer(uName,age) values("Alice",21) ;
-INSERT into customer(uName,age) values("Bob",22) ;
-INSERT into customer(uName,age) values("Cloe",23) ;
-INSERT into customer(uName,age) values("David",24) ;
+INSERT into customer(uName, password, age) values("Alice", "password", 21) ;
+INSERT into customer(uName,password, age) values("Bob", "password", 22) ;
+INSERT into customer(uName, password, age) values("Cloe", "password", 23) ;
+INSERT into customer(uName, password, age) values("David", "password", 24) ;
 
 
 insert into movie(title,year) values("Shrek",1999);

@@ -1,4 +1,3 @@
-
 import java.util.Scanner;
 
 public class loginUI {
@@ -6,16 +5,14 @@ public class loginUI {
 	static Scanner sc = new Scanner(System.in);
 
 	public static void main(String[] args) {
-		doMainMenu();
-
+		mainMenu();
 	}
 
-	public static void doMainMenu() {
-
+	public static void mainMenu() {
 		while (true) {
 			System.out.println("Welcome to movie ticket reservation system!");
-			System.out.println("Please select options:");
-			System.out.print("[1]customer   [2]admin  [3]quit: ");
+			System.out.println("Please select an option:");
+			System.out.print("[1] Customer     [2] Admin     [3] Exit: ");
 			try {
 				char command = sc.nextLine().trim().charAt(0);
 
@@ -24,31 +21,29 @@ public class loginUI {
 				else if (command == '2')
 					adminLogin();
 				else if (command == '3') {
-					System.out.println("Goodbye");
+					System.out.println();
+					System.out.println("Goodbye.");
 					System.exit(0);
-				} else
-					System.out.println("Invalid command");
-
+				} 
+				else {
+					System.out.println();
+					System.out.println("Invalid command.");
+				}
 			} catch (Exception e) {
-				System.out.println("An error occurred.  Try again.");
+				System.out.println();
+				System.out.println("An error occurred. Please try again.");
 			}
 		}
 	}
 
 	private static void adminLogin() {
-		// TODO Auto-generated method stub
-		//System.out.println("admin");
 		admin am = new admin();
 		am.adminMain();
-
 	}
 
 	private static void customerlogin() {
-		// TODO Auto-generated method stub
-	//	System.out.println("customer");
 		customer cm = new customer();
-		cm.customMain();
-
+		cm.customerMain();
 	}
 
 }

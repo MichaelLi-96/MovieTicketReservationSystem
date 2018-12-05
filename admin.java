@@ -19,7 +19,7 @@ public class admin {
 
 			try {
 				myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/TicketReservation?useSSL=true",
-						"root", "12345678");
+						"root", "password");
 			} catch (Exception exc) {
 				exc.printStackTrace();
 			}
@@ -27,44 +27,58 @@ public class admin {
 	}
 	
 	public void adminMain() {
-
 		while (true) {
-			
 			System.out.println("Please select options:");
-			System.out.print("[1]add movie   [2]search movie [3]data analysis [4]quit: ");
+			System.out.print("[1] Add movie     [2] Search movie     [3] Data analysis     [4] Exit: ");
 			try {
 				char command = sc.nextLine().trim().charAt(0);
-				if (command == '1')
+				if (command == '1') {
 					addMovie();
-				else if (command == '2')
-					deleteUser() ;
-				else if (command == '3')
-					dataAnalysis() ;
+				}
+				else if (command == '2') {
+					deleteUser();
+				}
+				else if (command == '3') {
+					dataAnalysis();
+				}
 				else if (command == '4') {
+					System.out.println();
 					System.out.println("Goodbye");
 					System.exit(0);
-				} else
+				} 
+				else {
+					System.out.println();
 					System.out.println("Invalid command");
-
+				}
 			} catch (Exception e) {
+				System.out.println();
 				System.out.println("An error occurred.  Try again.");
 			}
 		}
 	}
 
 	private void dataAnalysis() {
-		System.out.println("Please select options:");
-		System.out.print("[1]now playing   [2]customer made most resevation  [3]average age of customer ");
+		System.out.println("Please select an option:");
+		System.out.print("[1] Now playing     [2] Customer that made the most resevations     [3] Average age of customers     [4] Exit: ");
 		char command = sc.nextLine().trim().charAt(0);
-		if (command == '1')
+		if (command == '1') {
 			currentShow();
-		else if (command == '2')
-			mostReservation() ;
-		else if (command == '3')
-			averageAge() ;
-		else
+		}
+		else if (command == '2') {
+			mostReservation();
+		}
+		else if (command == '3') {
+			averageAge();
+		}
+		else if (command == '4') {
+			System.out.println();
+			System.out.println("Goodbye");
+			System.exit(0);
+		} 
+		else {
+			System.out.println();
 			System.out.println("Invalid command");
-		
+		}
 	}
 
 	private void averageAge() {
@@ -78,9 +92,7 @@ public class admin {
 	}
 
 	private void currentShow() {
-		// TODO Auto-generated method stub
 		PreparedStatement stmt = null;
-	
 		try {
 			stmt = myConn.prepareStatement("select distinct title from movie mv right outer JOIN showtime  st on mv.movieID = st.movieid;");
 			ResultSet rs = stmt.executeQuery();
