@@ -28,7 +28,7 @@ public class customer {
 		while (true) {
 			System.out.println();
 			System.out.println("Please select a customer option: ");
-			System.out.print("[1] Account     [2] Showtimes     [3] Exit: ");
+			System.out.print("[1] Account     [2] Showtimes     [3] See Purchases     [4] Exit: ");
 			try {
 				char command = sc.nextLine().trim().charAt(0);
 				if (command == '1') {
@@ -38,6 +38,9 @@ public class customer {
 					showtimeMain();
 				}
 				else if (command == '3') {
+					purchasesMain();
+				}
+				else if (command == '4') {
 					System.out.println();
 					System.out.println("Goodbye.");
 					System.exit(0);
@@ -111,6 +114,39 @@ public class customer {
 					break;
 				}
 				else if (command == '5') {
+					System.out.println();
+					System.out.println("Goodbye.");
+					System.exit(0);
+				}
+				else {
+					System.out.println();
+					System.out.println("Invalid command.");
+				}
+			} catch (Exception e) {
+				System.out.println();
+				System.out.println("An error occurred. Please try again.");
+			}
+		}
+		customerMain();
+	}
+	
+	private void purchasesMain() {
+		while (true) {
+			System.out.println();
+			System.out.println("Please select an option:");
+			System.out.print("[1] Show Amount Of Tickets Bought     [2] Show Total Amount Of Money Spent     [3] Back to Customer Options     [4] Exit: ");
+			try {
+				char command = sc.nextLine().trim().charAt(0);
+				if (command == '1') {
+					showAmountOfTickets();
+				}
+				else if (command == '2') {
+					showTotalAmountOfMoneySpent();
+				}
+				else if (command == '3') {
+					break;
+				}
+				else if (command == '4') {
 					System.out.println();
 					System.out.println("Goodbye.");
 					System.exit(0);
@@ -825,7 +861,7 @@ public class customer {
 		PreparedStatement stmt1 = null;
 		PreparedStatement stmt2 = null;
 		try {
-			stmt1 = myConn.prepareStatement("select * from Reservation where rID =" + rId + ";",
+			stmt1 = myConn.prepareStatement("select * from Reservation, Customer where Reservation.uID = Customer.uID and rID =" + rId + ";",
 					Statement.RETURN_GENERATED_KEYS);
 			ResultSet rs = stmt1.executeQuery(); 
 			System.out.println();
@@ -835,9 +871,11 @@ public class customer {
 			else {
 				System.out.print("What is your ID: ");
 				String id = sc.nextLine().trim();
+				System.out.print("What is your password: ");
+				String password = sc.nextLine().trim();
 				System.out.print("What is the showID: ");
 				String sId = sc.nextLine().trim();
-				if(rs.getString("uID").equals(id) && rs.getString("showID").equals(sId)) {
+				if(rs.getString("uID").equals(id) && rs.getString("password").equals(password) && rs.getString("showID").equals(sId)) {
 					try {
 						stmt2 = myConn.prepareStatement("delete from Reservation where rID= ?;");
 						stmt2.setString(1, rId);
@@ -862,7 +900,7 @@ public class customer {
 					}
 				}
 				else {
-					System.out.println("Incorrect customer ID and/or show ID for the reservation. Please try again.");
+					System.out.println("Incorrect customer ID and/or password and/or show ID for the reservation. Please try again.");
 				}
 			}
 		} catch (SQLException exc) {
@@ -876,5 +914,38 @@ public class customer {
 				System.out.println("An error occured. Error: => " + exc.getMessage());
 			}
 		}
+	}
+	
+	private void showAmountOfTickets() {
+		System.out.println();
+		System.out.print("Enter your ID: ");
+		String id = sc.nextLine().trim();
+		System.out.print("Enter your password: ");
+		String password = sc.nextLine().trim();
+		PreparedStatement stmt = null;
+		try {
+			stmt = myConn.prepareStatement("select total, uName, password from (select uID, SUM(numOfTicket) as 'total' from Reservation group by uID) as totalTable, customer where totalTable.uID = customer.uID and totalTable.uID =" + id + ";",
+					Statement.RETURN_GENERATED_KEYS);
+			ResultSet rs = stmt.executeQuery();
+			System.out.println();
+			if (rs.next() && rs.getString("password").equals(password)) {
+				System.out.println(rs.getString("uName") + " has bought " + rs.getInt("total") + " tickets.");
+			}
+			else {
+				System.out.println("Account could not be found. Please try again.");
+			}
+		} catch (SQLException exc) {
+			System.out.println("An error occured. Error: => " + exc.getMessage());
+		} finally {
+			try {
+				stmt.close();
+			} catch (SQLException exc) {
+				System.out.println("An error occured. Error: => " + exc.getMessage());
+			}
+		}
+	}
+	
+	private void showTotalAmountOfMoneySpent() {
+		
 	}
 }
