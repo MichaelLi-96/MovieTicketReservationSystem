@@ -18,9 +18,20 @@ CREATE TABLE Movie (
 	title VARCHAR(128) UNIQUE,
     director VARCHAR(128),
 	year SMALLINT,
-	stars TINYINT
+	rating DECIMAL(4,2) DEFAULT 0
 );
 ALTER Table Movie AUTO_INCREMENT = 2000;
+
+DROP TABLE IF EXISTS Rating;
+CREATE TABLE Rating (
+	ratingID INT AUTO_INCREMENT PRIMARY KEY,
+	movieID INT,
+    uID INT,
+	rating DECIMAL(4,2) DEFAULT 0,
+    FOREIGN KEY (movieID) REFERENCES Movie (movieID) ON DELETE CASCADE,
+    FOREIGN KEY (uID) REFERENCES Customer (uID) ON DELETE CASCADE
+);
+ALTER Table Rating AUTO_INCREMENT = 3000;
 
 DROP TABLE IF EXISTS Ticket;
 CREATE TABLE Ticket (
@@ -34,7 +45,7 @@ CREATE TABLE Room (
 	maxSeats TINYINT,
 	location VARCHAR(128)
 );
-ALTER Table Room AUTO_INCREMENT = 3000;
+ALTER Table Room AUTO_INCREMENT = 4000;
 
 DROP TABLE IF EXISTS Showtime;
 CREATE TABLE Showtime (
@@ -47,7 +58,7 @@ CREATE TABLE Showtime (
 	FOREIGN KEY (movieID) REFERENCES Movie (movieID) ON DELETE CASCADE,
 	FOREIGN KEY (roomID) REFERENCES Room (roomID) ON DELETE CASCADE
 );
-ALTER Table Showtime AUTO_INCREMENT = 4000;
+ALTER Table Showtime AUTO_INCREMENT = 5000;
 
 DROP TABLE IF EXISTS Reservation;
 CREATE TABLE Reservation (
@@ -59,7 +70,7 @@ CREATE TABLE Reservation (
 	FOREIGN KEY (uID) REFERENCES Customer (uID) ON DELETE CASCADE,
 	FOREIGN KEY (showID) REFERENCES Showtime (showID) ON DELETE CASCADE
 );
-ALTER Table Reservation AUTO_INCREMENT = 5000;
+ALTER Table Reservation AUTO_INCREMENT = 6000;
 
 DROP TABLE IF EXISTS Cancelation;
 CREATE TABLE Cancelation (
@@ -79,18 +90,28 @@ CREATE TRIGGER afterReserve
 AFTER INSERT ON RESERVATION
 for each row
 BEGIN
- update showTime set seats = seats- new.numofTicket where showID= new.showID ;
+	update showTime set seats = seats - new.numofTicket where showID = new.showID;
 END;//
 delimiter ;
 
 DROP TRIGGER IF EXISTS afterDeleteRes;
 delimiter //
 CREATE TRIGGER afterDeleteRes
-AFTER delete ON RESERVATION
+AFTER DELETE ON RESERVATION
 for each row
 BEGIN
- update showTime set seats = seats + old.numofTicket where showID= old.showID ;
- insert into cancelation (rID,uID, showID, numofTicket) values(old.rID, old.uID, old.showID, old.numofTicket);
+	update showTime set seats = seats + old.numofTicket where showID = old.showID ;
+	insert into cancelation (rID,uID, showID, numofTicket) values (old.rID, old.uID, old.showID, old.numofTicket);
+END;//
+delimiter ;
+
+DROP TRIGGER IF EXISTS updateMovieRating;
+delimiter //
+CREATE TRIGGER updateMovieRating
+AFTER INSERT ON RATING
+for each row
+BEGIN
+	update movie set rating = (select AVG(rating) from Rating where movieID = new.movieID) where movieID = new.movieID;
 END;//
 delimiter ;
 
@@ -113,24 +134,24 @@ insert into room(maxSeats, location) values(50, 103);
 insert into room(maxSeats, location) values(50, 104);
 
 
-insert into showTime(movieID, roomID, seats, showdate, startTime) values(2001, 3001, 30, '2018-12-02', '10:00:00' );
-insert into showTime(movieID, roomID, seats, showdate, startTime) values(2000, 3000, 30, '2018-12-05', '12:00:00' );
-insert into showTime(movieID, roomID, seats, showdate, startTime) values(2001, 3001, 30, '2018-12-03', '11:00:00' );
-insert into showTime(movieID, roomID, seats, showdate, startTime) values(2000, 3002, 30, '2018-12-07', '13:00:00' );
-insert into showTime(movieID, roomID, seats, showdate, startTime) values(2000, 3002, 30, '2018-12-01', '19:00:00' );
-insert into showTime(movieID, roomID, seats, showdate, startTime) values(2002, 3002, 30, '2018-12-01', '9:00:00' );
-insert into showTime(movieID, roomID, seats, showdate, startTime) values(2001, 3001, 30, '2018-12-02', '15:00:00' );
+insert into showTime(movieID, roomID, seats, showdate, startTime) values(2001, 4001, 30, '2018-12-02', '10:00:00' );
+insert into showTime(movieID, roomID, seats, showdate, startTime) values(2000, 4000, 30, '2018-12-05', '12:00:00' );
+insert into showTime(movieID, roomID, seats, showdate, startTime) values(2001, 4001, 30, '2018-12-03', '11:00:00' );
+insert into showTime(movieID, roomID, seats, showdate, startTime) values(2000, 4002, 30, '2018-12-07', '13:00:00' );
+insert into showTime(movieID, roomID, seats, showdate, startTime) values(2000, 4002, 30, '2018-12-01', '19:00:00' );
+insert into showTime(movieID, roomID, seats, showdate, startTime) values(2002, 4002, 30, '2018-12-01', '9:00:00' );
+insert into showTime(movieID, roomID, seats, showdate, startTime) values(2001, 4001, 30, '2018-12-02', '15:00:00' );
 
 
-insert into reservation(uID, showID, numofTicket) values(1000, 4000, 5);
-insert into reservation(uID, showID, numofTicket) values(1000, 4001, 3);
-insert into reservation(uID, showID, numofTicket) values(1000, 4002, 1);
-insert into reservation(uID, showID, numofTicket) values(1000, 4002, 6);
-insert into reservation(uID, showID, numofTicket) values(1001, 4002, 2);
-insert into reservation(uID, showID, numofTicket) values(1002, 4003, 4);
+insert into reservation(uID, showID, numofTicket) values(1000, 5000, 5);
+insert into reservation(uID, showID, numofTicket) values(1000, 5001, 3);
+insert into reservation(uID, showID, numofTicket) values(1000, 5002, 1);
+insert into reservation(uID, showID, numofTicket) values(1000, 5002, 6);
+insert into reservation(uID, showID, numofTicket) values(1001, 5002, 2);
+insert into reservation(uID, showID, numofTicket) values(1002, 5003, 4);
 
 
-delete from reservation where rID=5001;
-delete from reservation where rID=5002;
+delete from reservation where rID = 6001;
+delete from reservation where rID = 6002;
 
 LOAD DATA LOCAL INFILE 'D:/SJSU/CS 157A/src/ticket.txt' INTO TABLE Ticket; 
