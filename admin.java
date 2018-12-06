@@ -29,14 +29,14 @@ public class admin {
 	public void adminMain() {
 		while (true) {
 			System.out.println("Please select options:");
-			System.out.print("[1] Add movie     [2] Search movie     [3] Data analysis     [4] Exit: ");
+			System.out.print("[1] Add movie     [2] Current Shows     [3] Data analysis     [4] Exit: ");
 			try {
 				char command = sc.nextLine().trim().charAt(0);
 				if (command == '1') {
 					addMovie();
 				}
 				else if (command == '2') {
-					deleteUser();
+					currentShow() ;
 				}
 				else if (command == '3') {
 					dataAnalysis();
@@ -59,10 +59,10 @@ public class admin {
 
 	private void dataAnalysis() {
 		System.out.println("Please select an option:");
-		System.out.print("[1] Now playing     [2] Customer that made the most resevations     [3] Average age of customers     [4] Exit: ");
+		System.out.print("[1] Look for movie with reservations greater than \n[2] Customer that made the most resevations\n[3] Average age of customer who made reservation    [4] go back to mainmenu: ");
 		char command = sc.nextLine().trim().charAt(0);
 		if (command == '1') {
-			currentShow();
+			popularMovie();
 		}
 		else if (command == '2') {
 			mostReservation();
@@ -71,9 +71,7 @@ public class admin {
 			averageAge();
 		}
 		else if (command == '4') {
-			System.out.println();
-			System.out.println("Goodbye");
-			System.exit(0);
+			adminMain() ;
 		} 
 		else {
 			System.out.println();
@@ -81,8 +79,59 @@ public class admin {
 		}
 	}
 
-	private void averageAge() {
+	private void popularMovie() {
 		// TODO Auto-generated method stub
+		System.out.print("Enter a number: ");
+		String num = sc.nextLine().trim();
+		PreparedStatement stmt = null;
+		try {
+			stmt = myConn.prepareStatement("select title from movie where movieID in( select movieID from showtime where showID in "
+					+ " (select distinct showID as 'popmv' from reservation group by showID having(count(*)>=?)));");
+			stmt.setString(1, num);
+			ResultSet rs = stmt.executeQuery();
+			System.out.printf("Movie(s) with reservation >= %s: \n", num);
+	//1		if(!rs.next()) System.out.println("No movie found.");			
+			while (rs.next()) {	
+				String mv = rs.getString("title");	
+				System.out.println(mv);		
+			}
+		} catch (SQLException exc) {
+			System.out.println("An error occured. Error: => " + exc.getMessage());
+		} finally {
+			try {
+				stmt.close();
+			} catch (SQLException exc) {
+				System.out.println("An error occured. Error: => " + exc.getMessage());
+			}
+		}
+		
+		
+	}
+
+	private void averageAge() {
+		PreparedStatement stmt = null;
+		try {
+			stmt = myConn.prepareStatement("Select avg(age) as avAge from customer c NATURAL JOIN(select distinct uid from reservation group by uid) r;");
+			ResultSet rs = stmt.executeQuery();
+			System.out.print("Average age of customer who made reservation: ");
+			if(rs==null) {
+					System.out.println("Currently no user made reservation.");	
+			}
+			
+			while (rs.next()) {
+				Double age = rs.getDouble("avAge");	
+				System.out.printf("%.1f",age);		
+			}
+			System.out.println();
+		} catch (SQLException exc) {
+			System.out.println("An error occured. Error: => " + exc.getMessage());
+		} finally {
+			try {
+				stmt.close();
+			} catch (SQLException exc) {
+				System.out.println("An error occured. Error: => " + exc.getMessage());
+			}
+		}
 		
 	}
 
