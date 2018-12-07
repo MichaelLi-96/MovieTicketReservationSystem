@@ -23,11 +23,11 @@ public class customer {
 		public dbconnection() {
 			try {
 				myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/TicketReservation?useSSL=true",
-													"root",
-													//put in mysql password here
-													//Michael's password: Mi19Li96
-													//Vivian's password: currybreadchai
-													"currybreadchai");
+						"root",
+						//put in mysql password here
+						//Michael's password: Mi19Li96
+						//Vivian's password: currybreadchai
+						"Mi19Li96");
 			} catch (Exception exc) {
 				exc.printStackTrace();
 			}
