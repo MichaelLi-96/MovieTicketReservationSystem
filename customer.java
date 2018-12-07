@@ -525,12 +525,13 @@ public class customer {
 				System.out.println();
 				if (!rs.next()) {
 					System.out.println("Account could not be found. Please try again.");
-				} else {
+				} 
+				else {
 					System.out.println("Are you sure you want to delete " + rs.getString("uName") + "'s Account?");
 					while (true) {
 						System.out.println();
 						System.out.println("Please select an option:");
-						System.out.print("[1] Yes     [2] Exit: ");
+						System.out.print("[1] Yes     [2] Go Back To Account Options: ");
 						try {
 							char command = sc.nextLine().trim().charAt(0);
 							if (command == '1') {
@@ -559,9 +560,7 @@ public class customer {
 								}
 							}
 							else if (command == '2') {
-								System.out.println();
-								System.out.println("Goodbye.");
-								System.exit(0);
+								break;
 							}
 							else {
 								System.out.println();
@@ -578,12 +577,12 @@ public class customer {
 			} finally {
 				try {
 					stmt1.close();
-					accountMain();
 				} catch (SQLException exc) {
 					System.out.println("An error occured. Error: => " + exc.getMessage());
 				}
 			}
 		}
+		accountMain();
 	}
 	
 	// Movie options menu
