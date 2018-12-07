@@ -42,7 +42,7 @@ CREATE TABLE Ticket (
 DROP TABLE IF EXISTS Room;
 CREATE TABLE Room (
 	roomID INT AUTO_INCREMENT PRIMARY KEY,
-	maxSeats TINYINT,
+	maxSeats INT,
 	location VARCHAR(128)
 );
 ALTER Table Room AUTO_INCREMENT = 4000;
@@ -72,13 +72,15 @@ CREATE TABLE Reservation (
 );
 ALTER Table Reservation AUTO_INCREMENT = 6000;
 
-DROP TABLE IF EXISTS Cancelation;
-CREATE TABLE Cancelation (
+DROP TABLE IF EXISTS Cancellation;
+CREATE TABLE Cancellation (
 	rID INT PRIMARY KEY NOT NULL,
 	uID INT, 
 	showID INT,
 	numOfTicket TINYINT,
-	canceledDate Date NOT NULL Default '2018-12-01' 
+	cancelledDate Date NOT NULL Default '2018-12-01'
+	FOREIGN KEY (uID) REFERENCES Customer (uID) ON DELETE CASCADE,
+	FOREIGN KEY (showID) REFERENCES Showtime (showID) ON DELETE CASCADE 
 );
 
 
@@ -115,17 +117,6 @@ BEGIN
 END;//
 delimiter ;
 
-INSERT into customer(uName, password, age) values("Alice", "password", 21) ;
-
-insert into movie(title,year) values("Shrek",1999);
-
-
-insert into room(maxSeats, location) values(50, 101);
-
-
-
-insert into showTime(movieID, roomID, seats, showdate, startTime) values(2001, 4001, 30, '2018-12-02', '10:00:00' );
-
 
 
 insert into reservation(uID, showID, numofTicket) values(1000, 5000, 5);
@@ -143,6 +134,6 @@ delete from reservation where rID = 6002;
 LOAD DATA LOCAL INFILE 'C:/Users/vivz7/Documents/eclipse-workspace/movieTicketReservation/src/ticket.txt' INTO TABLE Ticket; 
 LOAD DATA LOCAL INFILE 'C:/Users/vivz7/Documents/eclipse-workspace/movieTicketReservation/src/customer.txt' INTO TABLE Customer;
 LOAD DATA LOCAL INFILE 'C:/Users/vivz7/Documents/eclipse-workspace/movieTicketReservation/src/movie.txt' INTO TABLE Movie;
-LOAD DATA LOCAL INFILE 'C:/Users/vivz7/Documents/eclipse-workspace/movieTicketReservation/src/showtime.txt' INTO TABLE Showtime;
+LOAD DATA LOCAL INFILE 'C:/Users/vivz7/Documents/eclipse-workspace/movieTicketReservation/src/showtime.txt' INTO TABLE Showtime fields terminated by '\t' lines terminated by '\n';
 LOAD DATA LOCAL INFILE 'C:/Users/vivz7/Documents/eclipse-workspace/movieTicketReservation/src/room.txt' INTO TABLE Room;
 LOAD DATA LOCAL INFILE 'C:/Users/vivz7/Documents/eclipse-workspace/movieTicketReservation/src/reservation.txt' INTO TABLE Reservation;
