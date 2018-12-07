@@ -221,7 +221,7 @@ public class customer {
 		System.out.print("Enter your age: ");
 		String age = sc.nextLine().trim();
 			//Check if age is valid
-		if(!(StringUtils.isStrictlyNumeric(age) && age.length() >= 2 && age<13)) {
+		if(!(StringUtils.isStrictlyNumeric(age) && age.length() >= 2 && Integer.parseInt(age)<13)) {
 			System.out.println();
 			System.out.println("Input for customer age was denied. Minimum age is 13. Please try again.");
 		}
