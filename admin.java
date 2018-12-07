@@ -20,7 +20,7 @@ public class admin {
 			try {
 				myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/TicketReservation?useSSL=true",
 						"root", 
-						//enter password here
+						//enter mysql password here
 						//Michael's password: Mi19Li96
 						//Vivian's password: currybreadchai
 						"Mi19Li96");
