@@ -2,6 +2,14 @@ DROP DATABASE IF EXISTS TicketReservation;
 CREATE DATABASE TicketReservation;
 USE TicketReservation;
 
+DROP TABLE IF EXISTS Admin;
+CREATE TABLE Admin (
+	adminID INT AUTO_INCREMENT PRIMARY KEY,
+	adminName VARCHAR(128) NOT NULL,
+    password VARCHAR(128) NOT NULL
+);
+ALTER Table Admin AUTO_INCREMENT = 0;
+
 DROP TABLE IF EXISTS Customer;
 CREATE TABLE Customer (
 	uID INT AUTO_INCREMENT PRIMARY KEY,
@@ -53,7 +61,7 @@ CREATE TABLE Showtime (
 	movieID INT,
 	roomID INT,
 	seats int,
-	showDate DATE NOT NULL DEFAULT '2018-12-01' ,
+	showDate DATE NOT NULL DEFAULT '2018-12-01',
 	startTime TIME NOT NULL DEFAULT '00:00:00',
 	FOREIGN KEY (movieID) REFERENCES Movie (movieID) ON DELETE CASCADE,
 	FOREIGN KEY (roomID) REFERENCES Room (roomID) ON DELETE CASCADE
@@ -74,46 +82,68 @@ ALTER Table Reservation AUTO_INCREMENT = 6000;
 
 DROP TABLE IF EXISTS Cancelation;
 CREATE TABLE Cancelation (
-	rID INT PRIMARY KEY NOT NULL,
+	rID INT PRIMARY KEY,
 	uID INT, 
 	showID INT,
 	numOfTicket TINYINT,
 	canceledDate Date NOT NULL Default '2018-12-01' 
 );
 
+DROP TABLE IF EXISTS ExpiredShowtime;
+CREATE TABLE ExpiredShowtime (
+	showID INT PRIMARY KEY,
+	movieID INT,
+	roomID INT,
+	seats int,
+	showDate DATE,
+	startTime TIME
+);
 
-/* Trigger : Automatically decrement seats in showTime when a reservation is made */
-
+/* Trigger : Automatically decrement seats in a showtime after a reservation is made */
 DROP TRIGGER IF EXISTS afterReserve;
 delimiter //
 CREATE TRIGGER afterReserve
-AFTER INSERT ON RESERVATION
+AFTER INSERT ON Reservation
 for each row
 BEGIN
-	update showTime set seats = seats - new.numofTicket where showID = new.showID;
+	update ShowTime set seats = seats - new.numofTicket where showID = new.showID;
 END;//
 delimiter ;
 
+/* Trigger : Automatically opens up seats in a showtime after a reservation is deleted*/
 DROP TRIGGER IF EXISTS afterDeleteRes;
 delimiter //
 CREATE TRIGGER afterDeleteRes
-AFTER DELETE ON RESERVATION
+AFTER DELETE ON Reservation
 for each row
 BEGIN
-	update showTime set seats = seats + old.numofTicket where showID = old.showID ;
-	insert into cancelation (rID,uID, showID, numofTicket) values (old.rID, old.uID, old.showID, old.numofTicket);
+	update Showtime set seats = seats + old.numofTicket where showID = old.showID ;
+	insert into Cancelation (rID,uID, showID, numofTicket) values (old.rID, old.uID, old.showID, old.numofTicket);
 END;//
 delimiter ;
 
+/* Trigger : Automatically updates and averages a rating for a movie*/
 DROP TRIGGER IF EXISTS updateMovieRating;
 delimiter //
 CREATE TRIGGER updateMovieRating
-AFTER INSERT ON RATING
+AFTER INSERT ON Rating
 for each row
 BEGIN
-	update movie set rating = (select AVG(rating) from Rating where movieID = new.movieID) where movieID = new.movieID;
+	update Movie set rating = (select AVG(rating) from Rating where movieID = new.movieID) where movieID = new.movieID;
 END;//
 delimiter ;
+
+/* Procedure : Archives expired showtimes and removes expired showtimes from the showtime table*/
+drop PROCEDURE if exists archiveShowtimes;
+delimiter //
+create PROCEDURE archiveShowtimes()
+BEGIN
+	insert into ExpiredShowtime select showID, movieID, roomID, seats, showDate, startTime from Showtime where showDate < CURRENT_DATE();
+	delete from Showtime where showDate < CURRENT_DATE();
+END; //
+delimiter ;
+
+INSERT into Admin(adminName, password) values("Admin", "password");
 
 INSERT into customer(uName, password, age) values("Alice", "password", 21) ;
 INSERT into customer(uName,password, age) values("Bob", "password", 22) ;

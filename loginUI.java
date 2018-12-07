@@ -40,7 +40,7 @@ public class loginUI {
 
 	private static void adminLogin() {
 		admin am = new admin();
-		am.adminMain();
+		am.adminSignIn();
 	}
 
 	private static void customerlogin() {
