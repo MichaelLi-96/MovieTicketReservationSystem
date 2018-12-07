@@ -27,7 +27,7 @@ public class admin {
 						//enter Mi19Li96 password here
 						//Michael's password: Mi19Li96
 						//Vivian's password: currybreadchai
-						"password");
+						"Mi19Li96");
 			} catch (Exception exc) {
 				exc.printStackTrace();
 			}
@@ -217,39 +217,227 @@ public class admin {
 		adminMain();
 	}
 
-
-	private void currentShow() {
+	
+	private void addAdmin() {
+		//Input Customer.name
+		System.out.print("\nEnter new administrator name: ");
+		String name = sc.nextLine().trim();
+		//Input Customer.password
+		System.out.print("Enter password of new administrator: ");
+		String password = sc.nextLine().trim();
 		PreparedStatement stmt = null;
+		System.out.println();
+		//Insert user into Admin table
 		try {
-			stmt = myConn.prepareStatement("select distinct title from movie mv right outer JOIN showtime  st on mv.movieID = st.movieid;");
-			ResultSet rs = stmt.executeQuery();
-			System.out.println("***** Now Playing *****");
-			while (rs.next()) {
-				String mtitle = rs.getString("title");
-				System.out.println(mtitle);		
+			stmt = myConn.prepareStatement("INSERT into admin(adminName, password) values(?,?);",
+					Statement.RETURN_GENERATED_KEYS);
+			if (name.isEmpty() || password.isEmpty()) {
+				System.out.println("Please provide a name and password");
+			} else {
+				stmt.setString(1, name);
+				stmt.setString(2, password);
+				stmt.executeUpdate();
+				
+				//Store results
+				ResultSet rs = stmt.getGeneratedKeys();
+				if (rs.next()) {
+					System.out.println("New administrator was added successfully. New administrator ID is: " + rs.getInt(1));
+				}
+				else {
+					System.out.println("New administrator was not added successfully. Please try again.");
+				}
 			}
-			System.out.println("***********************");
 		} catch (SQLException exc) {
+			System.out.println();
 			System.out.println("An error occured. Error: => " + exc.getMessage());
 		} finally {
 			try {
 				stmt.close();
 			} catch (SQLException exc) {
+				System.out.println();
 				System.out.println("An error occured. Error: => " + exc.getMessage());
 			}
 		}
 	}
-	
-	private void addAdmin() {
-		// TODO Auto-generated method stub
-	}
 
 	private void editCustomerInfo() {
-		// TODO Auto-generated method stub
+		System.out.println();
+		System.out.print("Enter a customer ID: ");
+		String id = sc.nextLine().trim();
+		if(!(StringUtils.isStrictlyNumeric(id) && id.length() == 4)) {
+			System.out.println();
+			System.out.println("Inputted customer ID was not accepted. Please try again.");
+		}
+		else {
+			PreparedStatement stmt1 = null;
+			PreparedStatement stmt2 = null;
+			try {
+				stmt1 = myConn.prepareStatement("select * from Customer where uID = ?;",
+						Statement.RETURN_GENERATED_KEYS);
+				stmt1.setString(1, id);
+				ResultSet rs1 = stmt1.executeQuery(); 
+				if (!rs1.next()) {
+					System.out.println("Account could not be found. Please try again.");
+				} 
+				else {
+					boolean didEdit = false;
+					String name = rs1.getString("uName");
+					String password = rs1.getString("password");
+					String age = rs1.getString("age");
+					String cardNumber = rs1.getString("cardNumber");
+					
+					System.out.println(rs1.getString("uName") + "'s Account");
+					System.out.println();
+					System.out.println("Edit customer name?:");
+					System.out.print("[1] Yes     [2] No: ");
+					char command = sc.nextLine().trim().charAt(0);
+					if(command == '1') {
+						System.out.println();
+						System.out.print("New name of customer: ");
+						name = sc.nextLine().trim();
+						didEdit = true;
+					}
+					System.out.println();
+					System.out.println("Edit customer password?");
+					System.out.print("[1] Yes     [2] No: ");
+					command = sc.nextLine().trim().charAt(0);
+					if(command == '1') {
+						System.out.println();
+						System.out.print("New password of customer: ");
+						password = sc.nextLine().trim();
+						didEdit = true;
+					}
+					System.out.println();
+					System.out.println("Edit customer age?");
+					System.out.print("[1] Yes     [2] No: ");
+					command = sc.nextLine().trim().charAt(0);
+					if(command == '1') {
+						System.out.println();
+						System.out.print("New age of customer: ");
+						age = sc.nextLine().trim();		
+						didEdit = true;
+					}
+					System.out.println();
+					System.out.println("Edit customer card?");
+					System.out.print("[1] Yes     [2] No: ");
+					command = sc.nextLine().trim().charAt(0);
+					if(command == '1') {
+						System.out.println();
+						System.out.print("New card number of customer: ");
+						cardNumber = sc.nextLine().trim();
+						didEdit = true;
+					}
+					System.out.println();
+					if(didEdit) {
+						stmt2 = myConn.prepareStatement("update Customer set uName = ?, password = ?, age = ?, cardNumber = ? where uID =" + id + ";",
+								Statement.RETURN_GENERATED_KEYS);
+						stmt2.setString(1, name);
+						stmt2.setString(2, password);
+						stmt2.setString(3, age);
+						stmt2.setString(4, cardNumber);
+						int rowCount = stmt2.executeUpdate(); 
+						if (rowCount > 0) {
+							System.out.println("The changes were successful.");
+						} 
+						else {
+							System.out.println("The changes were not successful. Please try again.");
+						}
+					}
+					else {
+						System.out.println("No changes were made to " + name + "'s account.");
+					}
+				}
+			} catch (SQLException exc) {
+				System.out.println("An error occured. Error: => " + exc.getMessage());
+			} finally {
+				try {
+					stmt1.close();
+				} catch (SQLException exc) {
+					System.out.println("An error occured. Error: => " + exc.getMessage());
+				}
+			}
+		}
+		accountsMain();
 	}
 
 	private void deleteCustomer() {
-		// TODO Auto-generated method stub
+		System.out.println();
+		System.out.print("Enter customer ID: ");
+		String id = sc.nextLine().trim();
+		if(!(StringUtils.isStrictlyNumeric(id) && id.length() == 4)) {
+			System.out.println();
+			System.out.println("Inputted customer ID was not accepted. Please try again.");
+		}
+		else {
+			PreparedStatement stmt1 = null;
+			PreparedStatement stmt2 = null;
+			try {
+				stmt1 = myConn.prepareStatement("select uName from Customer where uID = ?;",
+						Statement.RETURN_GENERATED_KEYS);
+				stmt1.setString(1, id);
+				ResultSet rs = stmt1.executeQuery(); 
+				System.out.println();
+				if (!rs.next()) {
+					System.out.println("Account could not be found. Please try again.");
+				} 
+				else {
+					System.out.println("Are you sure you want to delete " + rs.getString("uName") + "'s Account?");
+					while (true) {
+						System.out.println();
+						System.out.println("Please select an option:");
+						System.out.print("[1] Yes     [2] Go Back To Acounts options: ");
+						try {
+							char command = sc.nextLine().trim().charAt(0);
+							if (command == '1') {
+								try {
+									stmt2 = myConn.prepareStatement("delete from customer where uID = ?;",
+											Statement.RETURN_GENERATED_KEYS);
+									stmt2.setString(1, id);
+									int rowCount = stmt2.executeUpdate();
+									System.out.println();
+									if (rowCount > 0) {
+										System.out.println("Account deleted successfully.");
+									}
+									else {
+										System.out.println("Account was not deleted successfully.");
+									}
+								} catch (SQLException exc) {
+									System.out.println();
+									System.out.println("An error occured. Error: => " + exc.getMessage());
+								} finally {
+									try {
+										stmt2.close();
+										break;
+									} catch (SQLException exc) {
+										System.out.println();
+										System.out.println("An error occured. Error: => " + exc.getMessage());
+									}
+								}
+							}
+							else if (command == '2') {
+								break;
+							}
+							else {
+								System.out.println();
+								System.out.println("Invalid command.");
+							}
+						} catch (Exception e) {
+							System.out.println();
+							System.out.println("An error occurred. Please try again.");
+						}
+					}
+				}
+			} catch (SQLException exc) {
+				System.out.println("An error occured. Error: => " + exc.getMessage());
+			} finally {
+				try {
+					stmt1.close();
+				} catch (SQLException exc) {
+					System.out.println("An error occured. Error: => " + exc.getMessage());
+				}
+			}
+		}
+		accountsMain();
 	}
 
 	private void addMovie() {
@@ -293,6 +481,8 @@ public class admin {
 			String sql = "{call archiveShowtimes()}";
 			cstmt = myConn.prepareCall(sql);
 			cstmt.execute();
+			System.out.println();
+			System.out.println("Archiving expired showtimes was successful.");
 		}
 		catch(SQLException exc)
 		{
@@ -307,6 +497,28 @@ public class admin {
 		}
 	}
 	
+	private void currentShow() {
+		System.out.println();
+		PreparedStatement stmt = null;
+		try {
+			stmt = myConn.prepareStatement("select distinct title from movie mv right outer JOIN showtime  st on mv.movieID = st.movieid;");
+			ResultSet rs = stmt.executeQuery();
+			System.out.println("***** Now Playing *****");
+			while (rs.next()) {
+				String mtitle = rs.getString("title");
+				System.out.println(mtitle);		
+			}
+			System.out.println("***********************");
+		} catch (SQLException exc) {
+			System.out.println("An error occured. Error: => " + exc.getMessage());
+		} finally {
+			try {
+				stmt.close();
+			} catch (SQLException exc) {
+				System.out.println("An error occured. Error: => " + exc.getMessage());
+			}
+		}
+	}
 	
 	private void popularMovie() {
 		System.out.println();
