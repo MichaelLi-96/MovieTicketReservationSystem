@@ -1,0 +1,8 @@
+	Shrek	Andrew Adamson	1999	3
+	Lion King	Rob Minkoff	1995	4
+	Frozen	Jennifer Lee	2007	4
+	Incredibles	Brad Bird	2007	3
+	Incredibles 2	Brad Bird	2018	5
+	Moonlight	Barry Jenkins	2016	4
+	The Handmaiden	Park Chan-wook	2016	5
+	Silver Linings Playbook	David O Russell	2012	4

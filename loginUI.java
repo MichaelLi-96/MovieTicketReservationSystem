@@ -11,8 +11,8 @@ public class loginUI {
 	public static void mainMenu() {
 		while (true) {
 			System.out.println("Welcome to movie ticket reservation system!");
-			System.out.println("Please select an option:");
-			System.out.print("[1] Admin     [2] Customer     [3] Exit: ");
+			System.out.println("\nPlease select an option:");
+			System.out.print("\n[1] Admin     \n[2] Customer     \n[3] Exit");
 			try {
 				char command = sc.nextLine().trim().charAt(0);
 
@@ -23,8 +23,7 @@ public class loginUI {
 					customerlogin();
 				}
 				else if (command == '3') {
-					System.out.println();
-					System.out.println("Goodbye.");
+					System.out.println("\nGoodbye.");
 					System.exit(0);
 				} 
 				else {
