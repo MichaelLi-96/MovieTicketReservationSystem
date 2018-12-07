@@ -10,18 +10,22 @@ import java.util.Scanner;
 
 import com.mysql.cj.util.StringUtils;
 
+//Customer constructor class
 public class customer {
 	static Scanner sc = new Scanner(System.in);
 	dbconnection mt = new dbconnection();
 	Connection myConn = mt.myConn;
 
+	//Establish Database Connection
 	public class dbconnection {
 		public Connection myConn;
 
 		public dbconnection() {
 			try {
 				myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/TicketReservation?useSSL=true",
-						"root", "password");
+													"root",
+													//put in mysql password here:
+													"currybreadchai");
 			} catch (Exception exc) {
 				exc.printStackTrace();
 			}
@@ -34,23 +38,32 @@ public class customer {
 		while (true) {
 			System.out.println();
 			System.out.println("Please select a customer option: ");
-			System.out.print("[1] Account     [2] Movies     [3] See Purchases     [4] Exit: ");
+			System.out.print("[1] Account     \n[2] Movies     \n[3] See Purchases    \n[4] Exit: ");
 			try {
 				char command = sc.nextLine().trim().charAt(0);
+
+				//View Account
 				if (command == '1') {
 					accountMain();
 				}
+
+				//View Movies
 				else if (command == '2') {
 					moviesMain();
 				}
+
+				//View Purchases
 				else if (command == '3') {
 					purchasesMain();
 				}
+
+				//Quit program
 				else if (command == '4') {
-					System.out.println();
-					System.out.println("Goodbye.");
+					System.out.println("\nGoodbye.");
 					System.exit(0);
 				}
+
+				//Error message for invalid input
 				else {
 					System.out.println();
 					System.out.println("Invalid command.");
@@ -69,7 +82,7 @@ public class customer {
 		while (true) {
 			System.out.println();
 			System.out.println("Please select an account option:");
-			System.out.print("[1] Create an Account     [2] Edit Your Account     [3] Delete Your Account     [4] Back To Customer Options     [5] Exit: ");
+			System.out.print("[1] Create an Account     \n[2] Edit Your Account     \n[3] Delete Your Account     \n[4] Back To Customer Options     \n[5] Exit: ");
 			try {
 				char command = sc.nextLine().trim().charAt(0);
 				if (command == '1') {
@@ -108,29 +121,37 @@ public class customer {
 		while (true) {
 			System.out.println();
 			System.out.println("Please select a showtime option:");
-			System.out.print("[1] Show Movies     [2] Make Reservation     [3] Cancel Reservation     [4] Rate a Movie     [5] Back to Customer Options     [6] Exit: ");
+			System.out.print("[1] Show Movies     \n[2] Make Reservation     \n[3] Cancel Reservation     \n[4] Rate a Movie    \n[5] Back to Customer Options     \n[6] Exit");
 			try {
+
+				//Show Movies
 				char command = sc.nextLine().trim().charAt(0);
 				if (command == '1') {
 					showMovieOptions();
 				}
+				//Make Reservation
 				else if (command == '2') {
-					resevation();
+				 reservation();
 				}
+				//Cancel Reservation
 				else if (command == '3') {
 					cancelReservation();
 				}
+				//Rate Movie
 				else if (command == '4') {
 					rateMovie();
 				}
+				//Back
 				else if (command == '5') {
 					break;
 				}
+				//Quit
 				else if (command == '6') {
 					System.out.println();
 					System.out.println("Goodbye.");
 					System.exit(0);
 				}
+				//Invalid Command
 				else {
 					System.out.println();
 					System.out.println("Invalid command.");
@@ -144,27 +165,33 @@ public class customer {
 	}
 	
 	// Purchases menu
+	//
 	private void purchasesMain() {
 		while (true) {
 			System.out.println();
 			System.out.println("Please select an option:");
-			System.out.print("[1] Show Amount Of Tickets Bought     [2] Show Total Amount Of Money Spent     [3] Back to Customer Options     [4] Exit: ");
+			System.out.print("[1] Show Amount Of Tickets Bought     \n[2] Show Total Amount Of Money Spent     \n[3] Back to Customer Options     \n[4] Exit");
 			try {
+				//Show amount of tickets bought
 				char command = sc.nextLine().trim().charAt(0);
 				if (command == '1') {
 					showAmountOfTickets();
 				}
+				//Show total amount of money spent
 				else if (command == '2') {
 					showTotalAmountOfMoneySpent();
 				}
+				//Back
 				else if (command == '3') {
 					break;
 				}
+				//Quit
 				else if (command == '4') {
 					System.out.println();
 					System.out.println("Goodbye.");
 					System.exit(0);
 				}
+				//Invalid Input
 				else {
 					System.out.println();
 					System.out.println("Invalid command.");
@@ -180,20 +207,24 @@ public class customer {
 	// Register a customer
 	//
 	private void register() {
-		System.out.println();
-		System.out.print("Enter your name: ");
+		//Input Customer.name
+		System.out.print("\nEnter your name: ");
 		String name = sc.nextLine().trim();
+		//Input Customer.password
 		System.out.print("Enter a password: ");
 		String password = sc.nextLine().trim();
+		//Input Customer.age
 		System.out.print("Enter your age: ");
 		String age = sc.nextLine().trim();
-		if(!(StringUtils.isStrictlyNumeric(age) && age.length() >= 2)) {
+			//Check if age is valid
+		if(!(StringUtils.isStrictlyNumeric(age) && age.length() >= 2 && age<13)) {
 			System.out.println();
-			System.out.println("Inputted customer age is not accepted. Please try again.");
+			System.out.println("Input for customer age was denied. Minimum age is 13. Please try again.");
 		}
 		else {
 			PreparedStatement stmt = null;
 			System.out.println();
+			//Insert user into Customer table
 			try {
 				stmt = myConn.prepareStatement("INSERT into customer(uName, password, age) values(?,?,?);",
 						Statement.RETURN_GENERATED_KEYS);
@@ -204,7 +235,8 @@ public class customer {
 					stmt.setString(2, password);
 					stmt.setString(3, age);
 					stmt.executeUpdate();
-	
+					
+					//Store results
 					ResultSet rs = stmt.getGeneratedKeys();
 					if (rs.next()) {
 						System.out.println("Registered successfully. Your ID is: " + rs.getInt(1));
@@ -230,13 +262,15 @@ public class customer {
 	// Sign in to access account options menu
 	//
 	private void editAccountOptions() {
-		System.out.println();
-		System.out.print("Enter your ID: ");
+		//Input Customer.ID
+		System.out.print("\nEnter your ID: ");
 		String id = sc.nextLine().trim();
+			//Check if Customer ID is valid
 		if(!(StringUtils.isStrictlyNumeric(id) && id.length() == 4)) {
 			System.out.println();
-			System.out.println("Inputted customer ID was not accepted. Please try again.");
+			System.out.println("Input for customer ID was denied. Customer ID consists of 4 characters. Please try again.");
 		}
+		//Input Customer.password
 		else {
 			System.out.print("Enter your password: ");
 			String password = sc.nextLine().trim();
@@ -253,31 +287,37 @@ public class customer {
 					while (true) {
 						System.out.println();
 						System.out.println("Please select an option:");
-						System.out.println("[1] Edit Name     [2] Edit Password     [3] Edit Age     [4] Set Card");
-						System.out.print("[5] Remove Card     [6] Back To Account Options     [7] Exit: ");
+						System.out.println("[1] Edit Name     \n[2] Edit Password     \n[3] Edit Age     \n[4] Set Card   \n[5] Remove Card     \n[6] Back To Account Options     \n[7] Exit");
 						try {
+							//Edit Customer.name
 							char command = sc.nextLine().trim().charAt(0);
 							if (command == '1') {
 								editName(id);
 							}
+							//Edit Customer.password
 							else if (command == '2') {
 								editPassword(id);
 							}
+							//Edit Customer.age
 							else if (command == '3') {
 								editAge(id);
 							}
+
+							//Edit Customer.card
 							else if (command == '4') {
 								setCard(id);
 							}
+							//Delete Customer.card
 							else if (command == '5') {
 								removeCard(id);
 							}
+							//Back
 							else if (command == '6') {
 								break;
 							}
+							//Quit
 							else if (command == '7') {
-								System.out.println();
-								System.out.println("Goodbye.");
+								System.out.println("\nGoodbye.");
 								System.exit(0);
 							}
 							else {
@@ -848,7 +888,7 @@ public class customer {
 	
 	// Customer can make a reservation for a movie
 	//
-	private void resevation() {
+	private void reservation() {
 		System.out.println();
 		System.out.print("Enter your ID: ");
 		String id = sc.nextLine().trim();
