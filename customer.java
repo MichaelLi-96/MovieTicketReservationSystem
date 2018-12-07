@@ -168,25 +168,27 @@ public class customer {
 	//
 	private void purchasesMain() {
 		while (true) {
-			System.out.println();
-			System.out.println("Please select an option:");
-			System.out.print("[1] Show Amount Of Tickets Bought     \n[2] Show Total Amount Of Money Spent     \n[3] Back to Customer Options     \n[4] Exit");
+			System.out.println("\nPlease select an option:");
+			System.out.println("[1] Show Purchase History     \n[2] Show Amount Of Tickets Bought     \n[3] Show Total Amount Of Money Spent \n[4] Back to Customer Options     \n[5] Exit");
 			try {
 				//Show amount of tickets bought
 				char command = sc.nextLine().trim().charAt(0);
 				if (command == '1') {
-					showAmountOfTickets();
+					showPurchaseHistory();
 				}
 				//Show total amount of money spent
 				else if (command == '2') {
-					showTotalAmountOfMoneySpent();
+					showAmountOfTickets();
 				}
 				//Back
 				else if (command == '3') {
-					break;
+					showTotalAmountOfMoneySpent();
 				}
 				//Quit
 				else if (command == '4') {
+					break;
+				}
+				else if (command == '5') {
 					System.out.println();
 					System.out.println("Goodbye.");
 					System.exit(0);
@@ -977,7 +979,7 @@ public class customer {
 				System.out.println("Reservation could not be found. Please try again.");
 			} 
 			else {
-				System.out.print("What is your ID: ");
+				System.out.print("Enter your ID: ");
 				String id = sc.nextLine().trim();
 				if(!(StringUtils.isStrictlyNumeric(id) && id.length() == 4)) {
 					System.out.println();
@@ -1126,6 +1128,112 @@ public class customer {
 					stmt1.close();
 				} catch (SQLException exc) {
 					System.out.println();
+					System.out.println("An error occured. Error: => " + exc.getMessage());
+				}
+			}
+		}
+	}
+	
+	// Show the customer his/her purchase(reservation) history
+	//
+	private void showPurchaseHistory() {
+		System.out.println();
+		System.out.print("Enter your ID: ");
+		String id = sc.nextLine().trim();
+		if(!(StringUtils.isStrictlyNumeric(id) && id.length() == 4)) {
+			System.out.println();
+			System.out.println("Inputted customer ID was not accepted. Please try again.");
+		}
+		else {
+			System.out.print("Enter your password: ");
+			String password = sc.nextLine().trim();
+			PreparedStatement stmt1 = null;
+			PreparedStatement stmt2 = null;
+			PreparedStatement stmt3 = null;
+			try {
+				stmt1 = myConn.prepareStatement("select total, uName, password from (select uID, SUM(numOfTicket) as 'total' from Reservation group by uID) as totalTable, Customer where totalTable.uID = Customer.uID and totalTable.uID =" + id + ";",
+						Statement.RETURN_GENERATED_KEYS);
+				ResultSet rs1 = stmt1.executeQuery();
+				System.out.println();
+				if (rs1.next() && rs1.getString("password").equals(password)) {
+					stmt2 = myConn.prepareStatement("select * from Reservation where uID = ? order by resDate DESC;",
+							Statement.RETURN_GENERATED_KEYS);
+					stmt2.setString(1, id);
+					ResultSet rs2 = stmt2.executeQuery();
+					System.out.println("---------------------------");
+					System.out.println("|  Your Purchase History  |");
+					while (rs2.next()) {
+						String numberOfTickets = rs2.getString("numOfTicket");
+						String dateBought = rs2.getString("resDate");
+						String showtimeID = rs2.getString("showID");
+						stmt3 = myConn.prepareStatement("select * from Showtime, Movie where Showtime.movieID = Movie.movieID and showID = ?;",
+								Statement.RETURN_GENERATED_KEYS);
+						stmt3.setString(1, showtimeID);
+						ResultSet rs3 = stmt3.executeQuery();
+						if(rs3.next()) {
+							String mtitle = rs3.getString("title");
+							if( mtitle.length() <= 25 ) {
+								int titleLength = mtitle.length();
+								int numOfSpaces = 25 - titleLength;
+								System.out.println("|-------------------------|");
+								if(numOfSpaces % 2 == 0) {
+									String space = "";
+									for(int i = 0; i < numOfSpaces/2; i++) {
+										space = space + " ";
+									}
+									System.out.println("|" + space + mtitle + space + "|");
+								}
+								else {
+									String space = "";
+									for(int i = 0; i < (numOfSpaces - 1)/2; i++) {
+										space = space + " ";
+									}
+									System.out.println("|" + space + mtitle + space + " |");
+								}
+								System.out.println("|-------------------------|");
+							}
+							else {
+								System.out.println("|-------------------------|");
+								System.out.println("|" + mtitle + "|");
+								System.out.println("|-------------------------|");
+							}
+						}
+						else {
+							System.out.println();
+							System.out.println("Movie title could not be found.");
+						}
+						
+						int numTicketLength = numberOfTickets.length();
+						int numOfSpaces = 4 - numTicketLength;
+						if(numOfSpaces % 2 == 0) {
+							String space = "";
+							for(int i = 0; i < numOfSpaces/2; i++) {
+								space = space + " ";
+							}
+							System.out.println("|  Tickets Purchased: " + numberOfTickets + space + " |");
+						}
+						else {
+							String space = "";
+							for(int i = 0; i < (numOfSpaces - 1)/2; i++) {
+								space = space + " ";
+							}
+							System.out.println("|  Tickets Purchased: " + numberOfTickets + space + "  |");
+						}
+						
+						System.out.println("|   " + dateBought + "   |");
+					}
+				}
+				else {
+					System.out.println("Account could not be found. Please try again.");
+				}
+				System.out.println("---------------------------");
+			} catch (SQLException exc) {
+				System.out.println("An error occured. Error: => " + exc.getMessage());
+			} finally {
+				try {
+					stmt1.close();
+					stmt2.close();
+				} catch (SQLException exc) {
 					System.out.println("An error occured. Error: => " + exc.getMessage());
 				}
 			}
