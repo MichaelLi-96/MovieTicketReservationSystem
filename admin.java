@@ -49,12 +49,10 @@ public class admin {
 						Statement.RETURN_GENERATED_KEYS);
 				ResultSet rs = stmt.executeQuery(); 
 				if (!rs.next()) {
-					System.out.println("\nAdmin account could not be found. Please try again.");
+					System.out.println("\nAdmin account could not be found. Please try again.\n");
 				} else {
 					System.out.println("\nWelcome Administrator, " + rs.getString("adminName") + "!");
-					while (true) {
-						adminMain();
-					}
+					adminMain();
 				}
 			} catch (SQLException exc) {
 				System.out.println("An error occured. Error: => " + exc.getMessage());
@@ -66,6 +64,7 @@ public class admin {
 				}
 			}
 		}
+	
 	}
 	
 	private void adminMain() {
@@ -84,9 +83,8 @@ public class admin {
 					dataAnalysisMain() ;
 				}
 				else if (command.equals("4")) {
-					System.out.println();
 					System.out.println("Goodbye");
-					System.exit(0);
+					return;
 				} 
 				else {
 					System.out.println("\nInvalid command");

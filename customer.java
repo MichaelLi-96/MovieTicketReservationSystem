@@ -61,7 +61,7 @@ public class customer {
 				//Quit program
 				else if (command == '4') {
 					System.out.println("\nGoodbye.");
-					System.exit(0);
+					return;
 				}
 
 				//Error message for invalid input
