@@ -27,7 +27,7 @@ public class admin {
 						//enter Mi19Li96 password here
 						//Michael's password: Mi19Li96
 						//Vivian's password: currybreadchai
-						"password");
+						"12345678");
 			} catch (Exception exc) {
 				exc.printStackTrace();
 			}
@@ -187,7 +187,7 @@ public class admin {
 		while (true) {
 			System.out.println("Please select a data analysis option:");
 			System.out.println("[1] Movies With Reservations Greater Than 'Input'  [2] Average Age Of Customers Who Made A Reservation ");
-			System.out.print("[3] Go Back To Admin Options     [4] Exit: ");
+			System.out.print("[3] Customers make no transaction. [4]Go Back To Admin Options     [5] Exit: ");
 			char command = sc.nextLine().trim().charAt(0);
 			if (command == '1') {
 				popularMovie();
@@ -196,6 +196,9 @@ public class admin {
 				averageAge();
 			}
 			else if (command == '3') {
+				noTransaction();
+			} 
+			else if (command == '4') {
 				break;
 			} 
 			else if (command == '4') {
@@ -540,8 +543,27 @@ public class admin {
 		System.out.println();
 	}
 	
-	private void mostReservation() {
-		// TODO Auto-generated method stub
+	private void noTransaction() {
+		System.out.println();
+		PreparedStatement stmt = null;
+		try {
+			stmt = myConn.prepareStatement("select uname from customer where uID not in (select uid from reservation union select uid from cancelation);");
+			ResultSet rs = stmt.executeQuery();
+			System.out.println("***** Below customers have not made any transaction. *****");
+			while (rs.next()) {
+				String cname = rs.getString("uName");
+				System.out.println(cname);		
+			}
+			System.out.println("***********************");
+		} catch (SQLException exc) {
+			System.out.println("An error occured. Error: => " + exc.getMessage());
+		} finally {
+			try {
+				stmt.close();
+			} catch (SQLException exc) {
+				System.out.println("An error occured. Error: => " + exc.getMessage());
+			}
+		}
 		
 	}
 
