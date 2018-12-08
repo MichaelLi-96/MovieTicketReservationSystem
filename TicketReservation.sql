@@ -159,10 +159,10 @@ MAKE SURE TO USE YOUR OWN DIRECTORY LOCATION WHEN IMPORTING DATA FROM .txt FILES
 */
 
 
-LOAD DATA LOCAL INFILE '/Users/eliassun/workshop/MovieTicket/src/ticket.txt' INTO TABLE Ticket; 
-LOAD DATA LOCAL INFILE '/Users/eliassun/workshop/MovieTicket/src/customer.txt' INTO TABLE Customer;
-LOAD DATA LOCAL INFILE '/Users/eliassun/workshop/MovieTicket/src/movie.txt' INTO TABLE Movie;
-LOAD DATA LOCAL INFILE '/Users/eliassun/workshop/MovieTicket/src/room.txt' INTO TABLE Room;
+LOAD DATA LOCAL INFILE 'D:/SJSU/CS 157A/src/ticket.txt' INTO TABLE Ticket; 
+LOAD DATA LOCAL INFILE 'D:/SJSU/CS 157A/src/customer.txt' INTO TABLE Customer;
+LOAD DATA LOCAL INFILE 'D:/SJSU/CS 157A/src/movie.txt' INTO TABLE Movie;
+LOAD DATA LOCAL INFILE 'D:/SJSU/CS 157A/src/room.txt' INTO TABLE Room;
 
 
 insert into showTime(movieID, roomID, seats, showdate, startTime) values(2001, 4001, 30, '2018-12-02', '10:00:00' );
