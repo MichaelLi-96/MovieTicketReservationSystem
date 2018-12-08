@@ -11,8 +11,8 @@ public class loginUI {
 	public static void mainMenu() {
 		while (true) {
 			System.out.println("Welcome to movie ticket reservation system!");
-			System.out.println("\nPlease select an option:");
-			System.out.print("\n[1] Admin     \n[2] Customer     \n[3] Exit: ");
+			System.out.println("\nPlease login:");
+			System.out.print("\n[1] Admin     \n[2] Customer     \n[3] Exit\n\n");
 			try {
 				char command = sc.nextLine().trim().charAt(0);
 

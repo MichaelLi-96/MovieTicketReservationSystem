@@ -27,7 +27,7 @@ public class admin {
 						//enter Mi19Li96 password here
 						//Michael's password: Mi19Li96
 						//Vivian's password: currybreadchai
-						"12345678");
+						"currybreadchai");
 			} catch (Exception exc) {
 				exc.printStackTrace();
 			}
@@ -35,27 +35,23 @@ public class admin {
 	}
 	
 	public void adminSignIn() {
-		System.out.println();
-		System.out.print("Please enter your Admin ID: ");
+		System.out.print("\nPlease enter your Admin ID: ");
 		String id = sc.nextLine().trim();
 		if(!(StringUtils.isStrictlyNumeric(id) && id.length() >= 1 && id.length() < 4)) {
-			System.out.println();
-			System.out.println("Inputted Admin ID was not accepted. Please try again.");
+			System.out.println("\nInputted Admin ID was not accepted. Please try again.");
 		}
 		else {
-			System.out.print("Enter your password: ");
+			System.out.print("\nEnter your password: ");
 			String password = sc.nextLine().trim();
 			PreparedStatement stmt = null;
 			try {
 				stmt = myConn.prepareStatement("select adminName from Admin where adminID =" + id +" and password ='" + password + "';",
 						Statement.RETURN_GENERATED_KEYS);
 				ResultSet rs = stmt.executeQuery(); 
-				System.out.println();
 				if (!rs.next()) {
-					System.out.println("Admin account could not be found. Please try again.");
-					System.out.println();
+					System.out.println("\nAdmin account could not be found. Please try again.");
 				} else {
-					System.out.println("Welcome Administrator: " + rs.getString("adminName"));
+					System.out.println("\nWelcome Administrator, " + rs.getString("adminName") + "!");
 					while (true) {
 						adminMain();
 					}
@@ -73,33 +69,30 @@ public class admin {
 	}
 	
 	private void adminMain() {
-		System.out.println();
 		while (true) {
-			System.out.println("Please select an administrator option:");
-			System.out.print("[1] Accounts     [2] Movies     [3] Data analysis     [4] Exit: ");
+			System.out.println("\nPlease select an administrator option:");
+			System.out.print("\n[1] Accounts    \n[2] Movies     \n[3] Data analysis     \n[4] Logout\n\n");
 			try {
-				char command = sc.nextLine().trim().charAt(0);
-				if (command == '1') {
+				String command = sc.nextLine().trim();
+				if (command.equals("1")) {
 					accountsMain();
 				}
-				else if (command == '2') {
+				else if (command.equals("2")) {
 					moviesMain() ;
 				}
-				else if (command == '3') {
+				else if (command.equals("3")) {
 					dataAnalysisMain() ;
 				}
-				else if (command == '4') {
+				else if (command.equals("4")) {
 					System.out.println();
 					System.out.println("Goodbye");
 					System.exit(0);
 				} 
 				else {
-					System.out.println();
-					System.out.println("Invalid command");
+					System.out.println("\nInvalid command");
 				}
 			} catch (Exception e) {
-				System.out.println();
-				System.out.println("An error occurred.  Try again.");
+				System.out.println("\nAn error occurred.  Try again.");
 			}
 		}
 	}
@@ -108,27 +101,21 @@ public class admin {
 	//
 	private void accountsMain() {
 		while (true) {
-			System.out.println();
-			System.out.println("Please select an accounts option:");
-			System.out.print("[1] Add An Administrator     [2] Edit Customer Info     [3] Delete A Customer     [4] Back To Admin Options     [5] Exit: ");
+			System.out.println("\nPlease select an accounts option:");
+			System.out.print("\n[1] Add An Administrator     \n[2] Edit Customer Info     \n[3] Delete A Customer     \n[4] Back To Admin Options\n\n");
 			try {
-				char command = sc.nextLine().trim().charAt(0);
-				if (command == '1') {
+				String command = sc.nextLine().trim();
+				if (command.equals("1")) {
 					addAdmin();
 				}
-				else if (command == '2') {
+				else if (command.equals("2")) {
 					editCustomerInfo();
 				}
-				else if (command == '3') {
+				else if (command.equals("3")) {
 					deleteCustomer();
 				}
-				else if (command == '4') {
+				else if (command.equals("4")) {
 					break;
-				}
-				else if (command == '5') {
-					System.out.println();
-					System.out.println("Goodbye.");
-					System.exit(0);
 				}
 				else {
 					System.out.println();
@@ -147,68 +134,51 @@ public class admin {
 	//
 	private void moviesMain() {
 		while (true) {
-			System.out.println();
-			System.out.println("Please select a movies option:");
-			System.out.println("[1] Add Movie  [2] Archive Expired Showtimes     [3] Show Now Playing Movies   ");
-			System.out.print("[4] Back to Admin Options     [5] Exit: ");
+			System.out.println("\nPlease select a movies option:");
+			System.out.println("\n[1] Add Movie  \n[2] Archive Expired Showtimes \n[3] Show Now Playing Movies 	\n[4] Back to Admin Options");
 			try {
-				char command = sc.nextLine().trim().charAt(0);
-				if (command == '1') {
+				String command = sc.nextLine().trim();
+				if (command.equals("1")) {
 					addMovie();
 				}
-				else if (command == '2') {
+				else if (command.equals("2")) {
 					archiveShowtimes();
 				}
-				else if (command == '3') {
+				else if (command.equals("3")) {
 					currentShow();
 				}
-				else if (command == '4') {
+				else if (command.equals("4")) {
 					break;
 				}
-				else if (command == '5') {
-					System.out.println();
-					System.out.println("Goodbye.");
-					System.exit(0);
-				}
 				else {
-					System.out.println();
-					System.out.println("Invalid command.");
+					System.out.println("\nInvalid command.");
 				}
 			} catch (Exception e) {
-				System.out.println();
-				System.out.println("An error occurred. Please try again.");
+				System.out.println("\nAn error occurred. Please try again.");
 			}
 		}
 		adminMain();
 	}
 
 	private void dataAnalysisMain() {
-		System.out.println();
 		while (true) {
-			System.out.println("Please select a data analysis option:");
-			System.out.println("[1] Movies With Reservations Greater Than 'Input'  [2] Average Age Of Customers Who Made A Reservation ");
-			System.out.print("[3] Customers make no transaction. [4]Go Back To Admin Options     [5] Exit: ");
-			char command = sc.nextLine().trim().charAt(0);
-			if (command == '1') {
+			System.out.println("\nPlease select a data analysis option:");
+			System.out.println("\n[1] Movies With Reservations Greater Than 'Input'  \n[2] Average Age Of Customers Who Made A Reservation \n[3] Customers make no transaction \n[4] Go Back To Admin Options");
+			String command = sc.nextLine().trim();
+			if (command.equals("1")) {
 				popularMovie();
 			}
-			else if (command == '2') {
+			else if (command.equals("2")) {
 				averageAge();
 			}
-			else if (command == '3') {
+			else if (command.equals("3")) {
 				noTransaction();
 			} 
-			else if (command == '4') {
+			else if (command.equals("4")) {
 				break;
 			} 
-			else if (command == '4') {
-				System.out.println();
-				System.out.println("Goodbye.");
-				System.exit(0);
-			}
 			else {
-				System.out.println();
-				System.out.println("Invalid command");
+				System.out.println("\nInvalid command");
 			}
 		}
 		adminMain();
@@ -287,8 +257,8 @@ public class admin {
 					System.out.println();
 					System.out.println("Edit customer name?:");
 					System.out.print("[1] Yes     [2] No: ");
-					char command = sc.nextLine().trim().charAt(0);
-					if(command == '1') {
+					String command = sc.nextLine().trim();
+					if(command.equals("1")) {
 						System.out.println();
 						System.out.print("New name of customer: ");
 						name = sc.nextLine().trim();
@@ -297,8 +267,8 @@ public class admin {
 					System.out.println();
 					System.out.println("Edit customer password?");
 					System.out.print("[1] Yes     [2] No: ");
-					command = sc.nextLine().trim().charAt(0);
-					if(command == '1') {
+					command = sc.nextLine().trim();
+					if(command.equals("1")) {
 						System.out.println();
 						System.out.print("New password of customer: ");
 						password = sc.nextLine().trim();
@@ -307,8 +277,8 @@ public class admin {
 					System.out.println();
 					System.out.println("Edit customer age?");
 					System.out.print("[1] Yes     [2] No: ");
-					command = sc.nextLine().trim().charAt(0);
-					if(command == '1') {
+					command = sc.nextLine().trim();
+					if(command.equals("1")) {
 						System.out.println();
 						System.out.print("New age of customer: ");
 						age = sc.nextLine().trim();		
@@ -317,8 +287,8 @@ public class admin {
 					System.out.println();
 					System.out.println("Edit customer card?");
 					System.out.print("[1] Yes     [2] No: ");
-					command = sc.nextLine().trim().charAt(0);
-					if(command == '1') {
+					command = sc.nextLine().trim();
+					if(command.equals("1")) {
 						System.out.println();
 						System.out.print("New card number of customer: ");
 						cardNumber = sc.nextLine().trim();
@@ -380,12 +350,11 @@ public class admin {
 				else {
 					System.out.println("Are you sure you want to delete " + rs.getString("uName") + "'s Account?");
 					while (true) {
-						System.out.println();
-						System.out.println("Please select an option:");
-						System.out.print("[1] Yes     [2] Go Back To Acounts options: ");
+						System.out.println("\nPlease select an option:");
+						System.out.print("\n[1] Yes     \n[2] Cancel");
 						try {
-							char command = sc.nextLine().trim().charAt(0);
-							if (command == '1') {
+							String command = sc.nextLine().trim();
+							if (command.equals("1")) {
 								try {
 									stmt2 = myConn.prepareStatement("delete from customer where uID = ?;",
 											Statement.RETURN_GENERATED_KEYS);
@@ -411,7 +380,7 @@ public class admin {
 									}
 								}
 							}
-							else if (command == '2') {
+							else if (command.equals("2")) {
 								break;
 							}
 							else {
