@@ -526,10 +526,10 @@ public class customer {
 				else {
 					System.out.println("Are you sure you want to delete " + rs.getString("uName") + "'s Account?");
 					while (true) {
-						System.out.print("\n[1] Yes     [2] Cancel ");
+						System.out.print("\n[1] Yes     [2] Cancel\n");
 						try {
-							char command = sc.nextLine().trim().charAt(0);
-							if (command == '1') {
+							String command = sc.nextLine().trim();
+							if (command.equals("1")) {
 								try {
 									stmt2 = myConn.prepareStatement("delete from customer where uID =" + id + ";",
 											Statement.RETURN_GENERATED_KEYS);
@@ -554,7 +554,7 @@ public class customer {
 									}
 								}
 							}
-							else if (command == '2') {
+							else if (command.equals("2")) {
 								break;
 							}
 							else {
