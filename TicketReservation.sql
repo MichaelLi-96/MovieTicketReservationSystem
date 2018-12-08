@@ -147,23 +147,39 @@ delimiter ;
 
 INSERT into Admin(adminName, password) values("Admin", "password");
 
+/*LOAD DATA LOCAL INFILE '/Users/eliassun/workshop/MovieTicket/src/showtime.txt' INTO TABLE Showtime fields terminated by '\t' lines terminated by '\n';
+
+MAKE SURE TO USE YOUR OWN DIRECTORY LOCATION WHEN IMPORTING DATA FROM .txt FILES 
+
+-- Vivian's directory: C:/Users/vivz7/Documents/eclipse-workspace/movieTicketReservation/src/ticket.txt
+-- Ying's directory: /Users/eliassun/workshop/MovieTicket/src/
+-- Michael's directory: D:/SJSU/CS 157A/src/ticket.txt
+-- LOAD DATA LOCAL INFILE '/Users/eliassun/workshop/MovieTicket/src/reservation.txt' INTO TABLE Reservation;
+
+*/
+
+
+LOAD DATA LOCAL INFILE '/Users/eliassun/workshop/MovieTicket/src/ticket.txt' INTO TABLE Ticket; 
+LOAD DATA LOCAL INFILE '/Users/eliassun/workshop/MovieTicket/src/customer.txt' INTO TABLE Customer;
+LOAD DATA LOCAL INFILE '/Users/eliassun/workshop/MovieTicket/src/movie.txt' INTO TABLE Movie;
+LOAD DATA LOCAL INFILE '/Users/eliassun/workshop/MovieTicket/src/room.txt' INTO TABLE Room;
+
+
+insert into showTime(movieID, roomID, seats, showdate, startTime) values(2001, 4001, 30, '2018-12-02', '10:00:00' );
+insert into showTime(movieID, roomID, seats, showdate, startTime) values(2000, 4000, 30, '2018-12-05', '12:00:00' );
+insert into showTime(movieID, roomID, seats, showdate, startTime) values(2001, 4001, 30, '2018-12-03', '11:00:00' );
+insert into showTime(movieID, roomID, seats, showdate, startTime) values(2000, 4002, 30, '2018-12-07', '13:00:00' );
+insert into showTime(movieID, roomID, seats, showdate, startTime) values(2000, 4002, 30, '2018-12-01', '19:00:00' );
+insert into showTime(movieID, roomID, seats, showdate, startTime) values(2002, 4002, 30, '2018-12-01', '9:00:00' );
+insert into showTime(movieID, roomID, seats, showdate, startTime) values(2001, 4001, 30, '2018-12-02', '15:00:00' );
 
 
 insert into reservation(uID, showID, numofTicket) values(1000, 5000, 5);
-
-
-
+insert into reservation(uID, showID, numofTicket) values(1000, 5001, 2);
+insert into reservation(uID, showID, numofTicket) values(1000, 5002, 1);
+insert into reservation(uID, showID, numofTicket) values(1000, 5002, 6);
+insert into reservation(uID, showID, numofTicket) values(1001, 5002, 2);
+insert into reservation(uID, showID, numofTicket) values(1002, 5003, 4);
 delete from reservation where rID = 6001;
 delete from reservation where rID = 6002;
 
-
--- * MAKE SURE TO USE YOUR OWN DIRECTORY LOCATION WHEN IMPORTING DATA FROM .txt FILES * --
--- Vivian's directory: C:/Users/vivz7/Documents/eclipse-workspace/movieTicketReservation/src/ticket.txt
--- Ying's directory: /Users/eliassun/Downloads/cs157A/movie/ticket.txt
--- Michael's directory: D:/SJSU/CS 157A/src/ticket.txt
-LOAD DATA LOCAL INFILE 'C:/Users/vivz7/Documents/eclipse-workspace/movieTicketReservation/src/ticket.txt' INTO TABLE Ticket; 
-LOAD DATA LOCAL INFILE 'C:/Users/vivz7/Documents/eclipse-workspace/movieTicketReservation/src/customer.txt' INTO TABLE Customer;
-LOAD DATA LOCAL INFILE 'C:/Users/vivz7/Documents/eclipse-workspace/movieTicketReservation/src/movie.txt' INTO TABLE Movie;
-LOAD DATA LOCAL INFILE 'C:/Users/vivz7/Documents/eclipse-workspace/movieTicketReservation/src/showtime.txt' INTO TABLE Showtime fields terminated by '\t' lines terminated by '\n';
-LOAD DATA LOCAL INFILE 'C:/Users/vivz7/Documents/eclipse-workspace/movieTicketReservation/src/room.txt' INTO TABLE Room;
-LOAD DATA LOCAL INFILE 'C:/Users/vivz7/Documents/eclipse-workspace/movieTicketReservation/src/reservation.txt' INTO TABLE Reservation;

@@ -27,7 +27,7 @@ public class customer {
 						//put in mysql password here
 						//Michael's password: Mi19Li96
 						//Vivian's password: currybreadchai
-						"Mi19Li96");
+						"password");
 			} catch (Exception exc) {
 				exc.printStackTrace();
 			}

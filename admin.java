@@ -27,7 +27,7 @@ public class admin {
 						//enter Mi19Li96 password here
 						//Michael's password: Mi19Li96
 						//Vivian's password: currybreadchai
-						"Mi19Li96");
+						"password");
 			} catch (Exception exc) {
 				exc.printStackTrace();
 			}
@@ -149,26 +149,23 @@ public class admin {
 		while (true) {
 			System.out.println();
 			System.out.println("Please select a movies option:");
-			System.out.println("[1] Add Movie     [2] Add Movie Showtime     [3] Archive Expired Showtimes     [4] Show Now Playing Movies     ");
-			System.out.print("[5] Back to Admin Options     [6] Exit: ");
+			System.out.println("[1] Add Movie  [2] Archive Expired Showtimes     [3] Show Now Playing Movies   ");
+			System.out.print("[4] Back to Admin Options     [5] Exit: ");
 			try {
 				char command = sc.nextLine().trim().charAt(0);
 				if (command == '1') {
 					addMovie();
 				}
 				else if (command == '2') {
-					addShowtime();
-				}
-				else if (command == '3') {
 					archiveShowtimes();
 				}
-				else if (command == '4') {
+				else if (command == '3') {
 					currentShow();
 				}
-				else if (command == '5') {
+				else if (command == '4') {
 					break;
 				}
-				else if (command == '6') {
+				else if (command == '5') {
 					System.out.println();
 					System.out.println("Goodbye.");
 					System.exit(0);
@@ -189,22 +186,19 @@ public class admin {
 		System.out.println();
 		while (true) {
 			System.out.println("Please select a data analysis option:");
-			System.out.println("[1] Movies With Reservations Greater Than 'Input'     [2] Customer That Made The Most Reservations ");
-			System.out.print("[3] Average Age Of Customers Who Made A Reservation     [4] Go Back To Admin Options     [5] Exit: ");
+			System.out.println("[1] Movies With Reservations Greater Than 'Input'  [2] Average Age Of Customers Who Made A Reservation ");
+			System.out.print("[3] Go Back To Admin Options     [4] Exit: ");
 			char command = sc.nextLine().trim().charAt(0);
 			if (command == '1') {
 				popularMovie();
 			}
 			else if (command == '2') {
-				mostReservation();
-			}
-			else if (command == '3') {
 				averageAge();
 			}
-			else if (command == '4') {
+			else if (command == '3') {
 				break;
 			} 
-			else if (command == '5') {
+			else if (command == '4') {
 				System.out.println();
 				System.out.println("Goodbye.");
 				System.exit(0);
@@ -470,9 +464,6 @@ public class admin {
 		}
 	}
 	
-	private void addShowtime() {
-		// TODO Auto-generated method stub
-	}
 	
 	private void archiveShowtimes() {
 
