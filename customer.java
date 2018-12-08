@@ -27,7 +27,7 @@ public class customer {
 						//put in mysql password here
 						//Michael's password: Mi19Li96
 						//Vivian's password: currybreadchai
-						"12345678");
+						"currybreadchai");
 			} catch (Exception exc) {
 				exc.printStackTrace();
 			}
@@ -38,9 +38,8 @@ public class customer {
 	//
 	public void customerMain() {
 		while (true) {
-			System.out.println();
-			System.out.println("Please select a customer option: ");
-			System.out.print("[1] Account     \n[2] Movies     \n[3] See Purchases    \n[4] Exit: ");
+			System.out.println("\nPlease select a customer option:");
+			System.out.print("\n[1] Account     \n[2] Movies     \n[3] See Purchases    \n[4] Exit\n\n");
 			try {
 				char command = sc.nextLine().trim().charAt(0);
 
@@ -82,9 +81,8 @@ public class customer {
 	//
 	private void accountMain() {
 		while (true) {
-			System.out.println();
-			System.out.println("Please select an account option:");
-			System.out.print("[1] Create an Account     \n[2] Edit Your Account     \n[3] Delete Your Account     \n[4] Back To Customer Options     \n[5] Exit: ");
+			System.out.println("\nPlease select an account option:");
+			System.out.print("\n[1] Create an Account     \n[2] Edit Your Account     \n[3] Delete Your Account     \n[4] Back To Customer Options     \n[5] Exit\n\n");
 			try {
 				char command = sc.nextLine().trim().charAt(0);
 				if (command == '1') {
@@ -121,9 +119,8 @@ public class customer {
 	//
 	private void moviesMain() {
 		while (true) {
-			System.out.println();
-			System.out.println("Please select a showtime option:");
-			System.out.print("[1] Show Movies     \n[2] Make Reservation     \n[3] Cancel Reservation     \n[4] Rate a Movie    \n[5] Back to Customer Options     \n[6] Exit");
+			System.out.print("\n[1] Show Movies     \n[2] Make Reservation     \n[3] Cancel Reservation     \n[4] Rate a Movie    \n[5] Back to Customer Options     \n[6] Exit");
+			System.out.println("Please select a showtime option:\n");
 			try {
 
 				//Show Movies
@@ -291,7 +288,7 @@ public class customer {
 					while (true) {
 						System.out.println();
 						System.out.println("Please select an option:");
-						System.out.println("[1] Edit Name     \n[2] Edit Password     \n[3] Edit Age     \n[4] Set Card   \n[5] Remove Card     \n[6] Back To Account Options     \n[7] Exit");
+						System.out.println("[1] Edit Name     \n[2] Edit Password     \n[3] Edit Age     \n[4] Set Credit Card Number   \n[5] Remove Credit Card     \n[6] Back To Account Options     \n[7] Exit");
 						try {
 							//Edit Customer.name
 							char command = sc.nextLine().trim().charAt(0);
@@ -529,9 +526,7 @@ public class customer {
 				else {
 					System.out.println("Are you sure you want to delete " + rs.getString("uName") + "'s Account?");
 					while (true) {
-						System.out.println();
-						System.out.println("Please select an option:");
-						System.out.print("[1] Yes     [2] Go Back To Account Options: ");
+						System.out.print("\n[1] Yes     [2] Cancel ");
 						try {
 							char command = sc.nextLine().trim().charAt(0);
 							if (command == '1') {
