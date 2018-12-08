@@ -39,7 +39,7 @@ public class customer {
 	public void customerMain() {
 		while (true) {
 			System.out.println("\nPlease select a customer option:");
-			System.out.print("\n[1] Account     \n[2] Movies     \n[3] See Purchases    \n[4] Exit\n\n");
+			System.out.print("\n[1] Account     \n[2] Movies     \n[3] See Purchases    \n[4] Logout\n\n");
 			try {
 				char command = sc.nextLine().trim().charAt(0);
 
@@ -82,7 +82,7 @@ public class customer {
 	private void accountMain() {
 		while (true) {
 			System.out.println("\nPlease select an account option:");
-			System.out.print("\n[1] Create an Account     \n[2] Edit Your Account     \n[3] Delete Your Account     \n[4] Back To Customer Options     \n[5] Exit\n\n");
+			System.out.print("\n[1] Create an Account     \n[2] Edit Your Account     \n[3] Delete Your Account     \n[4] Back To Customer Options\n\n");
 			try {
 				char command = sc.nextLine().trim().charAt(0);
 				if (command == '1') {
@@ -96,11 +96,6 @@ public class customer {
 				}
 				else if (command == '4') {
 					break;
-				}
-				else if (command == '5') {
-					System.out.println();
-					System.out.println("Goodbye.");
-					System.exit(0);
 				}
 				else {
 					System.out.println();
@@ -119,8 +114,8 @@ public class customer {
 	//
 	private void moviesMain() {
 		while (true) {
-			System.out.print("\n[1] Show Movies     \n[2] Make Reservation     \n[3] Cancel Reservation     \n[4] Rate a Movie    \n[5] Back to Customer Options     \n[6] Exit");
-			System.out.println("Please select a showtime option:\n");
+			System.out.println("\nPlease select a Showtime option:");
+			System.out.print("\n[1] Show Movies     \n[2] Make Reservation     \n[3] Cancel Reservation     \n[4] Rate a Movie    \n[5] Back to Customer Options\n\n");
 			try {
 
 				//Show Movies
@@ -144,12 +139,7 @@ public class customer {
 				else if (command == '5') {
 					break;
 				}
-				//Quit
-				else if (command == '6') {
-					System.out.println();
-					System.out.println("Goodbye.");
-					System.exit(0);
-				}
+
 				//Invalid Command
 				else {
 					System.out.println();
@@ -168,7 +158,7 @@ public class customer {
 	private void purchasesMain() {
 		while (true) {
 			System.out.println("\nPlease select an option:");
-			System.out.println("[1] Show Purchase History     \n[2] Show Amount Of Tickets Bought     \n[3] Show Total Amount Of Money Spent \n[4] Back to Customer Options     \n[5] Exit");
+			System.out.println("[1] Show Purchase History     \n[2] Show Amount Of Tickets Bought     \n[3] Show Total Amount Of Money Spent \n[4] Back to Customer Options");
 			try {
 				//Show amount of tickets bought
 				char command = sc.nextLine().trim().charAt(0);
@@ -186,11 +176,6 @@ public class customer {
 				//Quit
 				else if (command == '4') {
 					break;
-				}
-				else if (command == '5') {
-					System.out.println();
-					System.out.println("Goodbye.");
-					System.exit(0);
 				}
 				//Invalid Input
 				else {
@@ -584,10 +569,8 @@ public class customer {
 	//
 	private void showMovieOptions() {
 		while (true) {
-			System.out.println();
-			System.out.println("Please select an option:");
-			System.out.println("[1] Show All Showtimes For A Movie     [2] Show All Movies Alphabetically     [3] Show All Movies By Earliest Showtime");
-			System.out.print("[4] Show All Movies By Latest Showtime     [5] Back To Showtime Options     [4] Exit: ");
+			System.out.println("\nPlease select an option:");
+			System.out.println("\n[1] Show All Showtimes For A Movie \n[2] Show All Movies Alphabetically     \n[3] Show All Movies By Earliest Showtimes  \n[4] Show All Movies By Latest Showtime     \n[5] Back To Showtime Options\n\n");
 			try {
 				char command = sc.nextLine().trim().charAt(0);
 				if (command == '1') {
@@ -605,18 +588,11 @@ public class customer {
 				else if (command == '5') {
 					break;
 				}
-				else if (command == '6') {
-					System.out.println();
-					System.out.println("Goodbye.");
-					System.exit(0);
-				}
 				else {
-					System.out.println();
-					System.out.println("Invalid command.");
+					System.out.println("\nInvalid command.");
 				}
 			} catch (Exception e) {
-				System.out.println();
-				System.out.println("An error occurred. Please try again.");
+				System.out.println("\nAn error occurred. Please try again.");
 			}
 		}
 		moviesMain();
