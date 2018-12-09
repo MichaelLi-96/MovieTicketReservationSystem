@@ -27,7 +27,7 @@ public class customer {
 						//put in mysql password here
 						//Michael's password: Mi19Li96
 						//Vivian's password: currybreadchai
-						"Mi19Li96");
+						"currybreadchai");
 			} catch (Exception exc) {
 				exc.printStackTrace();
 			}
@@ -116,28 +116,32 @@ public class customer {
 	private void moviesMain() {
 		while (true) {
 			System.out.println("\nPlease select a Showtime option:");
-			System.out.print("\n[1] Show Movies     \n[2] Make Reservation     \n[3] Cancel Reservation     \n[4] Rate a Movie    \n[5] Back to Customer Options\n\n");
+			System.out.print("\n[1] Show Movies Now Playing     \n[2] Browse Showtimes \n[3] Make Reservation     \n[4] Cancel Reservation     \n[5] Rate a Movie    \n[6] Back to Customer Options\n\n");
 			try {
 
 				//Show Movies
 				char command = sc.nextLine().trim().charAt(0);
 				if (command == '1') {
-					showMovieOptions();
+					currentShow();
+				}
+				//Browse Showtimes
+				else if (command == '2') {
+				 showMovieOptions();
 				}
 				//Make Reservation
-				else if (command == '2') {
-				 reservation();
+				else if (command == '3') {
+					reservation();
 				}
 				//Cancel Reservation
-				else if (command == '3') {
+				else if (command == '4') {
 					cancelReservation();
 				}
 				//Rate Movie
-				else if (command == '4') {
+				else if (command == '5') {
 					rateMovie();
 				}
 				//Back
-				else if (command == '5') {
+				else if (command == '6') {
 					break;
 				}
 
@@ -571,7 +575,7 @@ public class customer {
 	private void showMovieOptions() {
 		while (true) {
 			System.out.println("\nPlease select an option:");
-			System.out.println("\n[1] Show All Showtimes For A Movie \n[2] Show All Movies Alphabetically     \n[3] Show All Movies By Earliest Showtimes  \n[4] Show All Movies By Latest Showtime     \n[5] Back To Showtime Options\n\n");
+			System.out.println("\n[1] Show All Showtimes For A Movie \n[2] Show Movies Now Playing     \n[3] Show All Movies By Earliest Showtimes  \n[4] Show All Movies By Latest Showtime     \n[5] Back To Showtime Options\n\n");
 			try {
 				char command = sc.nextLine().trim().charAt(0);
 				if (command == '1') {
@@ -684,9 +688,9 @@ public class customer {
 		try {
 			stmt = myConn.prepareStatement("select distinct title from movie mv right outer JOIN showtime  st on mv.movieID = st.movieid;");
 			ResultSet rs = stmt.executeQuery();
-			System.out.println("***** Now Playing *****");
+			System.out.println("***** Now Playing *****\n");
 			while (rs.next()) {
-				String mtitle = rs.getString("title");
+				String mtitle = rs.getString("title\n");
 				System.out.println(mtitle);		
 			}
 			System.out.println("***********************");

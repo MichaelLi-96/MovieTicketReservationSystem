@@ -34,7 +34,7 @@ public class admin {
 						//enter Mi19Li96 password here
 						//Michael's password: Mi19Li96
 						//Vivian's password: currybreadchai
-						"Mi19Li96");
+						"currybreadchai");
 			} catch (Exception exc) {
 				exc.printStackTrace();
 			}
@@ -91,12 +91,7 @@ public class admin {
 					dataAnalysisMain() ;
 				}
 				else if (command.equals("4")) {
-<<<<<<< HEAD
 					System.out.println("Logged out of admin.\n");
-=======
-					System.out.println();
-					System.out.println("Goodbye");
->>>>>>> 675d9cbc3bfb5d66f3a79067933e903e722e8164
 					return;
 				} 
 				else {
@@ -548,19 +543,22 @@ public class admin {
 					System.out.println("Please provide valid entries for each field");
 				} else {
 
-					DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-					Date javaDate = formatter.parse(showDate);
-
+					SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
+					java.util.Date javaDate = dateFormatter.parse(showDate);
 					java.sql.Date showDateSQL = new java.sql.Date(javaDate.getTime());
-					System.out.println(javaDate + "\t" + showDateSQL);
+					System.out.println("java date: " + javaDate + "\t" + "sql date: " + showDateSQL);
 
+					SimpleDateFormat timeFormatter = new SimpleDateFormat("HH:mm:ss");
+					System.out.println("Time formatter created\n");
+					java.util.Date javaTime = timeFormatter.parse(showTime);
+					System.out.println("parsing " + showTime);
+					java.sql.Time showTimeSQL = new java.sql.Time(javaDate); 
+					System.out.println("java time: " + javaTime + " sql time: " + showTimeSQL);
 
-					// java.sql.Time showTimeSQL = new java.sql.Time(showTime);
+					// java.sql.Time showTimeSQL = new java.sql.Time(javaDate.getTime());
 
-					java.util.Date date = new java.util.Date();
-					java.sql.Time showTimeSQL = new java.sql.Time(date.getTime());
-					System.out.println(showTimeSQL);
-
+					// java.util.Date date = new java.util.Date();
+					// java.sql.Time showTimeSQL = new java.sql.Time(date.getTime());
 
 					stmt.setString(1, movieID);
 					stmt.setString(2, roomID);
@@ -598,9 +596,9 @@ public class admin {
 		try {
 			stmt = myConn.prepareStatement("select distinct title from movie mv right outer JOIN showtime  st on mv.movieID = st.movieid;");
 			ResultSet rs = stmt.executeQuery();
-			System.out.println("***** Now Playing *****");
+			System.out.println("***** Now Playing *****\n");
 			while (rs.next()) {
-				String mtitle = rs.getString("title");
+				String mtitle = rs.getString("title\n");
 				System.out.println(mtitle);		
 			}
 			System.out.println("***********************");
