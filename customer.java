@@ -62,6 +62,7 @@ public class customer {
 							System.out.println("\nWelcome Customer, " + rs.getString("uName") + "!");
 							this.uName = rs.getString("uName");
 							this.uID = id;
+							this.logout = false;
 							System.out.println("uID: " + this.uID);
 							customerMain();
 							return;
@@ -132,7 +133,7 @@ public class customer {
 				System.out.println();
 				System.out.println("An error occurred. Please try again.");
 			}
-			return;
+			//return;
 		}
 	}
 
@@ -161,7 +162,7 @@ public class customer {
 				System.out.println("An error occurred. Please try again.");
 			}
 		}
-		return;
+
 		//customerMain();
 	}
 
@@ -919,26 +920,16 @@ public class customer {
 	// Customer can make a reservation for a movie
 	//
 	private void reservation() {
-		System.out.println();
-		System.out.print("Enter your ID: ");
-		String id = sc.nextLine().trim();
-		if (!(StringUtils.isStrictlyNumeric(id) && id.length() == 4)) {
-			System.out.println();
-			System.out.println("Inputted customer ID was not accepted. Please try again.");
-		} else {
-			System.out.print("Enter your password: ");
-			String password = sc.nextLine().trim();
-			PreparedStatement stmt1 = null;
 			PreparedStatement stmt2 = null;
-			try {
-				stmt1 = myConn.prepareStatement(
-						"select uName from Customer where uID =" + id + " and password ='" + password + "';",
-						Statement.RETURN_GENERATED_KEYS);
-				ResultSet rs = stmt1.executeQuery();
-				System.out.println();
-				if (!rs.next()) {
-					System.out.println("Account could not be found. Please try again.");
-				} else {
+			
+				// stmt1 = myConn.prepareStatement(
+				// 		"select uName from Customer where uID =" + id + " and password ='" + password + "';",
+				// 		Statement.RETURN_GENERATED_KEYS);
+				 ResultSet rs = null;
+				// System.out.println();
+				// if (!rs.next()) {
+				// 	System.out.println("Account could not be found. Please try again.");
+				// } else {
 					System.out.print("Enter a showID: ");
 					String sId = sc.nextLine().trim();
 					System.out.print("Enter desired number of tickets: ");
@@ -951,7 +942,7 @@ public class customer {
 							System.out.println();
 							System.out.println("Please provide showID & number of tickets!");
 						} else {
-							stmt2.setString(1, id);
+							stmt2.setString(1, this.uID);
 							stmt2.setString(2, sId);
 							stmt2.setString(3, tickets);
 							stmt2.executeUpdate();
@@ -975,19 +966,8 @@ public class customer {
 							System.out.println("An error occured. Error: => " + exc.getMessage());
 						}
 					}
-				}
-			} catch (SQLException exc) {
-				System.out.println();
-				System.out.println("An error occured. Error: => " + exc.getMessage());
-			} finally {
-				try {
-					stmt1.close();
-				} catch (SQLException exc) {
-					System.out.println();
-					System.out.println("An error occured. Error: => " + exc.getMessage());
-				}
-			}
-		}
+				// }
+		
 	}
 
 	// Customer can cancel a reservation for a movie
