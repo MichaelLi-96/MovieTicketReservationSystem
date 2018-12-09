@@ -6,6 +6,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
+import java.sql.*;
+import java.util.Calendar;
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.io.*;
 
 import com.mysql.cj.util.StringUtils;
 
@@ -134,19 +141,23 @@ public class admin {
 	private void moviesMain() {
 		while (true) {
 			System.out.println("\nPlease select a movies option:");
-			System.out.println("\n[1] View Movie Inventory  \n[2] Archive Expired Showtimes \n[3] Show Now Playing Movies 	\n[4] Back to Admin Options");
+			System.out.println("\n[1] View Movie Inventory  \n[2] Add Showtime \n[3] Show Now Playing Movies 	\n[4] Archive Expired Showtimes \n[5] Back to Admin Options");
 			try {
 				String command = sc.nextLine().trim();
 				if (command.equals("1")) {
 					showAllMoviesAlphabetically();
 				}
 				else if (command.equals("2")) {
-					archiveShowtimes();
+					addShowtime();
+					
 				}
 				else if (command.equals("3")) {
 					currentShow();
 				}
 				else if (command.equals("4")) {
+					archiveShowtimes();
+				}
+				else if (command.equals("5")) {
 					break;
 				}
 				else {
@@ -490,6 +501,87 @@ public class admin {
 				stmt1.close();
 			} catch (SQLException exc) {
 				System.out.println("An error occured. Error: => " + exc.getMessage());
+			}
+		}
+	}
+
+	//Add a showtime
+	//
+	private void addShowtime() throws ParseException {
+		//Input Showtime.movieID
+		System.out.print("\nEnter Movie ID: ");
+		String movieID = sc.nextLine().trim();
+		//Input Showtime.roomID
+		System.out.print("Enter desired show Room ID: ");
+		String roomID = sc.nextLine().trim();
+		//Remove later
+		System.out.print("Enter desired seat amount: ");
+		String seats = sc.nextLine().trim();
+		//Input Showtime.date
+		System.out.print("Enter desired show DATE in the format [YYYY-MM-DD] : ");
+		String showDate = sc.nextLine().trim();
+		// java.sql.Date showDate = java.sql.Date(sc.nextLine().trim());
+		//Input Showtime.time
+		System.out.print("Enter desired show TIME in the format [HH:MM:SS] : \nExample: 15:30:00 for 3:30pm ");
+		String showTime = sc.nextLine().trim();
+		// java.sql.Time showTime = new java.sql.Time(sc.nextLine().trim());
+			//Check if age is valid
+		// if(!(StringUtils.isStrictlyNumeric(age) && age.length() >= 2 && Integer.parseInt(age)>13)) {
+		// 	System.out.println();
+		// 	System.out.println("Input for customer age was denied. Minimum age is 13. Please try again.");
+		// }
+		if(false){}
+		else {
+			PreparedStatement stmt = null;
+			System.out.println();
+			//Insert user into Customer table
+			try {
+				stmt = myConn.prepareStatement("INSERT into Movie(movieID, roomID, ,seats, showDate, showTime) values(?,?,?,?,?);",
+						Statement.RETURN_GENERATED_KEYS);
+				if (movieID.isEmpty() || roomID.isEmpty() || showDate.isEmpty() || showTime.isEmpty()) {
+					System.out.println("Please provide valid entries for each field");
+				} else {
+
+					DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+					Date javaDate = formatter.parse(showDate);
+
+					java.sql.Date showDateSQL = new java.sql.Date(javaDate.getTime());
+					System.out.println(javaDate + "\t" + showDateSQL);
+
+
+					// java.sql.Time showTimeSQL = new java.sql.Time(showTime);
+
+					java.util.Date date = new java.util.Date();
+					java.sql.Time showTimeSQL = new java.sql.Time(date.getTime());
+					System.out.println(showTimeSQL);
+
+
+					stmt.setString(1, movieID);
+					stmt.setString(2, roomID);
+					stmt.setString(3, seats);
+					stmt.setDate(4, showDateSQL);
+					stmt.setTime(5, showTimeSQL);
+					stmt.executeUpdate();
+					
+					//Store results
+					ResultSet rs = stmt.getGeneratedKeys();
+					if (rs.next()) {
+						System.out.println("Added successfully. Your Showtime ID is: " + rs.getInt(1));
+					}
+					else {
+						System.out.println("Add was not successful.");
+					}
+				}
+			} catch (SQLException exc) {
+				System.out.println();
+				System.out.println("An error occured. Error: => " + exc.getMessage());
+			} finally {
+				try {
+					stmt.close();
+				} catch (SQLException exc) {
+					System.out.println();
+					System.out.println("An error occured. Error: => " + exc.getMessage());
+				}
 			}
 		}
 	}
