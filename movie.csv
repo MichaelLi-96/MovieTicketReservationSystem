@@ -1,0 +1,987 @@
+"movieID","title","year","rating"
+2000,"Miss Jerry",1894,5.6
+2001,"The Corbett-Fitzsimmons Fight",1897,5.6
+2002,"Soldiers of the Cross",1900,6.7
+2003,"Bohemios",1905,4.7
+2004,"The Story of the Kelly Gang",1906,5.3
+2005,"Robbery Under Arms",1907,5.5
+2006,"Hamlet",1908,5.0
+2007,"Don Quijote",1908,5.9
+2008,"Don Álvaro o la fuerza del sino",1908,6.8
+2009,"The Fairylogue and Radio-Plays",1908,6.2
+2010,"El pastorcito de Torrente",1908,5.6
+2011,"Andreas Hofer",1909,5.4
+2012,"El blocao Velarde",1909,4.5
+2013,"La bocana de Mar Chica",1909,5.1
+2014,"A Cultura do Cacau",1909,5.0
+2015,"De Garraf a Barcelona",1909,6.8
+2016,"Un día en Xochimilco",1909,5.4
+2017,"Los dos hermanos",1909,6.1
+2018,"Fabricación del corcho en Sant Feliu de Guixols",1909,6.2
+2019,"Faldgruben",1909,7.1
+2020,"Fiesta de toros",1909,5.4
+2021,"Fiestas de Santa Lucía - Belenes",1909,8.7
+2022,"Fiestas en La Garriga",1909,4.8
+2023,"Gira política de Madero y Pino Suárez",1909,6.3
+2024,"Hamlet, Prince of Denmark",1910,6.3
+2025,"Cycle Rider and the Witch",1909,5.6
+2026,"Locura de amor",1909,5.1
+2027,"Lægens offer",1909,7.0
+2028,"Melilla y el Gurugu",1909,5.8
+2029,"Niños en la alameda",1909,5.9
+2030,"De onde Veje",1909,5.8
+2031,"La primera y segunda casetas",1909,6.7
+2032,"Protección de un convoy de víveres en el puente de camellos",1909,5.4
+2033,"Salome Mad",1909,5.5
+2034,"Sherlock Holmes VI",1910,4.7
+2035,"Smith's Knockabout Theatre",1909,5.6
+2036,"Le songe d'une nuit d'été",1909,6.0
+2037,"Gøngehøvdingen",1909,4.8
+2038,"El sueño milagroso",1909,5.9
+2039,"O Terremoto de Benavente",1909,5.6
+2040,"Toma caseta Z",1909,6.3
+2041,"Toma del Gurugu",1909,6.9
+2042,"Two of the Boys",1909,6.6
+2043,"La vida en el campamento",1909,6.6
+2044,"Viernes de dolores",1909,5.8
+2045,"Abraham Lincoln's Clemency",1910,8.1
+2046,"L'aluminite",1910,6.4
+2047,"Amleto",1910,6.9
+2048,"Amor gitano",1910,6.4
+2049,"Ansigttyven I",1910,5.9
+2050,"Ansigttyven II",1910,4.8
+2051,"The Red Inn",1910,5.0
+2052,"The Butterfly",1910,5.3
+2053,"By Order of Napoleon",1910,5.4
+2054,"O Centenário da Guerra Peninsular",1910,6.6
+2055,"The Connecticut Yankee",1910,6.4
+2056,"Corrida da Rampa",1910,8.2
+2057,"Camille",1912,5.6
+2058,"Desfile histórico del centenario",1910,6.3
+2059,"Don Juan de Serrallonga",1910,6.8
+2060,"Dorothy and the Scarecrow in Oz",1910,5.3
+2061,"Excursión al Gombreny",1910,5.1
+2062,"Gentleman Joe",1910,5.7
+2064,"His Brother's Wife",1910,5.8
+2065,"The White Slave Trade",1910,6.0
+2066,"Kapergasten",1910,8.2
+2067,"The Life of Moses",1909,4.8
+2068,"A Night in May",1910,6.3
+2069,"Jarní sen starého mládence",1913,6.1
+2070,"Orientalsk dans",1910,6.3
+2071,"Paganini",1910,1.5
+2072,"Peder Tordenskjold",1910,5.5
+2073,"A Pesca do Bacalhau",1910,6.6
+2074,"El pobre Valbuena",1910,5.0
+2075,"Un portero modelo",1910,5.7
+2076,"Rainha Depois de Morta Inês de Castro",1910,7.5
+2077,"A Record Hustle Through Foggy London",1910,6.0
+2078,"En rekrut fra 64",1910,7.3
+2079,"Revolução de 5 de Outubro",1910,5.5
+2080,"Le roi des parfums",1910,6.4
+2081,"Trail to the West",1910,6.6
+2082,"Valdemar Sejr",1910,5.0
+2083,"As Últimas Inundações do Tejo em Santarém",1910,7.8
+2084,"Amor fatal",1911,5.3
+2085,"As in a Looking Glass",1911,4.9
+2086,"A Balkan Episode",1911,7.7
+2087,"The Battle of Trafalgar",1911,6.5
+2088,"The Brand",1911,6.8
+2089,"En bryllupsaften",1911,6.2
+2090,"The Bushranger's Bride",1911,5.4
+2091,"Captain Starlight, or Gentleman of the Road",1911,6.3
+2092,"Cortejo Cívico",1911,5.7
+2093,"The Daddy's Dream",1911,6.8
+2094,"A Dog's Tale",1911,7.0
+2095,"Don Pedro el Cruel",1911,6.4
+2096,"Ekspeditricen",1911,4.2
+2097,"El fantasma del castillo",1911,5.0
+2098,"Den farlige leg",1911,3.9
+2099,"The Fatal Wedding",1911,6.4
+2100,"The Four Poster Pest",1911,6.5
+2101,"Der fremde Vogel",1911,5.4
+2102,"The Golden West",1911,5.7
+2103,"The Great Moment",1911,6.2
+2104,"The Infant at Snakeville",1911,5.7
+2105,"Jahreszeiten des Lebens",1915,6.5
+2106,"Jane Shore",1911,6.8
+2107,"Julius Caesar's Sandals",1911,6.2
+2108,"The Convict Hero",1911,6.7
+2109,"Lucha por la herencia",1911,4.1
+2110,"Madero al sur del país",1911,5.3
+2111,"Menneskedyret",1911,6.3
+2112,"Midsummer Tide",1911,5.1
+2113,"The Miner's Curse",1911,7.2
+2114,"Les Misérables, Part 1: Jean Valjean",1913,5.0
+2115,"The Mystery of a Hansom Cab",1911,3.6
+2116,"Oedipus Rex",1911,6.6
+2117,"Par habitude",1911,2.9
+2118,"Skæbnebæltet",1911,5.9
+2119,"Den sorte drøm",1911,5.8
+2120,"Sport Hípico",1911,6.7
+2121,"Nell Gwynne",1911,6.1
+2122,"The Devil's Assistant",1913,4.8
+2123,"Temblor de 1911 en México",1911,5.0
+2124,"The Traitress",1911,6.8
+2125,"Vicio y virtud",1911,5.0
+2126,"Zwei Frauen",1911,7.1
+2127,"L'électrocuté",1911,5.5
+2128,"The Adventures of Lieutenant Petrosino",1912,6.1
+2129,"The Alaska-Siberian Expedition",1912,6.6
+2130,"Amor de bestia",1912,8.1
+2131,"Anfisa",1912,6.1
+2132,"Anny - Story of a Prostitute",1912,6.4
+2133,"As You Like It",1912,5.2
+2134,"Atop of the World in Motion",1912,4.6
+2135,"Le bagnard",1912,6.3
+2136,"La Barrera número 13",1913,5.0
+2137,"A Batalha",1912,5.3
+2138,"Bernáték kikocsiznak",1912,6.8
+2139,"Carlota Angela",1912,5.2
+2140,"Carmen",1912,6.0
+2141,"Charles IV",1912,4.2
+2142,"Cleopatra",1912,6.5
+2143,"The Clod",1912,7.0
+2144,"The Colonel's Son",1912,6.2
+2145,"Concurso Hípico no Porto",1912,2.1
+2146,"La conspiration des drapeaux",1912,8.1
+2147,"The Crime and the Criminal",1912,6.7
+2148,"Dante's Inferno",1911,7.8
+2149,"A Dança dos Apaches",1912,7.4
+2150,"Do Men Love Women?",1912,7.4
+2151,"Dødskysset",1915,8.0
+2152,"The Great Circus Catastrophe",1912,7.2
+2153,"Eclipse de sol",1912,7.0
+2154,"Der Eid des Stephan Huller",1912,7.1
+2155,"Episódios da Terrível Explosão de Bombas no Porto",1912,6.7
+2156,"When Honor Calls",1913,5.5
+2157,"Excursión a San Lorenzo de Munt",1912,7.0
+2158,"Fiesta colombófila en el Tibidabo",1912,4.8
+2159,"The Flying Circus",1912,7.0
+2160,"For Freedom of Cuba",1912,4.0
+2161,"From the Manger to the Cross; or, Jesus of Nazareth",1912,7.5
+2162,"Den glade løjtnant",1912,6.4
+2163,"Grannie",1912,9.3
+2164,"Her Own Money",1914,7.8
+2165,"Herod",1912,6.2
+2166,"Il y a des pieds au plafond",1912,8.6
+2167,"De industrieel van Pont Avesnes",1912,6.8
+2168,"Judith",1912,5.5
+2169,"Leiria",1912,5.1
+2170,"Life of Villa",1912,5.5
+2171,"El lobo de la sierra",1912,7.2
+2172,"The Lust for Gold",1912,7.0
+2173,"Today and Tomorrow",1912,5.8
+2174,"The Might of Gold",1912,6.0
+2175,"Magda",1912,6.5
+2176,"The Mail Order Wife",1912,4.1
+2177,"Marocco en het Vreemdelingenlegioen",1912,8.7
+2178,"Maskierte Liebe",1912,5.8
+2179,"The Midnight Wedding",1912,6.6
+2180,"The Mighty Dollar",1912,6.8
+2181,"La mort du duc d'Enghien",1912,7.6
+2182,"Le nègre blanc",1912,4.4
+2183,"Oliver Twist",1912,5.8
+2185,"Only a Woman",1912,7.6
+2186,"Madame DuBarry",1919,1.0
+2187,"Paul J. Rainey's African Hunt",1912,5.2
+2188,"La pierre philosophe",1912,5.0
+2189,"Los Pirineos de Port-Bou a Andorra",1912,5.3
+2190,"The Prodigal Daughter",1912,7.1
+2191,"The Prodigal Son",1913,6.9
+2192,"Quincy Adams Sawyer",1912,7.8
+2193,"Quo Vadis?",1913,6.6
+2194,"Race for a Life",1912,5.7
+2195,"The Independence of Romania",1912,6.5
+2196,"Revolución orozquista",1912,7.3
+2197,"The Reward for Broncho Billy",1912,7.1
+2198,"The Life and Death of King Richard III",1912,4.8
+2199,"Romani, the Brigand",1912,6.0
+2200,"Saty delaji cloveka",1913,6.5
+2201,"Seal Hunting in Newfoundland",1912,6.5
+2202,"The Sergeant's Boy",1912,6.8
+2203,"The Sin of a Woman",1912,5.2
+2204,"Saved in Mid-Air",1912,7.0
+2205,"Talma",1912,6.7
+2206,"The Tide of Death",1912,6.9
+2207,"Tropisk kærlighed",1912,6.3
+2208,"The Last Bohemian",1913,6.8
+2209,"Vampyrdanserinden",1912,8.5
+2210,"Verkannt",1912,4.3
+2211,"Wenn die Maske fällt",1912,5.9
+2212,"Zona de Incursões em Chaves",1912,5.6
+2213,"Zu Tode gehetzt",1912,7.6
+2214,"Zu spät",1912,6.3
+2215,"'Neath Austral Skies",1913,5.4
+2216,"...denn alle Schuld rächt sich auf Erden",1913,7.8
+2217,"The Secret of Adrianople",1913,6.7
+2218,"The Adventures of Kathlyn",1913,6.4
+2219,"El amigo del alma",1913,3.2
+2220,"Ana Kadova",1913,5.0
+2221,"Der Andere",1913,6.0
+2222,"Arizona",1913,7.0
+2223,"Arvingen til Skjoldborg",1914,6.5
+2224,"Atlantis",1913,3.3
+2225,"Old Brandis' Eyes",1913,8.6
+2226,"Australia Calls",1913,8.9
+2227,"Barbarous Mexico",1913,7.2
+2228,"Barcelona bajo la nieve",1913,7.1
+2229,"The Bartered Bride",1913,7.2
+2230,"The Battle of Gettysburg",1913,7.1
+2231,"The Battle of Shiloh",1913,6.7
+2232,"El bello Arturo",1913,6.6
+2233,"Ben Bolt",1913,6.7
+2234,"Bianco contro negro",1913,5.9
+2235,"The Black Snake",1913,4.7
+2236,"Blodets röst",1913,7.3
+2237,"Buch i Trøjen",1913,7.4
+2238,"Buried Alive in a Coal Mine",1913,5.9
+2239,"Bøffen og bananen",1913,6.4
+2240,"Le camée",1913,5.7
+2241,"Caprice",1913,7.3
+2243,"El Caín moderno",1913,6.3
+2244,"Checkers",1913,6.7
+2245,"Chelsea 7750",1913,7.0
+2246,"A Chopin Nocturne",1913,6.7
+2247,"Corazón de presidiario",1913,7.0
+2248,"Corrida de feria de las fiestas del Pilar",1913,7.6
+2249,"Corrida de toros en Calatayud",1913,6.9
+2250,"The Count of Monte Cristo",1913,5.6
+2251,"El crimen del otro",1913,6.6
+2252,"The Criminal Path",1914,6.3
+2253,"La dame de Monsoreau",1913,5.9
+2254,"De muerte a vida",1913,6.3
+2255,"Le dernier pardon",1913,5.5
+2256,"Desastre do Monoplano Gnome na Amadora",1913,6.2
+2257,"The Black Diamond",1913,7.1
+2258,"East Lynne",1913,7.9
+2259,"What 80 Million Women Want",1913,6.9
+2260,"Die Eisbraut",1913,5.4
+2261,"Esther",1913,6.5
+2262,"Evangeline",1914,5.5
+2263,"Evinrude",1914,6.3
+2264,"Fabricación del hielo",1913,6.2
+2265,"Fantômas: In the Shadow of the Guillotine",1913,4.9
+2266,"Uma Ferra em Salvaterra de Magos",1913,7.8
+2267,"Fiestas en Palafrugell",1913,5.9
+2268,"The Fight for Millions",1913,5.0
+2269,"The Fortune Hunters",1913,5.8
+2270,"The Four Devils",1913,5.2
+2271,"Les frères ennemis",1913,7.0
+2272,"From Dusk to Dawn",1913,5.9
+2273,"La fuerza del destino",1913,8.3
+2274,"Fulano de Tal se enamora de Manón",1916,6.2
+2275,"The Funny Regiment",1913,5.0
+2276,"Germinal; or, The Toll of Labor",1913,7.0
+2277,"The Girl of the Sunny South",1913,9.0
+2278,"The Grand Military Parade",1913,6.8
+2279,"Die große Sünderin",1914,6.4
+2280,"Brother Against Brother",1913,7.5
+2282,"Hasard",1913,6.6
+2283,"Herrerín y Ballesteros, en Alagón",1913,6.9
+2284,"El hijo del mar",1913,6.6
+2285,"Dr. Mawson in the Antarctic",1913,4.9
+2286,"L'homme qui assassina",1913,6.7
+2287,"Za chest' russkogo znameni",1913,7.6
+2288,"Hoodman Blind",1913,7.0
+2289,"An Hour Before Dawn",1913,7.8
+2290,"How Fine, How Fresh the Roses Were",1913,6.4
+2291,"My Husband's Getting Married",1913,6.7
+2292,"The Firefly",1913,6.8
+2293,"In the Bishop's Carriage",1913,6.0
+2294,"In the Stretch",1913,6.2
+2295,"Incendio en el barrio de Montemolín, Zaragoza",1913,3.6
+2296,"Ingeborg Holm",1913,5.0
+2297,"Die Insel der Seligen",1913,7.0
+2298,"Ivanhoe",1913,6.4
+2299,"Jack London's Adventures in the South Sea Islands",1913,7.2
+2300,"Fantômas: Juve versus Fantômas",1913,5.8
+2301,"The Keys to Happiness",1913,7.3
+2302,"Kleiner Svend und seine Mutter",1913,6.9
+2303,"A Lady of Quality",1913,7.5
+2304,"Die Landstraße",1913,6.4
+2305,"Laura y sus pretendientes",1913,7.2
+2306,"Leah Kleschna",1913,7.3
+2307,"The Legend of Provence",1913,5.0
+2308,"Lille Klaus og store Klaus",1913,5.1
+2309,"The Lipton Cup: Introducing Sir Thomas Lipton",1913,6.6
+2310,"Livets konflikter",1913,5.8
+2311,"The Lotus Dancer",1913,5.9
+2312,"The Lure of New York",1913,4.7
+2313,"La luz que vuelve",1913,4.7
+2314,"Love Everlasting",1914,4.6
+2315,"Macbeth",1913,6.9
+2316,"Mala raza",1913,5.6
+2317,"The Man from the Golden West",1913,6.1
+2318,"Los marinos de papel",1913,6.0
+2319,"War Is Hell",1914,3.0
+2320,"De medeminaars",1913,7.7
+2321,"Mexican War Pictures",1913,6.8
+2323,"Mijntje en Trijntje",1913,6.9
+2324,"Miraklet",1913,7.6
+2325,"Les Misérables, Part 2: Fantine",1913,7.2
+2326,"El modelo de virtudes",1913,6.8
+2327,"Fantômas: The Dead Man Who Killed",1913,6.6
+2328,"Home, Sweet Home",1914,5.3
+2329,"Moths",1913,6.6
+2330,"O Naufrágio de Veronese",1913,8.1
+2331,"Nederland en Oranje",1913,6.0
+2332,"Christmas Eve",1913,6.2
+2333,"Novillada de beneficencia en Zaragoza",1913,6.1
+2334,"The Girl from Abroad; or, The Great Underworld",1913,6.7
+2335,"The Old Armchair",1913,7.3
+2336,"On the Steps of the Throne",1913,6.6
+2337,"One Hundred Years of Mormonism",1913,6.8
+2338,"The Orphan",1913,6.6
+2339,"The Pendleton, Oregon, Round-Up",1913,5.7
+2340,"Pommy Arrives in Australia",1913,5.7
+2341,"The Port of Doom",1913,6.8
+2342,"Primera comunión de las alumnas de las Escuelas Pías",1913,5.2
+2343,"A Princess of Bagdad",1913,7.2
+2344,"A Prisoner in the Harem",1913,7.7
+2345,"The Prisoner of Zenda",1913,5.8
+2346,"The Secret of the Well",1914,7.4
+2347,"På livets ödesvägar",1913,6.7
+2348,"Captive Souls",1914,7.2
+2349,"The Life and Works of Richard Wagner",1913,7.4
+2350,"Rick's Redemption",1913,5.4
+2351,"The Road to Ruin",1913,6.0
+2352,"Robin Hood",1913,6.2
+2353,"Sapho",1913,6.9
+2354,"The Sea Wolf",1913,8.3
+2355,"The Seed of the Fathers",1913,6.0
+2356,"Shadows of the Moulin Rouge",1913,5.9
+2357,"The Shame of the Empire State",1913,5.8
+2358,"The Shattered Vase",1913,7.3
+2359,"Silvia Silombra",1913,6.9
+2360,"A Sister to Carmen",1913,7.1
+2361,"Sixty Years a Queen",1913,6.2
+2362,"Sodoms Ende",1913,3.5
+2363,"The Sparrow",1914,7.2
+2364,"Ein Sommernachtstraum in unserer Zeit",1914,9.1
+2365,"Den sorte familie",1914,6.8
+2366,"The Star of India",1913,6.9
+2367,"Statistinnen des Lebens",1913,5.0
+2368,"The Stranglers of Paris",1913,8.0
+2369,"The Student of Prague",1913,6.3
+2370,"Die Sumpfblume",1913,6.3
+2371,"Die Tango-Königin",1913,6.0
+2372,"Ten Nights in a Barroom",1913,5.1
+2373,"The Terrible Vengeance",1913,7.2
+2374,"Tess of the D'Urbervilles",1913,6.2
+2375,"The Third Degree",1913,4.4
+2376,"Through Fire and Air",1913,7.0
+2377,"The Tonopah Stampede for Gold",1913,7.1
+2378,"Tonto de la huerta",1913,7.3
+2379,"Tortures Within Prison Walls",1913,5.7
+2380,"A Tourada dos Casimiros",1913,5.8
+2381,"Traffic in Souls",1913,7.4
+2382,"Trampa y cartón",1913,6.6
+2383,"The Last Days of Pompeii",1913,5.2
+2384,"Ungarische Rhapsodie",1913,5.0
+2385,"A Venetian Night",1914,6.6
+2386,"Der Verführte",1913,6.5
+2387,"The Vicar of Wakefield",1913,6.8
+2389,"Victory",1913,6.6
+2390,"Volunteer Organist",1913,6.8
+2391,"The Vortex of Fate",1913,5.2
+2392,"When the Earth Trembled",1913,7.9
+2393,"Who Will Marry Mary?",1913,6.5
+2394,"With General Pancho Villa in Mexico",1913,6.0
+2395,"Where Is Coletti?",1913,7.2
+2396,"The $5,000,000 Counterfeiting Plot",1914,6.2
+2397,"'Round the World in 80 Days",1914,8.2
+2398,"0-18 or A Message from the Sky",1914,6.7
+2399,"A 300 éves ember",1914,1.0
+2400,"Absinthe",1914,6.8
+2401,"Across America by Motor Car",1914,7.2
+2402,"Across the Pacific",1914,6.3
+2403,"The Active Life of Dolly of the Dailies",1914,6.4
+2404,"Adoptivkind",1914,8.1
+2405,"The Adventures of Andy Clark",1914,7.0
+2406,"The Adventures of Buffalo Bill",1917,6.8
+2407,"The Adventures of Kitty Cobb",1914,6.9
+2408,"The Adventures of a Diplomatic Freelance",1914,7.1
+2409,"After the Ball",1914,6.8
+2410,"Aftermath",1914,7.9
+2411,"El alcalde de Zalamea",1914,7.4
+2412,"Alexandra",1915,6.0
+2413,"Alexia o La niña del misterio",1916,1.6
+2414,"Alone in New York",1914,7.7
+2415,"America",1914,7.9
+2416,"An American Citizen",1914,5.7
+2417,"Amigas siempre",1914,6.7
+2418,"Love of Perdition",1914,6.5
+2419,"Amor de pescadora",1914,7.9
+2420,"Anna Karenina",1914,6.5
+2421,"Apuntes de la fiesta de la flor",1914,7.0
+2422,"Golddigger",1914,4.7
+2423,"Aristocracy",1914,5.1
+2424,"Arme Eva",1914,7.3
+2425,"As Ye Sow",1914,5.9
+2426,"Assunta Spina",1915,7.3
+2427,"At the Cross Roads",1914,6.4
+2428,"The Avenging Conscience: or 'Thou Shalt Not Kill'",1914,6.9
+2429,"Badehotellet",1915,6.2
+2430,"Bandits of the Border Mine",1914,7.1
+2431,"The Banker's Daughter",1914,6.5
+2432,"The Bargain",1914,8.2
+2433,"Barnyard Flirtations",1914,7.3
+2434,"Battle of Gettysgoat",1914,5.7
+2435,"The Battle of Love",1914,8.2
+2436,"The Battle of the Sexes",1914,5.3
+2437,"Beating Back",1914,5.9
+2438,"A becsapott újságíró",1915,5.9
+2439,"Behind the Scenes",1914,7.0
+2440,"La Belle Russe",1914,4.5
+2441,"The Beloved Adventurer",1914,7.6
+2442,"Beneath the Czar",1914,6.8
+2443,"The Better Man",1914,5.2
+2444,"Det blaa vidunder",1915,7.1
+2445,"The Boer War",1914,4.8
+2446,"The Book of Nature",1914,7.8
+2447,"Born Again",1914,4.5
+2448,"The Boundary Rider",1914,5.4
+2449,"A Boy and the Law",1914,6.6
+2450,"Brewster's Millions",1914,5.9
+2451,"In the Days of the Thundering Herd",1914,1.0
+2452,"The Burglar and the Lady",1914,5.4
+2453,"Burning Daylight: The Adventures of 'Burning Daylight' in Alaska",1914,5.6
+2454,"Burning Daylight: The Adventures of 'Burning Daylight' in Civilization",1914,2.1
+2455,"Bánk bán",1915,5.8
+2456,"C.O.D.",1914,7.8
+2457,"Cabalgata de los mercados en Barcelona",1914,4.9
+2458,"El caballero Casarroja",1914,5.2
+2459,"Cabiria",1914,4.8
+2460,"Calatayud en fiestas",1914,4.7
+2461,"The Call of the North",1914,5.6
+2462,"Called Back",1914,5.6
+2463,"El calvario de un héroe",1914,5.1
+2464,"Cameo Kirby",1914,5.1
+2465,"Captain Alvarez",1914,5.5
+2466,"The Captain Besley Expedition",1914,6.0
+2467,"Captain F.E. Kleinschmidt's Arctic Hunt",1914,4.9
+2468,"Captain Swift",1914,6.0
+2469,"The Capture of a Sea Elephant and Hunting Wild Game in the South Pacific Islands",1914,6.7
+2470,"Cardinal Richelieu's Ward",1914,5.3
+2471,"Catástrofe de Aguilón",1914,6.8
+2472,"A Celebrated Case",1914,7.9
+2473,"Charlotte Corday",1914,6.5
+2474,"La chavala",1914,8.2
+2475,"The Chechako",1914,7.0
+2476,"The Chimes",1914,6.2
+2477,"The Christian",1914,6.4
+2478,"Cinderella",1914,6.0
+2479,"The Circus Man",1914,6.2
+2480,"Clothes",1914,5.3
+2481,"Cocaine Traffic; Or, The Drug Terror",1914,7.2
+2482,"The Colosseum in Films",1914,6.4
+2483,"The Coming Power",1914,6.2
+2484,"Common Beasts of Africa",1914,7.4
+2485,"The Conspiracy",1914,6.9
+2486,"The Country Mouse",1914,6.8
+2487,"The County Chairman",1914,7.3
+2488,"The Criminal Code",1914,7.1
+2489,"The Crucible",1914,5.8
+2490,"Crushed",1914,7.1
+2491,"El cuervo del campamento",1914,5.6
+2492,"La cueva vengadora",1914,5.9
+2493,"Damaged Goods",1914,5.8
+2494,"Damon and Pythias",1914,6.3
+2495,"Dan",1914,7.3
+2496,"Dance of the Vampire",1914,8.4
+2497,"The Dancer and the King",1914,5.0
+2498,"La danza fatal",1915,6.4
+2499,"The Daughters of Men",1914,7.1
+2500,"The Day of Days",1914,5.0
+2501,"Detective Craig's Coup",1914,3.6
+2502,"The Detective Queen",1914,5.4
+2503,"La deuda del pasado",1914,7.2
+2504,"Diego Corrientes",1914,7.6
+2505,"The Dishonored Medal",1914,6.3
+2506,"Doc",1914,7.0
+2507,"Dodge City Trail",1936,6.3
+2508,"The Dollar Mark",1914,5.9
+2509,"Dope",1914,4.8
+2510,"Un drama en Aragón",1914,6.0
+2511,"Un drama en la montaña",1914,6.8
+2512,"The Dream Woman",1914,5.7
+2513,"Dömen icke",1914,5.3
+2514,"The Eagle's Mate",1914,7.0
+2515,"La echadora de cartas",1914,6.7
+2516,"The Education of Mr. Pipp",1914,7.0
+2517,"Elizabeth's Prayer",1914,1.4
+2518,"O Embarque das Tropas Expedicionárias para Angola e Moçambique",1914,5.8
+2519,"L'enfant de Paris",1913,6.0
+2520,"Engelein",1914,5.0
+2521,"Enoch Arden",1914,9.1
+2522,"Entre ruinas",1914,5.7
+2523,"The Envoy Extraordinary",1914,7.6
+2524,"Erstarrte Liebe",1914,6.8
+2525,"The Escape",1914,6.2
+2526,"Escaped from Siberia",1914,6.9
+2527,"Even Unto Death",1914,6.5
+2528,"The Exploits of Elaine",1914,6.9
+2529,"Facing the Gattling Guns",1914,5.8
+2530,"A Factory Magdalen",1914,5.6
+2531,"A False Beauty",1914,6.8
+2532,"Fantasma",1914,6.0
+2533,"Fantomas: The Mysterious Finger Print",1914,6.8
+2534,"The Fatal Night",1914,5.6
+2535,"The Fates and Flora Fourflush",1914,8.0
+2536,"Fatum",1915,5.8
+2537,"Fantômas: The False Magistrate",1914,7.0
+2538,"La festa del Blat",1914,7.2
+2539,"Fiestas del Coso Blanco en Tarragona",1914,6.3
+2540,"A Fight for Freedom; Or, Exiled to Siberia",1914,6.1
+2541,"The Fight for the Great Black Diamond",1914,2.2
+2542,"Fighting Death",1914,1.7
+2543,"Loyalty",1914,7.1
+2544,"Fire and Sword",1914,6.2
+2545,"The Perfect Thirty-Six",1914,7.1
+2546,"The Flooding and Opening of the Panama Canal",1914,5.4
+2547,"A Florida Enchantment",1914,7.7
+2548,"Florida Historic Scenes and Florida in Mid-Winter",1914,6.0
+2549,"The Folly of Revenge",1916,6.7
+2550,"Forgiven; Or, The Jack of Diamonds",1914,2.7
+2551,"The Fortune Hunter",1914,5.1
+2552,"The Fringe of War",1914,7.5
+2553,"Frou Frou",1914,6.4
+2554,"Miss Soapsuds",1914,6.8
+2555,"La fuerza del mal",1914,6.5
+2556,"För sin kärleks skull",1914,6.8
+2557,"The Gamblers",1914,6.5
+2558,"Gatans barn",1914,6.1
+2559,"Heilig recht",1914,7.3
+2560,"A Gentleman from Mississippi",1914,2.4
+2561,"Das Geschenk des Inders",1914,3.9
+2562,"The Ghost Breaker",1914,7.7
+2563,"La gitanilla",1914,1.8
+2564,"Julius Caesar",1914,5.9
+2565,"The Golem",1915,5.8
+2566,"A Good Little Devil",1914,4.9
+2567,"The Good-for-Nothing",1914,5.9
+2568,"The Governor's Ghost",1914,6.1
+2569,"Grandes regatas en Barcelona",1914,8.0
+2570,"The Great Diamond Robbery",1914,5.4
+2571,"The Great Leap: Until Death Do Us Part",1914,6.7
+2572,"The Greyhound",1914,5.5
+2573,"Guardian of Virtue",1914,6.6
+2574,"Half Breed",1913,5.5
+2576,"The Hand of Destiny",1914,6.1
+2577,"The Hazards of Helen",1914,5.8
+2578,"Hearts Adrift",1914,6.8
+2579,"Hearts United",1914,6.9
+2580,"Hearts and Flowers",1914,7.9
+2581,"Hearts of Oak",1914,7.6
+2582,"Sealed Orders",1914,5.7
+2583,"Her Luck in London",1914,7.3
+2584,"His Holiness, the Late Pope Pius X, and the Vatican",1914,5.7
+2585,"His Last Dollar",1914,5.3
+2586,"The New Wizard of Oz",1914,5.5
+2587,"Hombre o mujer",1914,5.4
+2588,"Homenaje a Lanuza",1914,7.8
+2589,"Hook and Hand",1914,6.3
+2590,"The Hoosier Schoolmaster",1914,7.0
+2591,"Der Hund von Baskerville",1914,6.6
+2592,"The House Next Door",1914,7.0
+2593,"The House of Bondage",1914,6.1
+2594,"How the German General Signed a Pact with the Devil",1914,8.0
+2595,"The Human Bloodhound",1914,8.0
+2596,"Hypocrites",1915,7.1
+2597,"I kammerherrens klæder",1914,4.6
+2598,"The Idler",1914,1.6
+2599,"The Idol of Paris",1914,6.5
+2600,"Ill Starred Babbie",1914,5.2
+2601,"Im Schützengraben",1914,7.8
+2602,"Imar the Servitor",1914,4.7
+2603,"In the Land of the Head Hunters",1914,6.9
+2604,"In the Name of the Prince of Peace",1914,6.2
+2605,"The Indian Wars",1914,7.0
+2606,"L'infirmière",1914,7.6
+2607,"La intrusa",1914,5.9
+2608,"The Invisible Power",1914,4.8
+2609,"Ireland, a Nation",1914,6.4
+2610,"Jane Eyre",1914,6.3
+2611,"Jess",1914,6.0
+2612,"Jess of the Mountain Country",1914,7.7
+2613,"John Barleycorn",1914,4.9
+2614,"Joliet Prison, Joliet, Ill.",1914,6.7
+2615,"Joseph and His Coat of Many Colors",1914,4.9
+2616,"Joseph in the Land of Egypt",1914,6.8
+2617,"The Judge's Wife",1914,5.4
+2618,"Judith of Bethulia",1914,6.1
+2619,"The Jungle",1914,6.9
+2620,"The Kangaroo",1914,5.0
+2621,"Kate",1914,7.6
+2622,"The Key to Yesterday",1914,7.1
+2623,"The King of the Bowery",1914,7.3
+2624,"Krates",1913,6.7
+2625,"Den kulørte slavehandler",1914,5.9
+2626,"The Borrowed Babies",1915,7.3
+2627,"Lache Bajazzo",1915,7.1
+2628,"The Ladies' War",1914,6.4
+2629,"The Land of the Lost",1914,6.3
+2630,"The Last Egyptian",1914,6.2
+2631,"The Last Volunteer",1914,9.0
+2632,"Die Launen einer Weltdame",1915,8.1
+2633,"Lena Rivers",1914,6.3
+2635,"El león de la sierra",1914,5.3
+2636,"Life in a Western Penitentiary",1914,8.1
+2637,"The Life of Big Tim Sullivan; Or, from Newsboy to Senator",1914,5.5
+2638,"The Life of General Villa",1914,8.3
+2639,"Life's Shop Window",1914,7.1
+2640,"The Light Unseen",1914,5.3
+2641,"The Lightning Conductor",1914,7.1
+2642,"The Line-Up at Police Headquarters",1914,5.5
+2643,"Linito quiere ser torero",1914,6.4
+2644,"The Lion and the Mouse",1914,6.7
+2645,"The Little Angel of Canyon Creek",1914,7.5
+2646,"The Little Gray Lady",1914,5.5
+2647,"The Little Jewess",1914,5.5
+2648,"Little Lord Fauntleroy",1914,6.3
+2649,"The Littlest Rebel",1914,4.6
+2650,"Lola",1914,7.1
+2651,"The Long Arm of the Law",1914,6.2
+2652,"The Loss of the Birkenhead",1914,7.5
+2653,"The Lost Paradise",1914,3.9
+2654,"Love",1914,8.5
+2655,"Love Never Dies",1916,1.8
+2656,"La lucha contra el destino",1914,6.8
+2657,"Luchtkastelen",1914,7.3
+2658,"Lucille Love: The Girl of Mystery",1914,4.9
+2659,"The Lure",1914,5.3
+2660,"La malquerida",1914,7.3
+2661,"The Man Who Could Not Lose",1914,7.4
+2662,"The Man Who Disappeared",1914,7.6
+2663,"The Man from Home",1914,7.9
+2664,"The Man from Mexico",1914,1.0
+2665,"The Man o' Warsman",1914,6.8
+2666,"Man of the Hour",1914,2.3
+2667,"The Man on the Box",1914,5.2
+2668,"Manon Lescaut",1914,7.3
+2669,"The Marked Woman",1914,6.4
+2670,"Mars' Stepson",1914,6.8
+2671,"Marta of the Lowlands",1914,5.9
+2672,"Martin Eden",1914,6.3
+2673,"The Master Cracksman",1914,5.3
+2674,"The Master Key",1914,6.4
+2675,"The Master Mind",1914,6.2
+2676,"McVeagh of the South Seas",1914,6.0
+2677,"Memories",1914,8.2
+2678,"The Merchant of Venice",1914,7.6
+2679,"Michael Strogoff",1914,7.7
+2680,"A Million Bid",1914,5.3
+2681,"The Million Dollar Mystery",1914,6.6
+2682,"The Million Dollar Robbery",1914,6.3
+2683,"The Million",1914,4.3
+2684,"The Minstrel Man",1914,3.6
+2685,"Misterio de dolor",1914,5.5
+2686,"A Modern Mephisto",1914,5.9
+2687,"The Money God",1914,6.9
+2688,"The Money Lender",1914,5.5
+2689,"The Monster and the Girl",1914,7.6
+2690,"Mother Love",1914,7.2
+2691,"A Mother's Heart",1914,6.7
+2692,"Mr. Barnes of New York",1914,7.6
+2693,"Mrs. Black Is Back",1914,5.5
+2694,"Mrs. Wiggs of the Cabbage Patch",1914,4.2
+2695,"Los muertos hablan",1915,5.9
+2696,"The Murdoch Trial",1914,6.1
+2697,"My Official Wife",1914,4.7
+2698,"The Mysterious Man of the Jungle",1914,6.7
+2699,"The Mysterious Mr. Wu Chung Foo",1914,2.5
+2700,"The Mystery of Edwin Drood",1914,6.2
+2701,"Das Geheimnis von Chateau Richmond",1913,6.8
+2702,"The Mystery of the Diamond Belt",1914,6.4
+2703,"The Mystery of the Fatal Pearl and the Sequel",1914,5.2
+2704,"The Mystery of the Poison Pool",1914,5.7
+2705,"The Naked Truth",1914,7.9
+2706,"Native Life in the Philippines",1914,7.0
+2707,"Down with Weapons",1914,6.4
+2708,"Nell of the Circus",1914,6.8
+2709,"Mute Witnesses",1914,7.2
+2710,"Neptune's Daughter",1914,7.7
+2711,"The Next in Command",1914,4.6
+2712,"The Night Riders of Petersham",1914,7.1
+2713,"The Nightingale",1914,6.8
+2714,"Nightmare",1914,6.4
+2715,"Noche de sangre",1914,4.9
+2716,"Tragic Night",1914,6.5
+2717,"Northern Lights",1914,5.1
+2718,"An Odyssey of the North",1914,7.3
+2719,"Officer 666",1914,6.8
+2720,"On the Belgian Battlefield",1914,7.5
+2721,"One Wonderful Night",1914,5.4
+2722,"One of Millions",1914,7.3
+2723,"One of Our Girls",1914,6.7
+2724,"The Only Son",1914,8.2
+2725,"The Opened Shutters",1914,7.5
+2726,"The Ordeal",1914,7.0
+2727,"Othello",1914,7.3
+2728,"Over Niagara Falls",1914,7.3
+2729,"Pagan Rome",1914,4.5
+2730,"Die Pagode",1914,6.0
+2731,"Paid in Full",1914,7.6
+2732,"The Painted World",1914,5.7
+2733,"Palestine, the Jewish Return from Exile; Or, Life in the Holy Land",1914,7.6
+2734,"Passionels Tagebuch",1914,6.2
+2735,"The Patchwork Girl of Oz",1914,7.7
+2736,"The Path Forbidden",1914,7.0
+2737,"The Pawn of Fortune",1914,5.8
+2738,"The Perils of Pauline",1914,7.9
+2739,"Pieces of Silver: A Story of Hearts and Souls",1914,4.9
+2740,"Pierre of the Plains",1914,6.9
+2741,"The Pit",1914,7.8
+2742,"The Poison Needle",1914,6.2
+2743,"El pollo Tejada",1914,4.2
+2744,"The Port of Missing Men",1914,4.5
+2745,"Presentencompanigraf",1914,5.3
+2746,"The Price He Paid",1914,3.3
+2747,"Price of Treachery; Or, The Lighthouse Keeper's Daughter",1914,5.6
+2748,"The Pride of Jennico",1914,7.3
+2749,"Prince Edward Island in Motion; Home of the Silver Black Fox Industry",1914,2.7
+2750,"A Prince of India",1914,7.5
+2751,"Protect Us",1914,7.1
+2752,"Prueba trágica",1914,7.5
+2753,"Saints and Sorrows",1914,5.9
+2754,"The Pursuit of the Phantom",1914,7.1
+2755,"The Ragged Earl",1914,5.4
+2756,"Rainey's African Hunt",1914,5.9
+2757,"Ready Money",1914,6.1
+2758,"The Red Flame of Passion",1914,6.3
+2759,"El regalo de bodas",1914,6.2
+2760,"The Reign of Terror",1914,6.0
+2761,"Rescue of the Stefansson Arctic Expedition",1914,6.0
+2762,"Richelieu",1914,6.9
+2763,"The Ring and the Man",1914,4.6
+2764,"Rip Van Winkle",1914,5.5
+2765,"A Romance of the Mexican Revolution",1914,7.7
+2766,"Rosalinda",1914,5.9
+2767,"Rose of the Alley",1916,3.8
+2768,"Rose of the Rancho",1914,8.7
+2769,"The Royal Box",1914,7.4
+2770,"Det röda tornet",1914,5.5
+2771,"Salomy Jane",1914,6.2
+2772,"Samson",1914,5.6
+2773,"The Scales of Justice",1914,6.7
+2774,"The School for Scandal",1914,4.9
+2775,"The Seats of the Mighty",1914,6.0
+2776,"The Secret of the Mountain",1915,7.3
+2777,"La secta de los misteriosos",1914,6.8
+2778,"El sello de oro",1914,6.9
+2779,"Ein seltsamer Fall",1914,5.7
+2780,"Shannon of the Sixth",1914,7.1
+2781,"Shore Acres",1914,4.9
+2782,"Should a Woman Divorce?",1914,2.5
+2783,"The Sign of the Cross",1914,7.0
+2784,"El signo de la tribu",1914,6.4
+2785,"The Silence of Dean Maitland",1914,6.6
+2786,"Sins of the Parents",1914,7.3
+2787,"Skottet",1914,7.0
+2788,"Smashing the Vice Trust",1914,6.4
+2789,"Soldiers of Fortune",1914,3.5
+2790,"Un solo corazón o Los muertos viven",1914,6.4
+2791,"The Span of Life",1914,6.4
+2792,"The Spirit of the Conqueror",1914,6.2
+2793,"The Spirit of the Poppy",1914,6.8
+2794,"The Spitfire",1914,1.4
+2795,"The Spoilers",1914,5.1
+2796,"Sport and Travel in Central Africa",1914,6.0
+2797,"Springtime",1914,1.1
+2798,"The Spy",1914,8.5
+2799,"The Squaw Man",1914,3.1
+2800,"St. Elmo",1914,6.6
+2801,"Stormfågeln",1914,4.4
+2802,"The Straight Road",1914,7.0
+2803,"The Strange Story of Sylvia Gray",1914,6.8
+2804,"Stuart Webbs: Das Panzergewölbe",1914,6.8
+2805,"Trapped by the Camera",1914,7.2
+2806,"The Black Triangle",1914,5.5
+2807,"A Study in Scarlet",1914,6.0
+2808,"Su mismo juez",1914,6.0
+2809,"Such a Little Queen",1914,6.9
+2810,"The Suicide Club",1914,5.2
+2811,"A Suspicious Wife",1914,7.6
+2812,"The Swagman's Story",1914,5.3
+2813,"The Taint",1914,6.3
+2814,"Taking His Chance",1914,5.6
+2815,"The Tangle",1914,5.7
+2816,"The Temptations of Satan",1914,6.9
+2817,"Tess of the Storm Country",1914,5.2
+2818,"Thais",1914,7.4
+2819,"The Thief",1914,7.0
+2820,"Thirty Leagues Under the Sea",1914,5.9
+2821,"Threads of Destiny",1914,5.0
+2822,"The Three Musketeers",1914,8.0
+2823,"Three Weeks",1914,5.7
+2824,"The Three of Us",1914,6.6
+2825,"Through Dante's Flames",1914,7.1
+2826,"Through Fire to Fortune",1914,7.6
+2827,"La tierra de los naranjos",1914,7.1
+2828,"The Tigress",1914,7.0
+2829,"Tillie's Punctured Romance",1914,7.5
+2830,"Tirol in Waffen",1914,4.4
+2831,"The Toll of Love",1914,6.9
+2832,"The Toll of Mammon",1914,5.6
+2833,"The Undesirable",1915,6.5
+2834,"Too Late",1914,6.6
+2835,"La tragedia del destino",1914,7.2
+2836,"The Trail of the Lonesome Pine",1914,7.2
+2837,"Trapped in the Great Metropolis",1914,6.7
+2838,"The Trey o' Hearts",1914,5.6
+2839,"Trilby",1914,5.0
+2840,"Trooper Campbell",1914,6.8
+2841,"Il trovatore",1914,7.7
+2842,"The Truth Wagon",1914,6.5
+2843,"The Typhoon",1914,7.4
+2844,"Uncle Tom's Cabin",1914,6.1
+2845,"Under the Black Robe",1914,6.5
+2846,"Under the Gaslight",1914,6.8
+2847,"The Unwelcome Mrs. Hatch",1914,6.8
+2848,"Uriel Acosta",1914,7.5
+2849,"The Valley of the Moon",1914,6.3
+2850,"Vendetta",1914,5.9
+2851,"The Virgin of the Rocks",1914,6.0
+2852,"The Virginian",1914,7.8
+2853,"The Voice at the Telephone",1914,4.8
+2854,"Volga i Sibir",1914,4.0
+2855,"The Volunteer Parson",1914,8.2
+2856,"The Vulture of Gold",1914,6.5
+2857,"The Walls of Jericho",1914,5.9
+2858,"The War Extra",1914,5.8
+2859,"The War of Wars; Or, The Franco-German Invasion",1914,5.7
+2860,"The War of the World",1914,6.9
+2861,"Weergevonden",1914,6.4
+2862,"What Is to Be Done?",1914,6.3
+2863,"What's His Name",1914,5.0
+2864,"When Broadway Was a Trail",1914,5.8
+2865,"When Fate Leads Trump",1914,6.2
+2866,"When Rome Ruled",1914,6.9
+2867,"Where the Trail Divides",1914,6.8
+2868,"Wildflower",1914,7.2
+2869,"The Win(k)some Widow",1914,6.2
+2870,"Winning His First Case",1914,4.6
+2871,"The Wishing Ring: An Idyll of Old England",1914,5.5
+2872,"With Serb and Austrian",1914,7.7
+2873,"Without Hope",1914,5.4
+2874,"The Wolf",1914,4.3
+2875,"Wolfe; Or, The Conquest of Quebec",1914,5.9
+2876,"A Woman Who Did",1914,5.8
+2877,"The Woman of Mystery",1914,6.8
+2878,"A Woman's Triumph",1914,6.7
+2879,"The World, the Flesh and the Devil",1914,7.0
+2880,"The Wrath of the Gods",1914,7.7
+2881,"The Yellow Traffic",1914,6.4
+2882,"Your Girl and Mine: A Woman Suffrage Play",1914,8.2
+2883,"Zijn viool",1914,6.0
+2884,"Zona olivarera",1914,5.3
+2885,"Zudora",1914,2.5
+2886,"Prisoner of the Night",1914,5.6
+2887,"La última danza",1915,7.9
+2888,"'Twas Ever Thus",1915,6.2
+2889,"10,000 Dollars",1915,4.2
+2890,"1915 World's Championship Series",1915,5.8
+2891,"The Absentee",1915,6.8
+2892,"The Adventures of a Boy Scout",1915,6.2
+2893,"The Adventures of a Madcap",1915,6.0
+2894,"An Affair of Three Nations",1915,7.6
+2895,"After Dark",1915,7.7
+2896,"After Five",1915,7.6
+2897,"Ágyú és harang",1915,5.7
+2898,"One Who Is Loved by Two",1915,6.5
+2899,"Alias Jimmy Valentine",1915,2.4
+2900,"Alice in Wonderland",1915,7.7
+2901,"The Alien",1915,7.8
+2902,"Aloha Oe",1915,7.2
+2903,"The Alster Case",1915,7.6
+2904,"Always in the Way",1915,7.6
+2905,"American Game Trails",1915,5.7
+2906,"An American Gentleman",1915,5.0
+2907,"El amor hace justicia",1915,7.7
+2909,"Anselo Lee",1915,6.4
+2910,"The Greater Will",1915,7.4
+2911,"The Apaches of Paris",1915,6.7
+2912,"The Arab",1915,5.7
+2913,"Are They Born or Made?",1915,7.2
+2914,"Are You a Mason?",1915,5.1
+2915,"Armstrong's Wife",1915,5.8
+2916,"The Arrival of Perpetua",1915,7.2
+2917,"As Ye Repent",1915,6.1
+2918,"The Ashes of Revenge",1915,4.2
+2919,"At Bay",1915,5.9
+2920,"At the Torrent's Mercy",1915,5.8
+2921,"A Trip on the Ice",1915,8.2
+2922,"Aurora Leigh",1915,6.4
+2923,"Authentic European War",1915,5.8
+2924,"The Avalanche",1915,5.6
+2925,"The Bachelor's Romance",1915,7.2
+2926,"Barbara Frietchie",1915,6.3
+2927,"Barnaby Rudge",1915,7.8
+2928,"The Barnstormers",1915,6.6
+2929,"The Battle Cry of Peace",1915,4.3
+2930,"The Battle and Fall of Przemysl",1915,7.4
+2931,"The Battle of Ballots",1915,5.3
+2932,"The Battles of a Nation",1915,8.0
+2933,"The Beachcomber",1915,6.9
+2934,"Beby y su circo",1915,6.0
+2935,"Bella Donna",1915,5.9
+2936,"The Beloved Vagabond",1915,7.4
+2937,"The Better Woman",1915,8.6
+2938,"Betty in Search of a Thrill",1915,6.8
+2939,"Between Men",1915,8.0
+2940,"Beulah",1915,7.0
+2941,"The Bigger Man",1915,5.7
+2942,"The Billionaire Lord",1915,6.0
+2943,"The Birth of a Nation",1915,6.2
+2944,"The Birthmark",1915,7.9
+2945,"The Black Box",1915,5.5
+2946,"Black Fear",1915,7.6
+2947,"The Black Heart",1915,5.7
+2948,"A Black Sheep",1915,6.1
+2949,"Blackbirds",1915,6.2
+2950,"Blind Man's Bluff",1915,7.4
+2951,"Blindness of Devotion",1915,8.0
+2952,"The Blindness of Virtue",1915,4.0
+2953,"The Bludgeon",1915,8.1
+2954,"Blue Grass",1915,8.5
+2955,"Body and Soul",1915,8.0
+2956,"Bondwomen",1915,6.9
+2957,"The Boss",1915,6.9
+2958,"Bought",1915,8.0
+2959,"Bound on the Wheel",1915,6.1
+2960,"A Branded Soul",1917,5.0
+2961,"The Bridge of Sighs",1915,6.0
+2962,"The Brink",1915,7.1
+2963,"Britain Prepared",1915,7.7
+2964,"The Broken Coin",1915,7.2
+2965,"The Broken Law",1915,6.8
+2966,"Buckshot John",1915,8.6
+2967,"The Builder of Bridges",1915,7.2
+2968,"The Bulldogs of the Trail",1915,7.1
+2969,"A Bunch of Keys",1915,7.0
+2970,"Business Is Business",1915,5.7
+2971,"Butter",1916,6.7
+2972,"A Butterfly on the Wheel",1915,8.0
+2974,"The Buzzard's Shadow",1915,7.2
+2975,"Los cabellos blancos",1915,7.2
+2976,"The Call of the Dance",1915,7.3
+2978,"Cap'n Eri",1915,6.9
+2979,"The Caprices of Kitty",1915,6.3
+2980,"Captain Courtesy",1915,6.5
+2981,"Captivating Mary Carstairs",1915,5.9
+2982,"The Captive",1915,7.7
+2985,"The Carpet from Bagdad",1915,5.6
+2986,"The Case of Becky",1915,7.1
+2987,"The Castle of Thornfield",1915,6.4
+2988,"The Cave Man",1915,4.0
+2989,"The Celebrated Scandal",1915,5.9
+2990,"The Chalice of Courage",1915,6.7
+2991,"Charity Ann",1915,7.0
+2992,"Charley's Aunt",1925,7.2
+2993,"The Cheat",1915,7.7
+2994,"A Child of God",1915,6.4
+2995,"A Child of the Prairie",1915,7.4
+2996,"Children of Eve",1915,7.3
+2997,"Children of the Ghetto",1915,6.7
+2998,"Chimmie Fadden Out West",1915,7.2

@@ -24,7 +24,7 @@ DROP TABLE IF EXISTS Movie;
 CREATE TABLE Movie (
 	movieID INT AUTO_INCREMENT PRIMARY KEY,
 	title VARCHAR(128) UNIQUE,
-    director VARCHAR(128),
+    -- director VARCHAR(128),
 	year SMALLINT,
 	rating DECIMAL(4,2) DEFAULT 0
 );
@@ -65,6 +65,7 @@ CREATE TABLE Showtime (
 	startTime TIME NOT NULL DEFAULT '00:00:00',
 	FOREIGN KEY (movieID) REFERENCES Movie (movieID) ON DELETE CASCADE,
 	FOREIGN KEY (roomID) REFERENCES Room (roomID) ON DELETE CASCADE
+	-- FOREIGN KEY (seats) REFERENCES Room (maxSeats)
 );
 ALTER Table Showtime AUTO_INCREMENT = 5000;
 
@@ -80,8 +81,8 @@ CREATE TABLE Reservation (
 );
 ALTER Table Reservation AUTO_INCREMENT = 6000;
 
-DROP TABLE IF EXISTS Cancelation;
-CREATE TABLE Cancelation (
+DROP TABLE IF EXISTS Cancellation;
+CREATE TABLE Cancellation (
 	rID INT PRIMARY KEY,
 	uID INT, 
 	showID INT,
@@ -159,10 +160,14 @@ MAKE SURE TO USE YOUR OWN DIRECTORY LOCATION WHEN IMPORTING DATA FROM .txt FILES
 */
 
 
-LOAD DATA LOCAL INFILE '/Users/eliassun/workshop/MovieTicket/src/ticket.txt' INTO TABLE Ticket; 
-LOAD DATA LOCAL INFILE '/Users/eliassun/workshop/MovieTicket/src/customer.txt' INTO TABLE Customer;
-LOAD DATA LOCAL INFILE '/Users/eliassun/workshop/MovieTicket/src/movie.txt' INTO TABLE Movie;
-LOAD DATA LOCAL INFILE '/Users/eliassun/workshop/MovieTicket/src/room.txt' INTO TABLE Room;
+LOAD DATA LOCAL INFILE 'C:/Users/vivz7/Documents/eclipse-workspace/movieTicketReservation/src/ticket.txt' INTO TABLE Ticket; 
+LOAD DATA LOCAL INFILE 'C:/Users/vivz7/Documents/eclipse-workspace/movieTicketReservation/src/customer.txt' INTO TABLE Customer;
+LOAD DATA LOCAL INFILE 'C:/Users/vivz7/Documents/eclipse-workspace/movieTicketReservation/src/movie.csv' INTO TABLE Movie
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 LINES;
+LOAD DATA LOCAL INFILE 'C:/Users/vivz7/Documents/eclipse-workspace/movieTicketReservation/src/room.txt' INTO TABLE Room;
 
 
 insert into showTime(movieID, roomID, seats, showdate, startTime) values(2001, 4001, 30, '2018-12-02', '10:00:00' );

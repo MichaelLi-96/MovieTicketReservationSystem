@@ -53,6 +53,7 @@ public class admin {
 				} else {
 					System.out.println("\nWelcome Administrator, " + rs.getString("adminName") + "!");
 					adminMain();
+					return;
 				}
 			} catch (SQLException exc) {
 				System.out.println("An error occured. Error: => " + exc.getMessage());
@@ -83,7 +84,7 @@ public class admin {
 					dataAnalysisMain() ;
 				}
 				else if (command.equals("4")) {
-					System.out.println("Goodbye");
+					System.out.println("Logged out of admin.\n");
 					return;
 				} 
 				else {
@@ -133,11 +134,11 @@ public class admin {
 	private void moviesMain() {
 		while (true) {
 			System.out.println("\nPlease select a movies option:");
-			System.out.println("\n[1] Add Movie  \n[2] Archive Expired Showtimes \n[3] Show Now Playing Movies 	\n[4] Back to Admin Options");
+			System.out.println("\n[1] View Movie Inventory  \n[2] Archive Expired Showtimes \n[3] Show Now Playing Movies 	\n[4] Back to Admin Options");
 			try {
 				String command = sc.nextLine().trim();
 				if (command.equals("1")) {
-					addMovie();
+					showAllMoviesAlphabetically();
 				}
 				else if (command.equals("2")) {
 					archiveShowtimes();
@@ -452,6 +453,41 @@ public class admin {
 		finally{
 			try {
 				cstmt.close();
+			} catch (SQLException exc) {
+				System.out.println("An error occured. Error: => " + exc.getMessage());
+			}
+		}
+	}
+
+	// Show all the movies in our database alphabetically
+	//
+	private void showAllMoviesAlphabetically() {
+		System.out.println();
+		PreparedStatement stmt1 = null;
+		PreparedStatement stmt2 = null;
+		try {
+			stmt1 = myConn.prepareStatement("select * from movie order by title;");
+			stmt2 = myConn.prepareStatement("select count(*) as totalMovies from movie");
+			ResultSet rs = stmt1.executeQuery();
+			ResultSet rs2 = stmt2.executeQuery();
+			System.out.println("ID\tYear\tStars\tTitle");
+			while (rs.next()) {
+				String mtitle = rs.getString("title");
+				String mid = rs.getString("movieID");
+				String year = rs.getString("year");
+				double rating = rs.getDouble("rating");
+					System.out.println( "" + mid + "\t" + year + "\t" + rating + "\t" + mtitle +  "");
+				}
+
+				while(rs2.next()){
+				int totalMovies = rs2.getInt("totalMovies");
+				System.out.println("\nTotal Movies: " + totalMovies + "");
+			}
+		} catch (SQLException exc) {
+			System.out.println("An error occured. Error: => " + exc.getMessage());
+		} finally {
+			try {
+				stmt1.close();
 			} catch (SQLException exc) {
 				System.out.println("An error occured. Error: => " + exc.getMessage());
 			}

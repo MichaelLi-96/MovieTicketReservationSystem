@@ -60,7 +60,7 @@ public class customer {
 
 				//Quit program
 				else if (command == '4') {
-					System.out.println("\nGoodbye.");
+					System.out.println("\nLogged out of customer.\n");
 					return;
 				}
 
@@ -74,6 +74,7 @@ public class customer {
 				System.out.println();
 				System.out.println("An error occurred. Please try again.");
 			}
+			return;
 		}
 	}
 	
@@ -577,7 +578,8 @@ public class customer {
 					showAllShowtimesOfOneMovie();
 				}
 				else if (command == '2') {
-					showAllMoviesAlphabetically();
+					currentShow();
+					//showAllMoviesAlphabetically();
 				}
 				else if (command == '3') {
 					showAllMoviesByShowtimeAsc();
@@ -670,6 +672,29 @@ public class customer {
 		} finally {
 			try {
 				stmt1.close();
+			} catch (SQLException exc) {
+				System.out.println("An error occured. Error: => " + exc.getMessage());
+			}
+		}
+	}
+
+		private void currentShow() {
+		System.out.println();
+		PreparedStatement stmt = null;
+		try {
+			stmt = myConn.prepareStatement("select distinct title from movie mv right outer JOIN showtime  st on mv.movieID = st.movieid;");
+			ResultSet rs = stmt.executeQuery();
+			System.out.println("***** Now Playing *****");
+			while (rs.next()) {
+				String mtitle = rs.getString("title");
+				System.out.println(mtitle);		
+			}
+			System.out.println("***********************");
+		} catch (SQLException exc) {
+			System.out.println("An error occured. Error: => " + exc.getMessage());
+		} finally {
+			try {
+				stmt.close();
 			} catch (SQLException exc) {
 				System.out.println("An error occured. Error: => " + exc.getMessage());
 			}
