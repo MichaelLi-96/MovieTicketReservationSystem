@@ -121,7 +121,7 @@ AFTER DELETE ON Reservation
 for each row
 BEGIN
 	update Showtime set seats = seats + old.numofTicket where showID = old.showID ;
-	insert into Cancelation (rID,uID, showID, numofTicket) values (old.rID, old.uID, old.showID, old.numofTicket);
+	insert into Cancellation (rID,uID, showID, numofTicket) values (old.rID, old.uID, old.showID, old.numofTicket);
 END;//
 delimiter ;
 
