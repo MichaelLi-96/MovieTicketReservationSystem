@@ -509,15 +509,38 @@ public class admin {
 	//Add a showtime
 	//
 	private void addShowtime() throws ParseException {
+		PreparedStatement s = null;
+		String seats = "";
 		//Input Showtime.movieID
 		System.out.print("\nEnter Movie ID: ");
 		String movieID = sc.nextLine().trim();
 		//Input Showtime.roomID
 		System.out.print("Enter desired show Room ID: ");
 		String roomID = sc.nextLine().trim();
+
+		try{
+			s = myConn.prepareStatement("select maxSeats from Room where roomID=" + roomID + ";", Statement.RETURN_GENERATED_KEYS);
+			ResultSet rs = s.executeQuery();
+			while(rs.next()){
+				seats = rs.getString("maxSeats");
+				System.out.println("Available seats: " + seats);
+			}
+		}
+
+		catch (SQLException exc) {
+			System.out.println();
+			System.out.println("An error occured. Error: => " + exc.getMessage());
+		} finally {
+			try {
+				s.close();
+			} catch (SQLException exc) {
+				System.out.println();
+				System.out.println("An error occured. Error: => " + exc.getMessage());
+			}
+		}
 		//Remove later
-		System.out.print("Enter desired seat amount: ");
-		String seats = sc.nextLine().trim();
+		// System.out.print("Enter desired seat amount: ");
+		// String seats = sc.nextLine().trim();
 		//Input Showtime.date
 		System.out.print("Enter desired show DATE in the format [YYYY-MM-DD] : ");
 		String showDate = sc.nextLine().trim();
