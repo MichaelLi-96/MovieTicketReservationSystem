@@ -149,7 +149,7 @@ delimiter ;
 
 -- Vivian's directory
 LOAD DATA LOCAL INFILE 'C:/Users/vivz7/Documents/eclipse-workspace/movieTicketReservation/src/ticket.txt' INTO TABLE Ticket; 
-LOAD DATA LOCAL INFILE 'C:/Users/vivz7/Documents/eclipse-workspace/movieTicketReservation/src/admin.txt' INTO TABLE Admin; 
+-- LOAD DATA LOCAL INFILE 'C:/Users/vivz7/Documents/eclipse-workspace/movieTicketReservation/src/admin.txt' INTO TABLE Admin; 
 LOAD DATA LOCAL INFILE 'C:/Users/vivz7/Documents/eclipse-workspace/movieTicketReservation/src/customer.txt' INTO TABLE Customer;
 LOAD DATA LOCAL INFILE 'C:/Users/vivz7/Documents/eclipse-workspace/movieTicketReservation/src/room.txt' INTO TABLE Room;
 LOAD DATA LOCAL INFILE 'C:/Users/vivz7/Documents/eclipse-workspace/movieTicketReservation/src/movie.csv' INTO TABLE Movie
@@ -204,4 +204,4 @@ delete from reservation where rID = 6002;
 -- insert into room(maxSeats) values (40);
 -- insert into room(maxSeats) values (50);
 -- insert into room(maxSeats) values (60);
--- insert into room(maxSeats) values (70);
+insert into admin(adminName, password) values ("Suneuy Kim", "password");
