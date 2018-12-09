@@ -150,25 +150,25 @@ delimiter ;
 -- MAKE SURE TO USE YOUR OWN DIRECTORY LOCATION WHEN IMPORTING DATA FROM .txt FILES 
 
 -- Vivian's directory
-LOAD DATA LOCAL INFILE 'C:/Users/vivz7/Documents/eclipse-workspace/movieTicketReservation/src/ticket.txt' INTO TABLE Ticket; 
-LOAD DATA LOCAL INFILE 'C:/Users/vivz7/Documents/eclipse-workspace/movieTicketReservation/src/customer.txt' INTO TABLE Customer;
-LOAD DATA LOCAL INFILE 'C:/Users/vivz7/Documents/eclipse-workspace/movieTicketReservation/src/room.txt' INTO TABLE Room;
-LOAD DATA LOCAL INFILE 'C:/Users/vivz7/Documents/eclipse-workspace/movieTicketReservation/src/movie.csv' INTO TABLE Movie
-FIELDS TERMINATED BY ','
-ENCLOSED BY '"'
-LINES TERMINATED BY '\n'
-IGNORE 1 LINES;
-
--- Michael's directory
--- LOAD DATA LOCAL INFILE 'D:/SJSU/CS 157A/src/ticket.txt' INTO TABLE Ticket; 
--- LOAD DATA LOCAL INFILE 'D:/SJSU/CS 157A/src/customer.txt' INTO TABLE Customer;
--- LOAD DATA LOCAL INFILE 'D:/SJSU/CS 157A/src/movie.txt' INTO TABLE Movie;
--- LOAD DATA LOCAL INFILE 'D:/SJSU/CS 157A/src/room.txt' INTO TABLE Room;
--- LOAD DATA LOCAL INFILE 'D:/SJSU/CS 157A/src/movie.csv' INTO TABLE Movie
+-- LOAD DATA LOCAL INFILE 'C:/Users/vivz7/Documents/eclipse-workspace/movieTicketReservation/src/ticket.txt' INTO TABLE Ticket; 
+-- LOAD DATA LOCAL INFILE 'C:/Users/vivz7/Documents/eclipse-workspace/movieTicketReservation/src/customer.txt' INTO TABLE Customer;
+-- LOAD DATA LOCAL INFILE 'C:/Users/vivz7/Documents/eclipse-workspace/movieTicketReservation/src/room.txt' INTO TABLE Room;
+-- LOAD DATA LOCAL INFILE 'C:/Users/vivz7/Documents/eclipse-workspace/movieTicketReservation/src/movie.csv' INTO TABLE Movie
 -- FIELDS TERMINATED BY ','
 -- ENCLOSED BY '"'
 -- LINES TERMINATED BY '\n'
 -- IGNORE 1 LINES;
+
+-- Michael's directory
+LOAD DATA LOCAL INFILE 'D:/SJSU/CS 157A/src/ticket.txt' INTO TABLE Ticket; 
+LOAD DATA LOCAL INFILE 'D:/SJSU/CS 157A/src/customer.txt' INTO TABLE Customer;
+LOAD DATA LOCAL INFILE 'D:/SJSU/CS 157A/src/movie.txt' INTO TABLE Movie;
+-- LOAD DATA LOCAL INFILE 'D:/SJSU/CS 157A/src/room.txt' INTO TABLE Room;
+LOAD DATA LOCAL INFILE 'D:/SJSU/CS 157A/src/movie.csv' INTO TABLE Movie
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 LINES;
 
 -- Ying's directory
 -- LOAD DATA LOCAL INFILE '/Users/eliassun/workshop/MovieTicket/src/ticket.txt' INTO TABLE Ticket; 
@@ -181,7 +181,10 @@ IGNORE 1 LINES;
 -- LINES TERMINATED BY '\n'
 -- IGNORE 1 LINES;
 
-
+insert into Room(maxSeats, location) values(30, "Mall");
+insert into Room(maxSeats, location) values(30, "Mall");
+insert into Room(maxSeats, location) values(30, "Mall");
+insert into Room(maxSeats, location) values(30, "Mall");
 
 insert into showTime(movieID, roomID, seats, showdate, startTime) values(2001, 4001, 30, '2018-12-02', '10:00:00' );
 insert into showTime(movieID, roomID, seats, showdate, startTime) values(2000, 4000, 30, '2018-12-05', '12:00:00' );
