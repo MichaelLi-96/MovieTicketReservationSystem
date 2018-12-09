@@ -12,6 +12,9 @@ import com.mysql.cj.util.StringUtils;
 
 //Customer constructor class
 public class customer {
+	private String uID;
+	private String password;
+	
 	static Scanner sc = new Scanner(System.in);
 	dbconnection mt = new dbconnection();
 	Connection myConn = mt.myConn;
@@ -34,6 +37,63 @@ public class customer {
 		}
 	}
 	
+	public void customerSignIn() {
+		System.out.print("\n[1] Login     \n[2] Create Account     \n[3] Back\n\n");
+		try {
+			char command = sc.nextLine().trim().charAt(0);
+			if (command == '1') {
+				System.out.print("\nPlease enter your customer ID: ");
+				String id = sc.nextLine().trim();
+				if(!(StringUtils.isStrictlyNumeric(id) && id.length() == 4)) {
+					System.out.println("\nInputted user ID was not accepted. Please try again.");
+				}
+				else {
+					System.out.print("\nEnter your password: ");
+					String password = sc.nextLine().trim();
+					PreparedStatement stmt = null;
+					try {
+						stmt = myConn.prepareStatement("select uName from Customer where uID =" + id +" and password ='" + password + "';",
+								Statement.RETURN_GENERATED_KEYS);
+						ResultSet rs = stmt.executeQuery(); 
+						if (!rs.next()) {
+							System.out.println("\nCustomer account could not be found. Please try again.\n");
+						} else {
+							System.out.println("\nWelcome Customer, " + rs.getString("uName") + "!");
+							this.uID = id;
+							this.password = password;
+							System.out.println("uID: " + this.uID);
+							customerMain();
+							return;
+						}
+					} catch (SQLException exc) {
+						System.out.println("An error occured. Error: => " + exc.getMessage());
+					} finally {
+						try {
+							stmt.close();
+						} catch (SQLException exc) {
+							System.out.println("An error occured. Error: => " + exc.getMessage());
+						}
+					}
+				}
+			}
+			else if (command == '2') {
+				register();
+			}
+			else if (command == '3') {
+				return;
+			}
+			else {
+				System.out.println();
+				System.out.println("Invalid command.");
+			}
+		} catch (Exception e) {
+			System.out.println();
+			System.out.println("An error occurred. Please try again.");
+		}
+		return;
+	
+	}
+
 	// Main menu for customers
 	//
 	public void customerMain() {
@@ -83,19 +143,16 @@ public class customer {
 	private void accountMain() {
 		while (true) {
 			System.out.println("\nPlease select an account option:");
-			System.out.print("\n[1] Create an Account     \n[2] Edit Your Account     \n[3] Delete Your Account     \n[4] Back To Customer Options\n\n");
+			System.out.print("\n[1] Edit Your Account     \n[2] Delete Your Account     \n[3] Back To Customer Options\n\n");
 			try {
 				char command = sc.nextLine().trim().charAt(0);
 				if (command == '1') {
-					register();
-				}
-				else if (command == '2') {
 					editAccountOptions();
 				}
-				else if (command == '3') {
+				else if (command == '2') {
 					deleteAccount();
 				}
-				else if (command == '4') {
+				else if (command == '3') {
 					break;
 				}
 				else {

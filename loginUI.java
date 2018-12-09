@@ -44,7 +44,7 @@ public class loginUI {
 
 	private static void customerlogin() {
 		customer cm = new customer();
-		cm.customerMain();
+		cm.customerSignIn();
 	}
 
 }
