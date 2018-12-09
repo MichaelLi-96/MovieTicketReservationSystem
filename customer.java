@@ -169,7 +169,7 @@ public class customer {
 	// Movie menu
 	//
 	private void moviesMain() {
-		while (true) {
+		while (!logout) {
 			System.out.println("\nPlease select a Showtime option:");
 			System.out.print(
 					"\n[1] Show Movies Now Playing     \n[2] Browse Showtimes \n[3] Make Reservation     \n[4] Cancel Reservation     \n[5] Rate a Movie    \n[6] Back to Customer Options\n\n");
@@ -217,7 +217,7 @@ public class customer {
 	// Purchases menu
 	//
 	private void purchasesMain() {
-		while (true) {
+		while (!logout) {
 			System.out.println("\nPlease select an option:");
 			System.out.println(
 					"[1] Show Purchase History     \n[2] Show Amount Of Tickets Bought     \n[3] Show Total Amount Of Money Spent \n[4] Back to Customer Options");
@@ -322,7 +322,7 @@ public class customer {
 				System.out.println("Account could not be found. Please try again.");
 			} else {
 				System.out.println(rs.getString("uName") + "'s Account");
-				while (true) {
+				while (!logout) {
 					System.out.println();
 					System.out.println("Please select an option:");
 					System.out.println(
@@ -544,7 +544,7 @@ public class customer {
 				} 
 				else {
 					System.out.println("Are you sure you want to delete " + rs.getString("uName") + "'s Account?");
-					while (true) {
+					while (!logout) {
 						System.out.print("\n[1] Yes     [2] Cancel\n");
 						try {
 							String command = sc.nextLine().trim();
@@ -606,7 +606,7 @@ public class customer {
 	// Movie options menu
 	//
 	private void browseShowtimes() {
-		while (true) {
+		while (!logout) {
 			System.out.println("\nPlease select an option:");
 			System.out.println(
 					"\n[1] Show All Showtimes \n[2] Search Showtimes by Title    \n[3] Back To Showtime Options\n\n");
@@ -973,34 +973,35 @@ public class customer {
 	// Customer can cancel a reservation for a movie
 	//
 	private void cancelReservation() {
-		System.out.println();
-		System.out.print("Enter the reservation ID: ");
-		String rId = sc.nextLine().trim();
+		
 		PreparedStatement stmt1 = null;
 		PreparedStatement stmt2 = null;
 		try {
 			stmt1 = myConn.prepareStatement(
-					"select * from Reservation, Customer where Reservation.uID = Customer.uID and rID =" + rId + ";",
+					"select * from Reservation where uID =" + this.uID + ";",
 					Statement.RETURN_GENERATED_KEYS);
 			ResultSet rs = stmt1.executeQuery();
-			System.out.println();
+			System.out.println("\nCurrent Reservations: \nrID \tshowID \tnumOfTicket");
+
+			//show tickets
+			while (rs.next()) {
+				String rID = rs.getString("rID");
+				String showID = rs.getString("showID");
+				String numOfTicket = rs.getString("numOfTicket");
+				System.out.println(rID + "\t " + showID + "\t" + numOfTicket);
+			}
+
+
+			System.out.print("\nEnter the reservation ID to cancel: ");
+			String rId = sc.nextLine().trim();
+			rs = stmt1.executeQuery();
+
 			if (!rs.next()) {
-				System.out.println("Reservation could not be found. Please try again.");
+			 	System.out.println("\nReservation could not be found. Please try again.");
 			} else {
-				System.out.print("Enter your ID: ");
-				String id = sc.nextLine().trim();
-				if (!(StringUtils.isStrictlyNumeric(id) && id.length() == 4)) {
-					System.out.println();
-					System.out.println("Inputted customer ID was not accepted. Please try again.");
-				} else {
-					System.out.print("What is your password: ");
-					String password = sc.nextLine().trim();
-					System.out.print("What is the showID: ");
-					String sId = sc.nextLine().trim();
-					if (rs.getString("uID").equals(id) && rs.getString("password").equals(password)
-							&& rs.getString("showID").equals(sId)) {
+					if (rs.getString("rID").equals(rId)) {
 						try {
-							stmt2 = myConn.prepareStatement("delete from Reservation where rID= ?;");
+							stmt2 = myConn.prepareStatement("delete from Reservation where rID= ? and uID =" + this.uID + ";");
 							stmt2.setString(1, rId);
 							int rowCount = stmt2.executeUpdate();
 							System.out.println();
@@ -1022,11 +1023,11 @@ public class customer {
 						}
 					} else {
 						System.out.println(
-								"Incorrect customer ID and/or password and/or show ID for the reservation. Please try again.");
+								"Reservation ID not found.");
 					}
-				}
+				 }
 			}
-		} catch (SQLException exc) {
+		 catch (SQLException exc) {
 			System.out.println();
 			System.out.println("An error occured. Error: => " + exc.getMessage());
 		} finally {

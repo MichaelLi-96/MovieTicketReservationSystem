@@ -647,7 +647,7 @@ public class admin {
 		System.out.println();
 		PreparedStatement stmt = null;
 		try {
-			stmt = myConn.prepareStatement("select uname from customer where uID not in (select uid from reservation union select uid from cancelation);");
+			stmt = myConn.prepareStatement("select uname from customer where uID not in (select uid from reservation union select uid from cancellation);");
 			ResultSet rs = stmt.executeQuery();
 			System.out.println("***** Below customers have not made any transaction. *****");
 			while (rs.next()) {
