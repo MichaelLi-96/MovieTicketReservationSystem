@@ -126,7 +126,7 @@ public class customer {
 				}
 				//Browse Showtimes
 				else if (command == '2') {
-				 showMovieOptions();
+				 browseShowtimes();
 				}
 				//Make Reservation
 				else if (command == '3') {
@@ -572,26 +572,25 @@ public class customer {
 	
 	// Movie options menu
 	//
-	private void showMovieOptions() {
+	private void browseShowtimes() {
 		while (true) {
 			System.out.println("\nPlease select an option:");
-			System.out.println("\n[1] Show All Showtimes For A Movie \n[2] Show Movies Now Playing     \n[3] Show All Movies By Earliest Showtimes  \n[4] Show All Movies By Latest Showtime     \n[5] Back To Showtime Options\n\n");
+			System.out.println("\n[1] Show All Showtimes \n[2] Search Showtimes by Title    \n[3] Back To Showtime Options\n\n");
 			try {
 				char command = sc.nextLine().trim().charAt(0);
 				if (command == '1') {
-					showAllShowtimesOfOneMovie();
-				}
-				else if (command == '2') {
-					currentShow();
-					//showAllMoviesAlphabetically();
-				}
-				else if (command == '3') {
 					showAllMoviesByShowtimeAsc();
 				}
-				else if (command == '4') {
-					showAllMoviesByShowtimeDesc();
+				else if (command == '2') {
+					showAllShowtimesOfOneMovie();
 				}
-				else if (command == '5') {
+				// else if (command == '3') {
+				// 	showAllMoviesByShowtimeAsc();
+				// }
+				// else if (command == '4') {
+				// 	showAllMoviesByShowtimeDesc();
+				// }
+				else if (command == '3') {
 					break;
 				}
 				else {
@@ -686,14 +685,17 @@ public class customer {
 		System.out.println();
 		PreparedStatement stmt = null;
 		try {
-			stmt = myConn.prepareStatement("select distinct title from movie mv right outer JOIN showtime  st on mv.movieID = st.movieid;");
+			stmt = myConn.prepareStatement("select distinct title, year, rating from movie mv right outer JOIN showtime  st on mv.movieID = st.movieid;");
 			ResultSet rs = stmt.executeQuery();
 			System.out.println("***** Now Playing *****\n");
+			System.out.println("Rating \t Year \t Title");
 			while (rs.next()) {
-				String mtitle = rs.getString("title\n");
-				System.out.println(mtitle);		
+				String year = rs.getString("year");
+				String rating = rs.getString("rating");
+				String mtitle = rs.getString("title");
+				System.out.println(rating + "\t " + year + "\t" + mtitle);		
 			}
-			System.out.println("***********************");
+			System.out.println("\n------------------------------------------");
 		} catch (SQLException exc) {
 			System.out.println("An error occured. Error: => " + exc.getMessage());
 		} finally {

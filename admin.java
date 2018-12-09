@@ -552,7 +552,7 @@ public class admin {
 					System.out.println("Time formatter created\n");
 					java.util.Date javaTime = timeFormatter.parse(showTime);
 					System.out.println("parsing " + showTime);
-					java.sql.Time showTimeSQL = new java.sql.Time(javaDate); 
+					java.sql.Time showTimeSQL = new java.sql.Time(javaTime.getTime()); 
 					System.out.println("java time: " + javaTime + " sql time: " + showTimeSQL);
 
 					// java.sql.Time showTimeSQL = new java.sql.Time(javaDate.getTime());
