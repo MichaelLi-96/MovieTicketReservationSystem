@@ -160,6 +160,7 @@ MAKE SURE TO USE YOUR OWN DIRECTORY LOCATION WHEN IMPORTING DATA FROM .txt FILES
 */
 
 
+<<<<<<< HEAD
 LOAD DATA LOCAL INFILE 'C:/Users/vivz7/Documents/eclipse-workspace/movieTicketReservation/src/ticket.txt' INTO TABLE Ticket; 
 LOAD DATA LOCAL INFILE 'C:/Users/vivz7/Documents/eclipse-workspace/movieTicketReservation/src/customer.txt' INTO TABLE Customer;
 LOAD DATA LOCAL INFILE 'C:/Users/vivz7/Documents/eclipse-workspace/movieTicketReservation/src/movie.csv' INTO TABLE Movie
@@ -168,6 +169,12 @@ ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
 IGNORE 1 LINES;
 LOAD DATA LOCAL INFILE 'C:/Users/vivz7/Documents/eclipse-workspace/movieTicketReservation/src/room.txt' INTO TABLE Room;
+=======
+LOAD DATA LOCAL INFILE 'D:/SJSU/CS 157A/src/ticket.txt' INTO TABLE Ticket; 
+LOAD DATA LOCAL INFILE 'D:/SJSU/CS 157A/src/customer.txt' INTO TABLE Customer;
+LOAD DATA LOCAL INFILE 'D:/SJSU/CS 157A/src/movie.txt' INTO TABLE Movie;
+LOAD DATA LOCAL INFILE 'D:/SJSU/CS 157A/src/room.txt' INTO TABLE Room;
+>>>>>>> 675d9cbc3bfb5d66f3a79067933e903e722e8164
 
 
 insert into showTime(movieID, roomID, seats, showdate, startTime) values(2001, 4001, 30, '2018-12-02', '10:00:00' );

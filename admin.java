@@ -34,7 +34,7 @@ public class admin {
 						//enter Mi19Li96 password here
 						//Michael's password: Mi19Li96
 						//Vivian's password: currybreadchai
-						"currybreadchai");
+						"Mi19Li96");
 			} catch (Exception exc) {
 				exc.printStackTrace();
 			}
@@ -42,10 +42,10 @@ public class admin {
 	}
 	
 	public void adminSignIn() {
-		System.out.print("\nPlease enter your Admin ID: ");
+		System.out.print("\nPlease enter your admin ID: ");
 		String id = sc.nextLine().trim();
 		if(!(StringUtils.isStrictlyNumeric(id) && id.length() >= 1 && id.length() < 4)) {
-			System.out.println("\nInputted Admin ID was not accepted. Please try again.");
+			System.out.println("\nInputted admin ID was not accepted. Please try again.");
 		}
 		else {
 			System.out.print("\nEnter your password: ");
@@ -91,7 +91,12 @@ public class admin {
 					dataAnalysisMain() ;
 				}
 				else if (command.equals("4")) {
+<<<<<<< HEAD
 					System.out.println("Logged out of admin.\n");
+=======
+					System.out.println();
+					System.out.println("Goodbye");
+>>>>>>> 675d9cbc3bfb5d66f3a79067933e903e722e8164
 					return;
 				} 
 				else {
@@ -173,7 +178,7 @@ public class admin {
 	private void dataAnalysisMain() {
 		while (true) {
 			System.out.println("\nPlease select a data analysis option:");
-			System.out.println("\n[1] Movies With Reservations Greater Than 'Input'  \n[2] Average Age Of Customers Who Made A Reservation \n[3] Customers make no transaction \n[4] Go Back To Admin Options");
+			System.out.println("\n[1] Movies With Reservations Greater Than 'Input'  \n[2] Average Age Of Customers Who Made A Reservation \n[3] Customers make no transaction \n[4] Go Back To Admin Options\n");
 			String command = sc.nextLine().trim();
 			if (command.equals("1")) {
 				popularMovie();
@@ -417,9 +422,9 @@ public class admin {
 	}
 
 	private void addMovie() {
-		System.out.println("enter movie title:");
+		System.out.print("Enter movie title: ");
 		String title = sc.nextLine().trim();
-		System.out.println("enter movie Year:");
+		System.out.print("Enter movie Year: ");
 		String yr = sc.nextLine().trim();
 		PreparedStatement stmt = null;
 		try {
@@ -432,6 +437,7 @@ public class admin {
 				stmt.executeUpdate();
 				ResultSet rs = stmt.getGeneratedKeys();
 				if (rs.next()) {
+					System.out.println();
 					System.out.println("Movie added Successfully. Movie id is: " + rs.getInt(1));
 				}
 			}
@@ -613,6 +619,7 @@ public class admin {
 		System.out.println();
 		System.out.print("Enter a number: ");
 		String num = sc.nextLine().trim();
+		System.out.println();
 		PreparedStatement stmt = null;
 		try {
 			stmt = myConn.prepareStatement("select title from movie where movieID in( select movieID from showtime where showID in "
@@ -620,11 +627,12 @@ public class admin {
 			stmt.setString(1, num);
 			ResultSet rs = stmt.executeQuery();
 			System.out.printf("Movie(s) with reservation >= %s: \n", num);
-	//1		if(!rs.next()) System.out.println("No movie found.");
-			System.out.println();
-			while (rs.next()) {	
-				String mv = rs.getString("title");	
-				System.out.println(mv);		
+			if(!rs.next()) System.out.println("No movie found.");
+			else {
+				while (rs.next()) {	
+					String mv = rs.getString("title");	
+					System.out.println(mv);		
+				}
 			}
 		} catch (SQLException exc) {
 			System.out.println("An error occured. Error: => " + exc.getMessage());
@@ -635,7 +643,6 @@ public class admin {
 				System.out.println("An error occured. Error: => " + exc.getMessage());
 			}
 		}
-		System.out.println();
 	}
 	
 	private void noTransaction() {
@@ -687,7 +694,6 @@ public class admin {
 				System.out.println("An error occured. Error: => " + exc.getMessage());
 			}
 		}
-		System.out.println();
 	}
 
 }
