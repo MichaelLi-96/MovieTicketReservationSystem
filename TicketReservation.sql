@@ -24,7 +24,6 @@ DROP TABLE IF EXISTS Movie;
 CREATE TABLE Movie (
 	movieID INT AUTO_INCREMENT PRIMARY KEY,
 	title VARCHAR(128) UNIQUE,
-    -- director VARCHAR(128),
 	year SMALLINT,
 	rating DECIMAL(4,2) DEFAULT 0
 );
@@ -50,8 +49,7 @@ CREATE TABLE Ticket (
 DROP TABLE IF EXISTS Room;
 CREATE TABLE Room (
 	roomID INT AUTO_INCREMENT PRIMARY KEY,
-	maxSeats INT,
-	location VARCHAR(128)
+	maxSeats INT
 );
 ALTER Table Room AUTO_INCREMENT = 4000;
 
@@ -151,6 +149,7 @@ delimiter ;
 
 -- Vivian's directory
 LOAD DATA LOCAL INFILE 'C:/Users/vivz7/Documents/eclipse-workspace/movieTicketReservation/src/ticket.txt' INTO TABLE Ticket; 
+LOAD DATA LOCAL INFILE 'C:/Users/vivz7/Documents/eclipse-workspace/movieTicketReservation/src/admin.txt' INTO TABLE Admin; 
 LOAD DATA LOCAL INFILE 'C:/Users/vivz7/Documents/eclipse-workspace/movieTicketReservation/src/customer.txt' INTO TABLE Customer;
 LOAD DATA LOCAL INFILE 'C:/Users/vivz7/Documents/eclipse-workspace/movieTicketReservation/src/room.txt' INTO TABLE Room;
 LOAD DATA LOCAL INFILE 'C:/Users/vivz7/Documents/eclipse-workspace/movieTicketReservation/src/movie.csv' INTO TABLE Movie
@@ -201,5 +200,8 @@ insert into reservation(uID, showID, numofTicket) values(1002, 5003, 4);
 delete from reservation where rID = 6001;
 delete from reservation where rID = 6002;
 
-INSERT into Admin(adminName, password) values("Suneuy Kim", "password");
-INSERT into Admin(adminName, password) values("Admin", "password");
+-- insert into room(maxSeats) values (30);
+-- insert into room(maxSeats) values (40);
+-- insert into room(maxSeats) values (50);
+-- insert into room(maxSeats) values (60);
+-- insert into room(maxSeats) values (70);
