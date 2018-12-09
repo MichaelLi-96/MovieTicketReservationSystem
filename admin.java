@@ -523,7 +523,7 @@ public class admin {
 		String showDate = sc.nextLine().trim();
 		// java.sql.Date showDate = java.sql.Date(sc.nextLine().trim());
 		//Input Showtime.time
-		System.out.print("Enter desired show TIME in the format [HH:MM:SS] : \nExample: 15:30:00 for 3:30pm ");
+		System.out.print("Enter desired show TIME in the format [HH:MM:SS] : ");
 		String showTime = sc.nextLine().trim();
 		// java.sql.Time showTime = new java.sql.Time(sc.nextLine().trim());
 			//Check if age is valid
@@ -537,7 +537,7 @@ public class admin {
 			System.out.println();
 			//Insert user into Customer table
 			try {
-				stmt = myConn.prepareStatement("INSERT into Movie(movieID, roomID, ,seats, showDate, showTime) values(?,?,?,?,?);",
+				stmt = myConn.prepareStatement("INSERT into showTime(movieID, roomID, ,seats, showDate, showTime) values(?,?,?,?,?);",
 						Statement.RETURN_GENERATED_KEYS);
 				if (movieID.isEmpty() || roomID.isEmpty() || showDate.isEmpty() || showTime.isEmpty()) {
 					System.out.println("Please provide valid entries for each field");
@@ -546,14 +546,14 @@ public class admin {
 					SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
 					java.util.Date javaDate = dateFormatter.parse(showDate);
 					java.sql.Date showDateSQL = new java.sql.Date(javaDate.getTime());
-					System.out.println("java date: " + javaDate + "\t" + "sql date: " + showDateSQL);
+					System.out.println("java date: " + javaDate + "\t" + "\nsql date: " + showDateSQL);
 
 					SimpleDateFormat timeFormatter = new SimpleDateFormat("HH:mm:ss");
 					System.out.println("Time formatter created\n");
 					java.util.Date javaTime = timeFormatter.parse(showTime);
 					System.out.println("parsing " + showTime);
 					java.sql.Time showTimeSQL = new java.sql.Time(javaTime.getTime()); 
-					System.out.println("java time: " + javaTime + " sql time: " + showTimeSQL);
+					System.out.println("java time: " + javaTime + " \nsql time: " + showTimeSQL);
 
 					// java.sql.Time showTimeSQL = new java.sql.Time(javaDate.getTime());
 
@@ -563,8 +563,10 @@ public class admin {
 					stmt.setString(1, movieID);
 					stmt.setString(2, roomID);
 					stmt.setString(3, seats);
-					stmt.setDate(4, showDateSQL);
-					stmt.setTime(5, showTimeSQL);
+					// stmt.setDate(4, showDateSQL);
+					// stmt.setTime(5, showTimeSQL);
+					stmt.setString(4, "'" + showDate + "'");
+					stmt.setString(5, "'" + showTime + "'");
 					stmt.executeUpdate();
 					
 					//Store results
