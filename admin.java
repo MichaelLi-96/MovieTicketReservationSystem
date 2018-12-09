@@ -591,17 +591,21 @@ public class admin {
 	}
 	
 	private void currentShow() {
-		System.out.println();
-		PreparedStatement stmt = null;
+	System.out.println();
+	PreparedStatement stmt = null;
 		try {
-			stmt = myConn.prepareStatement("select distinct title from movie mv right outer JOIN showtime  st on mv.movieID = st.movieid;");
+			stmt = myConn.prepareStatement(
+					"select distinct title, year, rating from movie mv right outer JOIN showtime  st on mv.movieID = st.movieid;");
 			ResultSet rs = stmt.executeQuery();
 			System.out.println("***** Now Playing *****\n");
+			System.out.println("Rating \t Year \t Title");
 			while (rs.next()) {
-				String mtitle = rs.getString("title\n");
-				System.out.println(mtitle);		
+				String year = rs.getString("year");
+				String rating = rs.getString("rating");
+				String mtitle = rs.getString("title");
+				System.out.println(rating + "\t " + year + "\t" + mtitle);
 			}
-			System.out.println("***********************");
+			System.out.println("\n------------------------------------------");
 		} catch (SQLException exc) {
 			System.out.println("An error occured. Error: => " + exc.getMessage());
 		} finally {

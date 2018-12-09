@@ -146,8 +146,6 @@ BEGIN
 END; //
 delimiter ;
 
-INSERT into Admin(adminName, password) values("Admin", "password");
-
 
 -- MAKE SURE TO USE YOUR OWN DIRECTORY LOCATION WHEN IMPORTING DATA FROM .txt FILES 
 
@@ -203,3 +201,5 @@ insert into reservation(uID, showID, numofTicket) values(1002, 5003, 4);
 delete from reservation where rID = 6001;
 delete from reservation where rID = 6002;
 
+INSERT into Admin(adminName, password) values("Suneuy Kim", "password");
+INSERT into Admin(adminName, password) values("Admin", "password");
