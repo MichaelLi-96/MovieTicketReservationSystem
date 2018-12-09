@@ -120,7 +120,7 @@ public class customer {
 				// Quit program
 				else if (command == '4') {
 					System.out.println("\nLogged out of customer.\n");
-					return;
+					break;
 				}
 
 				// Error message for invalid input
@@ -162,8 +162,6 @@ public class customer {
 				System.out.println("An error occurred. Please try again.");
 			}
 		}
-
-		//customerMain();
 	}
 
 	// Movie menu
@@ -211,7 +209,6 @@ public class customer {
 				System.out.println("An error occurred. Please try again.");
 			}
 		}
-		customerMain();
 	}
 
 	// Purchases menu
@@ -249,7 +246,6 @@ public class customer {
 				System.out.println("An error occurred. Please try again.");
 			}
 		}
-		customerMain();
 	}
 
 	// Register a customer
@@ -1234,27 +1230,27 @@ public class customer {
 	// Show the customer how many tickets they have bought in total
 	//
 	private void showAmountOfTickets() {
-		System.out.println();
-		System.out.print("Enter your ID: ");
-		String id = sc.nextLine().trim();
-		if (!(StringUtils.isStrictlyNumeric(id) && id.length() == 4)) {
-			System.out.println();
-			System.out.println("Inputted customer ID was not accepted. Please try again.");
-		} else {
-			System.out.print("Enter your password: ");
-			String password = sc.nextLine().trim();
+		// System.out.println();
+		// System.out.print("Enter your ID: ");
+		// String id = sc.nextLine().trim();
+		// if (!(StringUtils.isStrictlyNumeric(id) && id.length() == 4)) {
+		// 	System.out.println();
+		// 	System.out.println("Inputted customer ID was not accepted. Please try again.");
+		// } else {
+			// System.out.print("Enter your password: ");
+			// String password = sc.nextLine().trim();
 			PreparedStatement stmt = null;
 			try {
 				stmt = myConn.prepareStatement(
 						"select total, uName, password from (select uID, SUM(numOfTicket) as 'total' from Reservation group by uID) as totalTable, Customer where totalTable.uID = Customer.uID and totalTable.uID ="
-								+ id + ";",
+								+ this.uID + ";",
 						Statement.RETURN_GENERATED_KEYS);
 				ResultSet rs = stmt.executeQuery();
 				System.out.println();
-				if (rs.next() && rs.getString("password").equals(password)) {
+				 if (rs.next()) {
 					System.out.println(rs.getString("uName") + " has bought " + rs.getInt("total") + " tickets.");
 				} else {
-					System.out.println("Account could not be found. Please try again.");
+					System.out.println("No Entries. Please try again.");
 				}
 			} catch (SQLException exc) {
 				System.out.println("An error occured. Error: => " + exc.getMessage());
@@ -1266,20 +1262,20 @@ public class customer {
 				}
 			}
 		}
-	}
+	
 
 	// Show the customer how much money they have spent on tickets in total
 	//
 	private void showTotalAmountOfMoneySpent() throws ParseException {
-		System.out.println();
-		System.out.print("Enter your ID: ");
-		String id = sc.nextLine().trim();
-		if (!(StringUtils.isStrictlyNumeric(id) && id.length() == 4)) {
-			System.out.println();
-			System.out.println("Inputted customer ID was not accepted. Please try again.");
-		} else {
-			System.out.print("Enter your password: ");
-			String password = sc.nextLine().trim();
+		// System.out.println();
+		// System.out.print("Enter your ID: ");
+		// String id = sc.nextLine().trim();
+		// if (!(StringUtils.isStrictlyNumeric(id) && id.length() == 4)) {
+		// 	System.out.println();
+		// 	System.out.println("Inputted customer ID was not accepted. Please try again.");
+		// } else {
+			// System.out.print("Enter your password: ");
+			// String password = sc.nextLine().trim();
 			PreparedStatement stmt1 = null;
 			PreparedStatement stmt2 = null;
 			PreparedStatement stmt3 = null;
@@ -1287,7 +1283,7 @@ public class customer {
 			try {
 				stmt1 = myConn.prepareStatement(
 						"select * from Reservation, Customer where Reservation.uID = Customer.uID and Reservation.uID ="
-								+ id + ";",
+								+ this.uID + ";",
 						Statement.RETURN_GENERATED_KEYS);
 				ResultSet rs1 = stmt1.executeQuery();
 				stmt3 = myConn.prepareStatement("select price from Ticket where ticketType = 'AM';",
@@ -1297,7 +1293,7 @@ public class customer {
 						Statement.RETURN_GENERATED_KEYS);
 				ResultSet rs4 = stmt4.executeQuery();
 				System.out.println();
-				if (rs1.next() && rs3.next() && rs4.next() && rs1.getString("password").equals(password)) {
+				if (rs1.next() && rs3.next() && rs4.next()) {
 					String name = rs1.getString("uName");
 					rs1.beforeFirst();
 					double total = 0;
@@ -1326,10 +1322,10 @@ public class customer {
 							}
 						}
 					}
-					System.out.println(name + " has spent " + total + " dollars on movie tickets.");
+					System.out.println(name + " has spent $" + total + "0 dollars on movie tickets.");
 					stmt2.close();
 				} else {
-					System.out.println("Account could not be found. Please try again.");
+					System.out.println("No Entries. Please try again.");
 				}
 			} catch (SQLException exc) {
 				System.out.println("An error occured. Error: => " + exc.getMessage());
@@ -1345,4 +1341,4 @@ public class customer {
 		}
 	}
 
-}
+
