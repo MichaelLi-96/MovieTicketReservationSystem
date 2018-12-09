@@ -1144,29 +1144,20 @@ public class customer {
 	// Show the customer his/her purchase(reservation) history
 	//
 	private void showPurchaseHistory() {
-		System.out.println();
-		System.out.print("Enter your ID: ");
-		String id = sc.nextLine().trim();
-		if (!(StringUtils.isStrictlyNumeric(id) && id.length() == 4)) {
-			System.out.println();
-			System.out.println("Inputted customer ID was not accepted. Please try again.");
-		} else {
-			System.out.print("Enter your password: ");
-			String password = sc.nextLine().trim();
 			PreparedStatement stmt1 = null;
 			PreparedStatement stmt2 = null;
 			PreparedStatement stmt3 = null;
 			try {
 				stmt1 = myConn.prepareStatement(
-						"select total, uName, password from (select uID, SUM(numOfTicket) as 'total' from Reservation group by uID) as totalTable, Customer where totalTable.uID = Customer.uID and totalTable.uID ="
-								+ id + ";",
+						"select total, uName from (select uID, SUM(numOfTicket) as 'total' from Reservation group by uID) as totalTable, Customer where totalTable.uID = Customer.uID and totalTable.uID ="
+								+ this.uID + ";",
 						Statement.RETURN_GENERATED_KEYS);
 				ResultSet rs1 = stmt1.executeQuery();
 				System.out.println();
-				if (rs1.next() && rs1.getString("password").equals(password)) {
+				// if (rs1.next() && rs1.getString("password").equals(password)) {
 					stmt2 = myConn.prepareStatement("select * from Reservation where uID = ? order by resDate DESC;",
 							Statement.RETURN_GENERATED_KEYS);
-					stmt2.setString(1, id);
+					stmt2.setString(1, this.uID);
 					ResultSet rs2 = stmt2.executeQuery();
 					System.out.println("---------------------------");
 					System.out.println("|  Your Purchase History  |");
@@ -1227,9 +1218,6 @@ public class customer {
 
 						System.out.println("|   " + dateBought + "   |");
 					}
-				} else {
-					System.out.println("Account could not be found. Please try again.");
-				}
 				System.out.println("---------------------------");
 			} catch (SQLException exc) {
 				System.out.println("An error occured. Error: => " + exc.getMessage());
@@ -1241,7 +1229,6 @@ public class customer {
 					System.out.println("An error occured. Error: => " + exc.getMessage());
 				}
 			}
-		}
 	}
 
 	// Show the customer how many tickets they have bought in total
