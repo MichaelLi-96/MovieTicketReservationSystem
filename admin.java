@@ -34,7 +34,7 @@ public class admin {
 						//enter Mi19Li96 password here
 						//Michael's password: Mi19Li96
 						//Vivian's password: currybreadchai
-						"Mi19Li96");
+						"currybreadchai");
 			} catch (Exception exc) {
 				exc.printStackTrace();
 			}

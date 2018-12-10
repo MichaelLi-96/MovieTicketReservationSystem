@@ -146,11 +146,11 @@ delimiter ;
 
 
 -- Michael's directory
-LOAD DATA LOCAL INFILE 'D:/SJSU/CS 157A/src/ticket.txt' INTO TABLE Ticket; 
-LOAD DATA LOCAL INFILE 'D:/SJSU/CS 157A/src/customer.txt' INTO TABLE Customer;
-LOAD DATA LOCAL INFILE 'D:/SJSU/CS 157A/src/movie.txt' INTO TABLE Movie;
-LOAD DATA LOCAL INFILE 'D:/SJSU/CS 157A/src/room.txt' INTO TABLE Room;
-LOAD DATA LOCAL INFILE 'D:/SJSU/CS 157A/src/movie.csv' INTO TABLE Movie
+
+LOAD DATA LOCAL INFILE 'C:/Users/vivz7/Documents/eclipse-workspace/movieTicketReservation/src/ticket.txt' INTO TABLE Ticket; 
+LOAD DATA LOCAL INFILE 'C:/Users/vivz7/Documents/eclipse-workspace/movieTicketReservation/src/customer.txt' INTO TABLE Customer;
+LOAD DATA LOCAL INFILE 'C:/Users/vivz7/Documents/eclipse-workspace/movieTicketReservation/src/room.txt' INTO TABLE Room;
+LOAD DATA LOCAL INFILE 'C:/Users/vivz7/Documents/eclipse-workspace/movieTicketReservation/src/movie.csv' INTO TABLE Movie
 FIELDS TERMINATED BY ','
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
@@ -159,7 +159,6 @@ IGNORE 1 LINES;
 -- Ying's directory
 -- LOAD DATA LOCAL INFILE '/Users/eliassun/workshop/MovieTicket/src/ticket.txt' INTO TABLE Ticket; 
 -- LOAD DATA LOCAL INFILE '/Users/eliassun/workshop/MovieTicket/src/customer.txt' INTO TABLE Customer;
--- LOAD DATA LOCAL INFILE '/Users/eliassun/workshop/MovieTicket/src/movie.txt' INTO TABLE Movie;
 -- LOAD DATA LOCAL INFILE '/Users/eliassun/workshop/MovieTicket/src/room.txt' INTO TABLE Room;
 -- LOAD DATA LOCAL INFILE '/Users/eliassun/workshop/MovieTicket/src/movie.csv' INTO TABLE Movie
 -- FIELDS TERMINATED BY ','
@@ -177,8 +176,15 @@ insert into showTime(movieID, roomID, seats, showdate, startTime) values(2000, 4
 insert into showTime(movieID, roomID, seats, showdate, startTime) values(2001, 4001, 30, '2018-12-03', '11:00:00' );
 insert into showTime(movieID, roomID, seats, showdate, startTime) values(2000, 4002, 30, '2018-12-07', '13:00:00' );
 insert into showTime(movieID, roomID, seats, showdate, startTime) values(2000, 4002, 30, '2018-12-01', '19:00:00' );
-insert into showTime(movieID, roomID, seats, showdate, startTime) values(2002, 4002, 30, '2018-12-01', '9:00:00' );
-insert into showTime(movieID, roomID, seats, showdate, startTime) values(2001, 4001, 30, '2018-12-02', '15:00:00' );
+insert into showTime(movieID, roomID, seats, showdate, startTime) values(2002, 4002, 30, '2018-12-13', '9:00:00' );
+insert into showTime(movieID, roomID, seats, showdate, startTime) values(2031, 4001, 30, '2018-12-02', '15:00:00' );
+insert into showTime(movieID, roomID, seats, showdate, startTime) values(2041, 4001, 30, '2018-12-14', '10:00:00' );
+insert into showTime(movieID, roomID, seats, showdate, startTime) values(2050, 4000, 30, '2018-12-09', '12:00:00' );
+insert into showTime(movieID, roomID, seats, showdate, startTime) values(2061, 4001, 30, '2018-12-14', '11:00:00' );
+insert into showTime(movieID, roomID, seats, showdate, startTime) values(2070, 4002, 30, '2018-12-13', '16:00:00' );
+insert into showTime(movieID, roomID, seats, showdate, startTime) values(2080, 4002, 30, '2018-12-22', '12:00:00' );
+insert into showTime(movieID, roomID, seats, showdate, startTime) values(2092, 4002, 30, '2018-12-31', '09:00:00' );
+insert into showTime(movieID, roomID, seats, showdate, startTime) values(2011, 4001, 30, '2018-12-30', '14:00:00' );
 
 
 insert into reservation(uID, showID, numofTicket) values(1000, 5000, 5);
