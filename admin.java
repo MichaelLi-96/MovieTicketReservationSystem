@@ -506,7 +506,7 @@ public class admin {
 		}
 	}
 
-	//Add a showtime
+	// Add a showtime
 	//
 	private void addShowtime() throws ParseException {
 		PreparedStatement s = null;
@@ -552,7 +552,7 @@ public class admin {
 		System.out.println();
 		//Insert user into Customer table
 		try {
-			stmt = myConn.prepareStatement("INSERT into Showtime(movieID, roomID,seats, showDate, startTime) values(?,?,?,?,?);",
+			stmt = myConn.prepareStatement("INSERT into Showtime(movieID, roomID, seats, showDate, startTime) values(?,?,?,?,?);",
 					Statement.RETURN_GENERATED_KEYS);
 			if (movieID.isEmpty() || roomID.isEmpty() || showDate.isEmpty() || showTime.isEmpty()) {
 				System.out.println("Please provide valid entries for each field");
