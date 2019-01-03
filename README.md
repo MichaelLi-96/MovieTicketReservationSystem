@@ -9,6 +9,9 @@ Members:
 * Vivian Leung
 * Ying Wang
 * Michael Li
+
+Final Report and pictures: https://docs.google.com/document/d/1NUotn_Z76CyVeWXR-q6Elx-o45pDg_iPs0Mn-PIEnwk/edit?usp=sharing
+
 # Setup
 Clone repository
 ```bash
