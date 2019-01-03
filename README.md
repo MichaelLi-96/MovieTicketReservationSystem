@@ -1,4 +1,4 @@
-# Movie Ticket Reservation
+# Movie Ticket Reservation System
 This is our final project for CS157A: Intro to Databases at San Jose State University with Professor Kim during Fall Semester 2018.
 You will need to have MySQL and JDBC installed.
 This was developed using Eclipse IDE.
